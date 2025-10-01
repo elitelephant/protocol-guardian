@@ -132,8 +132,8 @@ export default function GamePage() {
                     <Shield className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h1 className="text-xl font-bold text-balance">Global Crypto Crisis Command</h1>
-                    <p className="text-sm text-muted-foreground">Strategic Regulatory Simulation</p>
+                    <h1 className="text-xl font-bold text-balance">Bitcoin Stacks Command</h1>
+                    <p className="text-sm text-muted-foreground">Guardian of the Bitcoin Protocol</p>
                   </div>
                 </div>
 
@@ -289,8 +289,8 @@ export default function GamePage() {
                   <Shield className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold">Global Crypto Crisis Command</h1>
-                  <p className="text-sm text-muted-foreground">Active Regulatory Operations</p>
+                  <h1 className="text-xl font-bold">Bitcoin Stacks Command</h1>
+                  <p className="text-sm text-muted-foreground">Active Protocol Operations</p>
                 </div>
               </div>
 

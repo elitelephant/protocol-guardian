@@ -24,25 +24,25 @@ export function IndicatorsPanel({ gameState }: IndicatorsPanelProps) {
 
   const indicators = [
     {
-      name: "Market Stability",
-      value: gameState.marketStability,
-      description: "Overall cryptocurrency market confidence and volatility levels",
+      name: "Network Health",
+      value: gameState.networkHealth,
+      description: "Overall Bitcoin network security, decentralization, and operational stability",
     },
     {
       name: "Public Confidence",
       value: gameState.publicConfidence,
-      description: "Citizens' trust in cryptocurrency regulation and FiDeFi leadership",
+      description: "Community trust in Bitcoin protocol governance and Stacks ecosystem",
     },
     {
       name: "Tech Advancement",
       value: gameState.techAdvancement,
-      description: "Innovation pace and technological development in the crypto space",
+      description: "Innovation pace in Layer 2 solutions, smart contracts, and Bitcoin ecosystem development",
     },
   ]
 
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold">Global Indicators</h2>
+      <h2 className="text-xl font-semibold">Protocol Indicators</h2>
       {indicators.map((indicator) => (
         <Card key={indicator.name} className="p-4">
           <div className="flex items-center justify-between mb-2">

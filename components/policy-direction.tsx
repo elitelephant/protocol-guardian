@@ -26,37 +26,37 @@ interface PolicyDirectionProps {
 export function PolicyDirection({ onSelectPolicy }: PolicyDirectionProps) {
   const policyOptions: PolicyOption[] = [
     {
-      id: "stability",
-      title: "The Fortress Protocol",
-      subtitle: "Security-First Approach",
+      id: "sovereign",
+      title: "The Bitcoin Maximalist",
+      subtitle: "Network Security First",
       description:
-        "Prioritize market stability and comprehensive oversight to prevent another BlackShadow incident through robust regulatory frameworks.",
+        "Prioritize Bitcoin's base layer security and decentralization above all else, resisting changes that could compromise the network's integrity.",
       icon: <Shield className="h-6 w-6" />,
-      borderColor: "border-destructive",
-      benefits: ["Maximum security", "Investor protection", "Market stability"],
-      risks: ["Slower innovation", "Higher compliance costs", "Reduced flexibility"],
+      borderColor: "border-orange-500",
+      benefits: ["Maximum network security", "Preserves decentralization", "Maintains Bitcoin's vision"],
+      risks: ["Slows Layer 2 innovation", "Limits scalability", "May hinder adoption"],
     },
     {
-      id: "balance",
-      title: "The Harmony Doctrine",
-      subtitle: "Balanced Regulation",
+      id: "pragmatic",
+      title: "The Balanced Steward",
+      subtitle: "Pragmatic Governance",
       description:
-        "Balance regulation with innovation, seeking a middle path that protects users while fostering technological advancement and market growth.",
+        "Balance Bitcoin's security with practical governance, supporting Layer 2 solutions while maintaining network integrity and community consensus.",
       icon: <Scale className="h-6 w-6" />,
-      borderColor: "border-chart-3",
-      benefits: ["Balanced approach", "Sustainable growth", "Stakeholder consensus"],
-      risks: ["Complex implementation", "Compromise solutions", "Slower decision-making"],
+      borderColor: "border-blue-500",
+      benefits: ["Balanced approach", "Supports Layer 2 growth", "Community consensus"],
+      risks: ["Complex trade-offs", "Potential compromises", "Slower decision-making"],
     },
     {
-      id: "innovation",
-      title: "The Innovation Manifesto",
-      subtitle: "Technology-Forward Vision",
+      id: "progressive",
+      title: "The Innovation Catalyst",
+      subtitle: "Layer 2 Focused",
       description:
-        "Emphasize technological advancement and decentralization as the best protection against future attacks while promoting crypto innovation.",
+        "Emphasize Stacks and Layer 2 innovation as the path to Bitcoin's global adoption, pushing boundaries while maintaining security foundations.",
       icon: <Zap className="h-6 w-6" />,
-      borderColor: "border-primary",
-      benefits: ["Rapid innovation", "Competitive advantage", "Future-ready solutions"],
-      risks: ["Higher volatility", "Regulatory gaps", "Potential security issues"],
+      borderColor: "border-purple-500",
+      benefits: ["Accelerates Layer 2 development", "Enables DeFi on Bitcoin", "Future-ready solutions"],
+      risks: ["Potential security trade-offs", "Increased complexity", "Community division"],
     },
   ]
 
@@ -71,8 +71,8 @@ export function PolicyDirection({ onSelectPolicy }: PolicyDirectionProps) {
           </div>
           <h2 className="text-2xl font-bold text-balance">Choose Your Leadership Philosophy</h2>
           <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto text-pretty">
-            As the newly appointed FiDeFi President, your first major decision will define your administration's
-            approach to crypto regulation and set the foundation for all future policies.
+            As the newly appointed <strong>Guardian of the Bitcoin Protocol</strong>, your first major decision will define your administration's
+            approach to Bitcoin and Layer 2 ecosystem governance, setting the foundation for all future policies.
           </p>
         </div>
 

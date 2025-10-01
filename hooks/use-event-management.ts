@@ -408,19 +408,19 @@ export function useEventManagement() {
           if (conditions.maxMonth && gameState.currentMonth > conditions.maxMonth) return false
 
           // Check market conditions
-          if (conditions.marketStabilityRange) {
-            const [min, max] = conditions.marketStabilityRange
-            if (gameState.marketStability < min || gameState.marketStability > max) return false
+          if (conditions.networkHealthRange) {
+            const [min, max] = conditions.networkHealthRange
+            if (gameState.networkHealth < min || gameState.networkHealth > max) return false
           }
 
-          if (conditions.publicTrustRange) {
-            const [min, max] = conditions.publicTrustRange
-            if (gameState.publicTrust < min || gameState.publicTrust > max) return false
+          if (conditions.publicConfidenceRange) {
+            const [min, max] = conditions.publicConfidenceRange
+            if (gameState.publicConfidence < min || gameState.publicConfidence > max) return false
           }
 
-          if (conditions.innovationRange) {
-            const [min, max] = conditions.innovationRange
-            if (gameState.innovation < min || gameState.innovation > max) return false
+          if (conditions.techAdvancementRange) {
+            const [min, max] = conditions.techAdvancementRange
+            if (gameState.techAdvancement < min || gameState.techAdvancement > max) return false
           }
 
           // Check required decisions

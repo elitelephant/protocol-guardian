@@ -2,293 +2,213 @@ import type { Crisis } from "./game-state"
 
 export const crisisEvents: Crisis[] = [
   {
-    id: "privacy-coin-ban",
-    title: "Privacy Coin Regulation Crisis",
+    id: "bitcoin-mining-centralization",
+    title: "Bitcoin Mining Centralization Crisis",
     description:
-      "Several privacy-focused cryptocurrencies are being used for illicit activities. The Western Alliance demands immediate action, while privacy advocates argue for digital rights. Intelligence agencies report a 300% increase in ransomware payments using privacy coins.",
-    year: 2035,
+      "Large mining pools have consolidated power, controlling over 60% of Bitcoin's hash rate. Concerns about 51% attacks and centralization threaten the network's decentralization principles. Environmental groups protest the energy consumption of Proof-of-Work mining.",
+    era: 1,
     urgency: "high",
-    timeLimit: 7,
     decisions: [
       {
-        id: "privacy-decision-1",
-        title: "Privacy Coin Response",
-        description: "How should FiDeFi respond to the privacy coin crisis?",
+        id: "mining-centralization-decision",
+        title: "Mining Centralization Response",
+        description: "How should the Guardian respond to mining centralization concerns?",
         options: [
           {
-            id: "ban-privacy-coins",
-            text: "Ban all privacy coins globally with immediate effect",
+            id: "mandate-decentralization",
+            text: "Mandate mining pool decentralization with regulatory caps",
             consequences: [
-              { type: "marketStability", change: -15, description: "Market reacts negatively to heavy regulation" },
-              { type: "publicConfidence", change: 10, description: "Public supports anti-crime measures" },
-              {
-                type: "blocRelationship",
-                target: "westernAlliance",
-                change: 20,
-                description: "Western Alliance strongly approves",
-              },
-              {
-                type: "blocRelationship",
-                target: "globalSouth",
-                change: -10,
-                description: "Global South concerned about financial freedom",
-              },
+              { type: "networkHealth", change: -10, description: "Disruption to mining operations" },
+              { type: "techAdvancement", change: 5, description: "Encourages alternative consensus mechanisms" },
+              { type: "publicConfidence", change: 10, description: "Addresses centralization concerns" },
             ],
-            educationalNote:
-              "Complete bans may drive privacy coin usage underground and could impact legitimate privacy needs.",
+            educationalNote: "Mining pools allow individual miners to combine resources, but excessive concentration can threaten network security.",
           },
           {
-            id: "regulate-privacy-coins",
-            text: "Implement strict KYC requirements and optional transparency features",
+            id: "environmental-regulations",
+            text: "Implement environmental regulations on mining operations",
             consequences: [
-              { type: "marketStability", change: -5, description: "Moderate market concern about compliance costs" },
-              { type: "techAdvancement", change: -10, description: "Innovation slightly hindered by requirements" },
-              { type: "publicConfidence", change: 5, description: "Balanced approach appreciated by most" },
-              {
-                type: "blocRelationship",
-                target: "westernAlliance",
-                change: 5,
-                description: "Western Alliance cautiously supportive",
-              },
+              { type: "networkHealth", change: -5, description: "Some miners relocate to unregulated areas" },
+              { type: "techAdvancement", change: 10, description: "Accelerates research into Proof-of-Stake alternatives" },
+              { type: "publicConfidence", change: 5, description: "Appeals to environmental advocates" },
             ],
-            educationalNote:
-              "Regulatory compliance features can maintain privacy for legitimate users while enabling law enforcement access.",
+            educationalNote: "Bitcoin mining secures the network but consumes significant energy, raising sustainability concerns.",
           },
           {
-            id: "protect-privacy-coins",
-            text: "Defend privacy coins as fundamental digital rights with enhanced education",
+            id: "market-forces",
+            text: "Allow market forces to regulate mining naturally",
             consequences: [
-              { type: "techAdvancement", change: 15, description: "Privacy innovation flourishes globally" },
-              { type: "publicConfidence", change: -15, description: "Public very concerned about criminal activity" },
-              {
-                type: "blocRelationship",
-                target: "westernAlliance",
-                change: -25,
-                description: "Western Alliance strongly disapproves",
-              },
-              {
-                type: "blocRelationship",
-                target: "globalSouth",
-                change: 15,
-                description: "Global South appreciates privacy protection",
-              },
+              { type: "techAdvancement", change: 15, description: "Innovation in mining efficiency" },
+              { type: "networkHealth", change: -15, description: "Risk of centralization increases" },
+              { type: "publicConfidence", change: -10, description: "Public worries about network security" },
             ],
-            educationalNote:
-              "Strong privacy protections support human rights but may complicate law enforcement efforts.",
+            educationalNote: "Market-driven solutions may lead to more efficient mining but could compromise decentralization.",
           },
         ],
         educationalContent:
-          "Privacy coins use advanced cryptographic techniques like zero-knowledge proofs, ring signatures, and stealth addresses to hide transaction details while maintaining blockchain integrity. The regulatory challenge is balancing legitimate privacy needs with law enforcement requirements.",
+          "Bitcoin mining secures the network through Proof-of-Work, but concentration of mining power in large pools raises centralization concerns. The environmental impact of mining has led to debates about sustainability and alternative consensus mechanisms.",
         timestamp: new Date(),
       },
     ],
+    unresolvedPenalty: { type: "networkHealth", change: -5 },
   },
   {
-    id: "defi-flash-crash",
-    title: "DeFi Flash Crash Crisis",
+    id: "bitcoin-protocol-upgrade",
+    title: "Bitcoin Protocol Upgrade Crisis",
     description:
-      "A coordinated attack on multiple DeFi protocols has caused $50 billion in losses within 24 hours. Flash loans were used to manipulate oracle prices, triggering massive liquidations. Traditional markets are beginning to show contagion effects.",
-    year: 2036,
+      "A proposed Bitcoin protocol upgrade threatens to split the network. Supporters argue for scalability improvements, while traditionalists defend the original vision. The upgrade could lead to a contentious fork similar to Bitcoin Cash.",
+    era: 2,
     urgency: "critical",
-    timeLimit: 3,
     decisions: [
       {
-        id: "defi-crash-response",
-        title: "DeFi Flash Crash Emergency Response",
-        description: "How should FiDeFi respond to the systemic DeFi crisis?",
+        id: "protocol-upgrade-decision",
+        title: "Protocol Upgrade Response",
+        description: "How should the Guardian handle the protocol upgrade debate?",
         options: [
           {
-            id: "emergency-shutdown",
-            text: "Implement emergency shutdown of all major DeFi protocols",
+            id: "support-upgrade",
+            text: "Support the upgrade and provide regulatory backing",
             consequences: [
-              { type: "marketStability", change: 20, description: "Immediate market stabilization" },
-              { type: "techAdvancement", change: -30, description: "Innovation severely damaged" },
-              { type: "publicConfidence", change: -10, description: "Public questions DeFi viability" },
-              {
-                type: "blocRelationship",
-                target: "easternBloc",
-                change: 15,
-                description: "Eastern Bloc supports strong intervention",
-              },
+              { type: "techAdvancement", change: 20, description: "Accelerates Bitcoin development" },
+              { type: "networkHealth", change: -15, description: "Risk of chain split" },
+              { type: "publicConfidence", change: -5, description: "Community division" },
             ],
-            educationalNote:
-              "Emergency shutdowns can prevent further losses but may undermine the decentralized nature of DeFi.",
+            educationalNote: "Protocol upgrades can improve functionality but risk network splits if not universally adopted.",
           },
           {
-            id: "circuit-breakers",
-            text: "Mandate circuit breakers and improved oracle systems",
+            id: "oppose-upgrade",
+            text: "Oppose the upgrade and enforce the original protocol",
             consequences: [
-              { type: "marketStability", change: 10, description: "Gradual market recovery with safeguards" },
-              { type: "techAdvancement", change: 5, description: "Innovation continues with better infrastructure" },
-              { type: "publicConfidence", change: 15, description: "Public appreciates measured response" },
+              { type: "networkHealth", change: 10, description: "Maintains network unity" },
+              { type: "techAdvancement", change: -20, description: "Slows innovation" },
+              { type: "publicConfidence", change: 15, description: "Preserves Bitcoin's original vision" },
             ],
-            educationalNote:
-              "Circuit breakers can prevent cascading failures while preserving the benefits of decentralized finance.",
+            educationalNote: "Conserving the original protocol maintains stability but may hinder technological progress.",
           },
           {
-            id: "market-solution",
-            text: "Allow market forces to resolve the crisis naturally",
+            id: "facilitate-consensus",
+            text: "Facilitate community consensus without direct intervention",
             consequences: [
-              { type: "marketStability", change: -25, description: "Continued market volatility and uncertainty" },
-              { type: "techAdvancement", change: 10, description: "Market-driven solutions emerge" },
-              { type: "publicConfidence", change: -20, description: "Public loses faith in regulatory protection" },
-              {
-                type: "blocRelationship",
-                target: "globalSouth",
-                change: 5,
-                description: "Global South appreciates non-intervention",
-              },
+              { type: "techAdvancement", change: 5, description: "Allows organic development" },
+              { type: "networkHealth", change: 5, description: "Balanced approach" },
+              { type: "publicConfidence", change: 10, description: "Respects community governance" },
             ],
-            educationalNote:
-              "Market-driven solutions may be more resilient long-term but could cause significant short-term damage.",
+            educationalNote: "Community-driven consensus building takes time but leads to more sustainable solutions.",
           },
         ],
         educationalContent:
-          "Flash loans allow borrowing large amounts without collateral within a single transaction. While enabling innovative arbitrage and liquidation mechanisms, they can also be used for market manipulation and oracle attacks that destabilize entire protocols.",
+          "Bitcoin's consensus mechanism requires agreement on protocol changes. Hard forks occur when the network splits due to irreconcilable differences, creating two separate cryptocurrencies.",
         timestamp: new Date(),
       },
     ],
+    unresolvedPenalty: { type: "networkHealth", change: -5 },
   },
   {
-    id: "cbdc-competition",
-    title: "CBDC Competitive Crisis",
+    id: "bitcoin-etf-regulatory",
+    title: "Bitcoin ETF Regulatory Crisis",
     description:
-      "China's digital yuan has gained 40% global market share in international trade settlements, threatening the dominance of traditional reserve currencies. The Western Alliance is demanding coordinated CBDC development to maintain monetary sovereignty.",
-    year: 2037,
+      "Multiple Bitcoin ETF applications are pending approval. Traditional financial institutions demand clear regulatory frameworks, while crypto purists worry about institutional capture of the network.",
+    era: 3,
     urgency: "medium",
-    timeLimit: 14,
     decisions: [
       {
-        id: "cbdc-strategy",
-        title: "Global CBDC Coordination Strategy",
-        description: "How should FiDeFi coordinate the global CBDC landscape?",
+        id: "etf-approval-decision",
+        title: "ETF Regulatory Response",
+        description: "How should the Guardian approach Bitcoin ETF approvals?",
         options: [
           {
-            id: "unified-cbdc",
-            text: "Promote a unified global CBDC standard with interoperability protocols",
+            id: "approve-etfs",
+            text: "Approve ETFs with strict regulatory oversight",
             consequences: [
-              { type: "marketStability", change: 15, description: "Reduced currency competition volatility" },
-              { type: "techAdvancement", change: 20, description: "Accelerated CBDC innovation" },
-              {
-                type: "blocRelationship",
-                target: "westernAlliance",
-                change: 10,
-                description: "Western Alliance supports coordination",
-              },
-              {
-                type: "blocRelationship",
-                target: "easternBloc",
-                change: -15,
-                description: "Eastern Bloc resists losing competitive advantage",
-              },
+              { type: "publicConfidence", change: 20, description: "Increases mainstream adoption" },
+              { type: "networkHealth", change: -10, description: "Potential for market manipulation" },
+              { type: "techAdvancement", change: -5, description: "Focus shifts to traditional finance" },
             ],
-            educationalNote:
-              "Unified standards could reduce fragmentation but may be difficult to achieve given geopolitical tensions.",
+            educationalNote: "ETFs provide institutional access but may introduce traditional financial system risks.",
           },
           {
-            id: "competitive-cbdcs",
-            text: "Allow competitive CBDC development with minimal coordination",
+            id: "reject-etfs",
+            text: "Reject ETFs and maintain separation from traditional finance",
             consequences: [
-              { type: "marketStability", change: -10, description: "Increased currency competition and volatility" },
-              { type: "techAdvancement", change: 25, description: "Rapid innovation through competition" },
-              {
-                type: "blocRelationship",
-                target: "easternBloc",
-                change: 10,
-                description: "Eastern Bloc appreciates competitive approach",
-              },
-              {
-                type: "blocRelationship",
-                target: "westernAlliance",
-                change: -5,
-                description: "Western Alliance concerned about coordination",
-              },
+              { type: "techAdvancement", change: 15, description: "Preserves Bitcoin's decentralized nature" },
+              { type: "publicConfidence", change: -15, description: "Slows adoption" },
+              { type: "networkHealth", change: 10, description: "Reduces institutional influence" },
             ],
-            educationalNote:
-              "Competition can drive innovation but may lead to fragmentation and reduced interoperability.",
+            educationalNote: "Maintaining separation preserves decentralization but may limit mainstream adoption.",
           },
           {
-            id: "cbdc-moratorium",
-            text: "Implement temporary moratorium on new CBDC launches",
+            id: "hybrid-framework",
+            text: "Create a hybrid regulatory framework",
             consequences: [
-              { type: "marketStability", change: 5, description: "Reduced short-term uncertainty" },
-              { type: "techAdvancement", change: -15, description: "Innovation slowed by regulatory pause" },
-              { type: "publicConfidence", change: -5, description: "Public questions regulatory decisiveness" },
-              {
-                type: "blocRelationship",
-                target: "globalSouth",
-                change: -10,
-                description: "Global South frustrated by development delays",
-              },
+              { type: "networkHealth", change: 5, description: "Balanced institutional access" },
+              { type: "techAdvancement", change: 5, description: "Allows innovation while maintaining oversight" },
+              { type: "publicConfidence", change: 10, description: "Appeals to both sides" },
             ],
-            educationalNote:
-              "Moratoriums can provide time for coordination but may allow first-movers to consolidate advantages.",
+            educationalNote: "Hybrid approaches attempt to balance accessibility with decentralization principles.",
           },
         ],
         educationalContent:
-          "CBDCs represent government-issued digital currencies that could reshape international monetary systems. Unlike cryptocurrencies, CBDCs are centrally controlled and can incorporate policy tools like programmable money and direct monetary policy transmission.",
+          "Exchange-Traded Funds (ETFs) allow investors to gain exposure to Bitcoin without holding it directly. Regulatory approval of Bitcoin ETFs represents a major milestone in institutional adoption.",
         timestamp: new Date(),
       },
     ],
+    unresolvedPenalty: { type: "publicConfidence", change: -5 },
   },
   {
-    id: "quantum-threat",
-    title: "Quantum Computing Threat",
+    id: "stacks-security-crisis",
+    title: "Stacks Smart Contract Security Crisis",
     description:
-      "A breakthrough in quantum computing has made current cryptographic standards vulnerable. Several major cryptocurrencies could be compromised within 18 months. The entire blockchain ecosystem needs urgent cryptographic upgrades.",
-    year: 2038,
+      "A vulnerability in Stacks smart contracts has been exploited, draining millions from DeFi protocols. The incident highlights the challenges of building complex applications on Bitcoin's Layer 2.",
+    era: 4,
     urgency: "critical",
-    timeLimit: 5,
     decisions: [
       {
-        id: "quantum-response",
-        title: "Quantum Cryptography Emergency Response",
-        description: "How should FiDeFi address the quantum computing threat?",
+        id: "stacks-security-decision",
+        title: "Stacks Security Response",
+        description: "How should the Guardian address the Stacks security vulnerability?",
         options: [
           {
-            id: "mandatory-upgrade",
-            text: "Mandate immediate quantum-resistant cryptography upgrades",
+            id: "mandatory-audits",
+            text: "Mandate comprehensive security audits for all Stacks protocols",
             consequences: [
-              { type: "marketStability", change: -20, description: "Market disruption from forced upgrades" },
-              { type: "techAdvancement", change: 30, description: "Accelerated quantum-resistant innovation" },
-              { type: "publicConfidence", change: 10, description: "Public appreciates proactive security measures" },
+              { type: "networkHealth", change: 15, description: "Improves overall ecosystem security" },
+              { type: "techAdvancement", change: -10, description: "Slows development" },
+              { type: "publicConfidence", change: 10, description: "Rebuilds trust" },
             ],
-            educationalNote:
-              "Mandatory upgrades ensure security but may cause significant disruption to existing systems.",
+            educationalNote: "Mandatory audits improve security but may burden developers and slow innovation.",
           },
           {
-            id: "gradual-transition",
-            text: "Implement gradual transition plan with incentives for early adoption",
+            id: "bug-bounties",
+            text: "Implement bug bounty programs and community-driven security",
             consequences: [
-              { type: "marketStability", change: 5, description: "Smoother market transition" },
-              { type: "techAdvancement", change: 15, description: "Steady progress toward quantum resistance" },
-              { type: "publicConfidence", change: -5, description: "Some public concern about timeline" },
+              { type: "techAdvancement", change: 15, description: "Encourages security research" },
+              { type: "networkHealth", change: 5, description: "Community-focused approach" },
+              { type: "publicConfidence", change: 5, description: "Builds ecosystem resilience" },
             ],
-            educationalNote:
-              "Gradual transitions reduce disruption but may leave some systems vulnerable during the transition period.",
+            educationalNote: "Bug bounties incentivize security research and can lead to faster vulnerability discovery.",
           },
           {
-            id: "research-focus",
-            text: "Focus on quantum computing research rather than immediate upgrades",
+            id: "market-forces-security",
+            text: "Allow market forces to address security issues",
             consequences: [
-              { type: "marketStability", change: -5, description: "Continued uncertainty about quantum timeline" },
-              { type: "techAdvancement", change: 20, description: "Advanced quantum research capabilities" },
-              { type: "publicConfidence", change: -15, description: "Public worried about inadequate protection" },
+              { type: "techAdvancement", change: 20, description: "Rapid innovation and fixes" },
+              { type: "networkHealth", change: -20, description: "Continued vulnerabilities" },
+              { type: "publicConfidence", change: -15, description: "Erodes confidence in Stacks" },
             ],
-            educationalNote:
-              "Research-focused approaches may yield better long-term solutions but leave current systems at risk.",
+            educationalNote: "Market-driven security can be effective but may leave users exposed during the learning process.",
           },
         ],
         educationalContent:
-          "Quantum computers could break current cryptographic algorithms that secure blockchain networks. Post-quantum cryptography uses mathematical problems believed to be resistant to both classical and quantum computers, but requires significant changes to existing systems.",
+          "Stacks brings smart contract functionality to Bitcoin through Clarity language. While enabling DeFi and dApps, it introduces security challenges not present in Bitcoin's base layer.",
         timestamp: new Date(),
       },
     ],
+    unresolvedPenalty: { type: "networkHealth", change: -5 },
   },
 ]
 
-export function getCrisisByYear(year: number): Crisis[] {
-  return crisisEvents.filter((crisis) => crisis.year === year)
+export function getCrisisByEra(era: number): Crisis[] {
+  return crisisEvents.filter((crisis) => crisis.era === era)
 }
 
 export function getCrisisById(id: string): Crisis | undefined {

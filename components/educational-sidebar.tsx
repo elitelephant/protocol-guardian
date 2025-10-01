@@ -20,11 +20,11 @@ export function EducationalSidebar({ gameState, onLessonComplete, onSelectLesson
   const [selectedCategory, setSelectedCategory] = useState<string>("blockchain")
 
   const categories = [
-    { id: "blockchain", label: "Blockchain", icon: "🔗" },
-    { id: "regulation", label: "Regulation", icon: "⚖️" },
-    { id: "economics", label: "Economics", icon: "📊" },
-    { id: "security", label: "Security", icon: "🔒" },
-    { id: "governance", label: "Governance", icon: "🏛️" },
+    { id: "blockchain", label: "Bitcoin Tech", icon: "₿" },
+    { id: "regulation", label: "Protocol Governance", icon: "🏛️" },
+    { id: "economics", label: "Bitcoin Economics", icon: "📊" },
+    { id: "security", label: "Network Security", icon: "🔒" },
+    { id: "governance", label: "Layer 2 Solutions", icon: "📚" },
   ]
 
   const getDifficultyColor = (difficulty: string) => {
@@ -66,8 +66,8 @@ export function EducationalSidebar({ gameState, onLessonComplete, onSelectLesson
 
       <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
         <TabsList className="grid w-full grid-cols-2 mb-4">
-          <TabsTrigger value="blockchain">Tech</TabsTrigger>
-          <TabsTrigger value="regulation">Policy</TabsTrigger>
+          <TabsTrigger value="blockchain">Bitcoin</TabsTrigger>
+          <TabsTrigger value="regulation">Stacks</TabsTrigger>
         </TabsList>
 
         <TabsContent value="blockchain" className="space-y-3">
@@ -92,6 +92,15 @@ export function EducationalSidebar({ gameState, onLessonComplete, onSelectLesson
         </TabsContent>
 
         <TabsContent value="regulation" className="space-y-3">
+          {getLessonsByCategory("governance").map((lesson) => (
+            <LessonCard
+              key={lesson.id}
+              lesson={lesson}
+              isCompleted={isLessonCompleted(lesson.id)}
+              onSelect={() => onSelectLesson(lesson)}
+              getDifficultyColor={getDifficultyColor}
+            />
+          ))}
           {getLessonsByCategory("regulation").map((lesson) => (
             <LessonCard
               key={lesson.id}
@@ -102,15 +111,6 @@ export function EducationalSidebar({ gameState, onLessonComplete, onSelectLesson
             />
           ))}
           {getLessonsByCategory("economics").map((lesson) => (
-            <LessonCard
-              key={lesson.id}
-              lesson={lesson}
-              isCompleted={isLessonCompleted(lesson.id)}
-              onSelect={() => onSelectLesson(lesson)}
-              getDifficultyColor={getDifficultyColor}
-            />
-          ))}
-          {getLessonsByCategory("governance").map((lesson) => (
             <LessonCard
               key={lesson.id}
               lesson={lesson}

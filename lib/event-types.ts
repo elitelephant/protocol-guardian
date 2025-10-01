@@ -25,15 +25,14 @@ export interface GameEvent {
     minMonth?: number
     maxMonth?: number
     requiredDecisions?: string[]
-    marketStabilityRange?: [number, number]
-    publicTrustRange?: [number, number]
-    innovationRange?: [number, number]
+    networkHealthRange?: [number, number]
+    publicConfidenceRange?: [number, number]
+    techAdvancementRange?: [number, number]
   }
   consequences?: {
-    marketStability?: number
-    publicTrust?: number
-    innovation?: number
-    globalInfluence?: number
+    networkHealth?: number
+    publicConfidence?: number
+    techAdvancement?: number
   }
   createdAt: string
   updatedAt: string

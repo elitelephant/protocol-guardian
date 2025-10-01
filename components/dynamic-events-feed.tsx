@@ -410,51 +410,36 @@ export function DynamicEventsFeed({ gameState }: DynamicEventsFeedProps) {
                     <div>
                       <h4 className="font-semibold mb-2">Potential Impact</h4>
                       <div className="grid grid-cols-2 gap-3">
-                        {selectedEvent.consequences.marketStability && (
+                        {selectedEvent.consequences.networkHealth && (
                           <div className="flex justify-between text-sm">
-                            <span>Market Stability:</span>
+                            <span>Network Health:</span>
                             <span
-                              className={
-                                selectedEvent.consequences.marketStability > 0 ? "text-green-600" : "text-red-600"
-                              }
+                              className={selectedEvent.consequences.networkHealth > 0 ? "text-green-600" : "text-red-600"}
                             >
-                              {selectedEvent.consequences.marketStability > 0 ? "+" : ""}
-                              {selectedEvent.consequences.marketStability}%
+                              {selectedEvent.consequences.networkHealth > 0 ? "+" : ""}
+                              {selectedEvent.consequences.networkHealth}%
                             </span>
                           </div>
                         )}
-                        {selectedEvent.consequences.publicTrust && (
+                        {selectedEvent.consequences.publicConfidence && (
                           <div className="flex justify-between text-sm">
-                            <span>Public Trust:</span>
+                            <span>Public Confidence:</span>
                             <span
-                              className={selectedEvent.consequences.publicTrust > 0 ? "text-green-600" : "text-red-600"}
+                              className={selectedEvent.consequences.publicConfidence > 0 ? "text-green-600" : "text-red-600"}
                             >
-                              {selectedEvent.consequences.publicTrust > 0 ? "+" : ""}
-                              {selectedEvent.consequences.publicTrust}%
+                              {selectedEvent.consequences.publicConfidence > 0 ? "+" : ""}
+                              {selectedEvent.consequences.publicConfidence}%
                             </span>
                           </div>
                         )}
-                        {selectedEvent.consequences.innovation && (
+                        {selectedEvent.consequences.techAdvancement && (
                           <div className="flex justify-between text-sm">
-                            <span>Innovation:</span>
+                            <span>Tech Advancement:</span>
                             <span
-                              className={selectedEvent.consequences.innovation > 0 ? "text-green-600" : "text-red-600"}
+                              className={selectedEvent.consequences.techAdvancement > 0 ? "text-green-600" : "text-red-600"}
                             >
-                              {selectedEvent.consequences.innovation > 0 ? "+" : ""}
-                              {selectedEvent.consequences.innovation}%
-                            </span>
-                          </div>
-                        )}
-                        {selectedEvent.consequences.globalInfluence && (
-                          <div className="flex justify-between text-sm">
-                            <span>Global Influence:</span>
-                            <span
-                              className={
-                                selectedEvent.consequences.globalInfluence > 0 ? "text-green-600" : "text-red-600"
-                              }
-                            >
-                              {selectedEvent.consequences.globalInfluence > 0 ? "+" : ""}
-                              {selectedEvent.consequences.globalInfluence}%
+                              {selectedEvent.consequences.techAdvancement > 0 ? "+" : ""}
+                              {selectedEvent.consequences.techAdvancement}%
                             </span>
                           </div>
                         )}

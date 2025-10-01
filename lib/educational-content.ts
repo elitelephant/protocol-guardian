@@ -12,144 +12,143 @@ export interface EducationalLesson {
 
 export const educationalLessons: EducationalLesson[] = [
   {
-    id: "blockchain-basics",
-    title: "Blockchain Fundamentals",
+    id: "bitcoin-basics",
+    title: "Bitcoin Fundamentals",
     category: "blockchain",
     difficulty: "beginner",
-    content: `A blockchain is a distributed ledger technology that maintains a continuously growing list of records, called blocks, which are linked and secured using cryptography. Each block contains a cryptographic hash of the previous block, a timestamp, and transaction data.
+    content: `Bitcoin is a decentralized digital currency that operates on a peer-to-peer network without requiring trust in any central authority. Created in 2008 by Satoshi Nakamoto, Bitcoin introduced the world to blockchain technology and Proof-of-Work consensus.
 
-The key innovation of blockchain is that it allows multiple parties to maintain a shared database without requiring a trusted central authority. This is achieved through consensus mechanisms that ensure all participants agree on the current state of the ledger.
+The Bitcoin network maintains a public ledger of all transactions, secured through cryptographic hashing and maintained by network participants called miners. Each block contains a set of transactions and is linked to the previous block, creating an immutable chain of records.
 
-In the context of cryptocurrency regulation, understanding blockchain's immutable and transparent nature is crucial for developing effective policies that balance innovation with consumer protection.`,
+As the Guardian of the Bitcoin Protocol, understanding Bitcoin's core principles - decentralization, censorship resistance, and scarcity - is essential for making decisions that preserve its fundamental value proposition.`,
     keyPoints: [
-      "Distributed ledger maintained by network participants",
-      "Cryptographic hashing ensures data integrity",
-      "No central authority required for validation",
-      "Transactions are transparent and immutable",
-      "Consensus mechanisms prevent double-spending",
+      "Decentralized peer-to-peer electronic cash system",
+      "Proof-of-Work secures the network through mining",
+      "Fixed supply of 21 million coins creates digital scarcity",
+      "No central authority can alter transactions or create inflation",
+      "Public ledger ensures transparency and immutability",
     ],
     realWorldExample:
-      "Bitcoin's blockchain processes over 300,000 transactions daily, with each transaction permanently recorded and verifiable by anyone.",
-    relatedDecisions: ["stablecoin-regulation"],
+      "Bitcoin has processed over 700 million transactions since its creation, with a market capitalization exceeding $1 trillion.",
+    relatedDecisions: ["bitcoin-mining-regulation"],
     estimatedReadTime: 3,
   },
   {
-    id: "regulatory-frameworks",
-    title: "Global Regulatory Approaches",
-    category: "regulation",
-    difficulty: "intermediate",
-    content: `Different jurisdictions have adopted varying approaches to cryptocurrency regulation, reflecting their unique economic priorities and risk tolerances.
-
-The United States employs a multi-agency approach with the SEC focusing on securities, the CFTC on commodities, and FinCEN on anti-money laundering. The European Union's MiCA (Markets in Crypto-Assets) regulation provides comprehensive coverage across member states.
-
-China has banned cryptocurrency trading and mining while developing its own Central Bank Digital Currency (CBDC). In contrast, countries like El Salvador have embraced Bitcoin as legal tender.
-
-Understanding these different approaches is essential for FiDeFi's mission to create globally coordinated regulatory standards.`,
-    keyPoints: [
-      "Multi-agency oversight in complex jurisdictions",
-      "Comprehensive frameworks like EU's MiCA",
-      "Prohibition vs. embrace spectrum of approaches",
-      "CBDC development as regulatory response",
-      "Need for international coordination",
-    ],
-    realWorldExample:
-      "The EU's MiCA regulation, effective 2024, covers crypto-asset issuance, trading, and custody services across all 27 member states.",
-    relatedDecisions: ["defi-protocol-licensing"],
-    estimatedReadTime: 5,
-  },
-  {
-    id: "defi-mechanics",
-    title: "Decentralized Finance (DeFi) Protocols",
+    id: "mining-mechanics",
+    title: "Bitcoin Mining and Security",
     category: "blockchain",
-    difficulty: "advanced",
-    content: `DeFi protocols use smart contracts to recreate traditional financial services without intermediaries. These automated programs execute predetermined rules, enabling lending, borrowing, trading, and insurance services.
-
-Key DeFi innovations include Automated Market Makers (AMMs) for decentralized trading, yield farming for liquidity provision incentives, and flash loans for instant, uncollateralized borrowing within a single transaction.
-
-The regulatory challenge lies in DeFi's permissionless nature - anyone can interact with these protocols without identity verification, and many operate without identifiable operators or legal entities.
-
-Total Value Locked (TVL) in DeFi protocols exceeded $100 billion at peak, demonstrating significant economic impact that requires thoughtful regulatory consideration.`,
-    keyPoints: [
-      "Smart contracts automate financial services",
-      "No traditional intermediaries required",
-      "Permissionless access without KYC/AML",
-      "Novel mechanisms like flash loans",
-      "Significant economic value at stake",
-    ],
-    realWorldExample:
-      "Uniswap, a decentralized exchange, processes billions in trading volume monthly without a central operator.",
-    relatedDecisions: ["defi-protocol-licensing"],
-    estimatedReadTime: 6,
-  },
-  {
-    id: "stablecoin-mechanisms",
-    title: "Stablecoin Design and Risks",
-    category: "economics",
     difficulty: "intermediate",
-    content: `Stablecoins attempt to maintain stable value through various mechanisms. Fiat-collateralized stablecoins like USDC back each token with traditional currency reserves. Crypto-collateralized stablecoins like DAI use over-collateralization with volatile assets.
+    content: `Bitcoin mining serves dual purposes: securing the network and distributing new bitcoins. Miners compete to solve complex mathematical puzzles, with the winner earning the right to add the next block to the blockchain and receive newly created bitcoins plus transaction fees.
 
-Algorithmic stablecoins attempt to maintain stability through market mechanisms and token supply adjustments, though several high-profile failures have demonstrated the risks of this approach.
+The mining difficulty adjusts every 2016 blocks (approximately every two weeks) to maintain a consistent 10-minute average block time. This ensures the network remains secure even as mining power fluctuates.
 
-The regulatory focus on stablecoins stems from their systemic importance - they serve as the primary medium of exchange in DeFi and facilitate most crypto trading. A stablecoin failure could trigger broader market instability.
-
-Reserve composition, audit requirements, and redemption guarantees are key regulatory considerations for maintaining stablecoin stability and user protection.`,
+Mining centralization poses risks to Bitcoin's decentralization. Large mining pools can theoretically collude to attack the network, though economic incentives generally prevent such attacks. Environmental concerns about mining's energy consumption have led to debates about sustainability and alternative consensus mechanisms.`,
     keyPoints: [
-      "Multiple stabilization mechanisms exist",
-      "Fiat backing provides strongest stability",
-      "Algorithmic approaches carry higher risk",
-      "Systemic importance to crypto markets",
-      "Reserve transparency crucial for confidence",
+      "Proof-of-Work provides Sybil resistance and network security",
+      "Mining difficulty adjusts to maintain consistent block times",
+      "Economic incentives align miners with network security",
+      "Centralization risks threaten decentralization principles",
+      "Energy consumption raises environmental and sustainability concerns",
     ],
     realWorldExample:
-      "USDT's market cap exceeds $80 billion, making it larger than many national currencies and highlighting the systemic importance of stablecoins.",
-    relatedDecisions: ["stablecoin-regulation"],
+      "The Bitcoin network currently consumes about 150 terawatt-hours annually, comparable to the energy use of countries like Argentina.",
+    relatedDecisions: ["bitcoin-mining-regulation"],
     estimatedReadTime: 4,
   },
   {
-    id: "privacy-technologies",
-    title: "Privacy-Preserving Technologies",
-    category: "security",
-    difficulty: "advanced",
-    content: `Privacy coins and technologies aim to provide financial privacy through various cryptographic techniques. Zero-knowledge proofs allow verification of information without revealing the information itself.
+    id: "layer2-scaling",
+    title: "Layer 2 Scaling Solutions",
+    category: "blockchain",
+    difficulty: "intermediate",
+    content: `Layer 2 solutions build on top of Bitcoin's base layer to enable faster, cheaper transactions without compromising the security of the underlying blockchain. These solutions process transactions off-chain and periodically settle to the main Bitcoin network.
 
-Monero uses ring signatures and stealth addresses to obscure transaction participants and amounts. Zcash employs zk-SNARKs to enable fully private transactions while maintaining blockchain integrity.
+The Lightning Network enables instant, low-cost micropayments through payment channels. State channels allow participants to conduct unlimited transactions privately before settling the final state on-chain.
 
-The regulatory tension arises from legitimate privacy needs versus law enforcement requirements. Privacy technologies can protect dissidents and journalists but may also facilitate illicit activities.
+Stacks brings smart contract functionality to Bitcoin through a unique consensus mechanism that settles on Bitcoin. This enables decentralized applications, DeFi protocols, and NFTs while leveraging Bitcoin's superior security and decentralization.
 
-Regulatory approaches range from outright bans to requirements for optional transparency features that allow compliance with legal obligations while preserving privacy for legitimate users.`,
+Layer 2 solutions are crucial for Bitcoin's mass adoption, enabling use cases that would be prohibitively expensive on the base layer alone.`,
     keyPoints: [
-      "Zero-knowledge proofs enable private verification",
-      "Multiple technical approaches to privacy",
-      "Legitimate privacy needs vs. law enforcement",
-      "Regulatory spectrum from bans to compliance features",
-      "Technical complexity challenges regulation",
+      "Layer 2 enables scaling without compromising base layer security",
+      "Lightning Network provides instant micropayments",
+      "Stacks brings smart contracts to Bitcoin",
+      "Off-chain processing reduces congestion and fees",
+      "Multiple Layer 2 solutions offer different trade-offs",
     ],
     realWorldExample:
-      "Several major exchanges have delisted privacy coins due to regulatory pressure, limiting their accessibility and adoption.",
-    relatedDecisions: ["privacy-coin-ban"],
+      "The Lightning Network processes millions of transactions daily with fees measured in satoshis rather than dollars.",
+    relatedDecisions: ["stacks-protocol-governance"],
     estimatedReadTime: 5,
   },
   {
-    id: "cbdc-implications",
-    title: "Central Bank Digital Currencies",
+    id: "protocol-upgrades",
+    title: "Bitcoin Protocol Governance",
     category: "governance",
-    difficulty: "intermediate",
-    content: `CBDCs represent government-issued digital currencies that combine the efficiency of digital payments with the stability and backing of traditional fiat currency. Unlike cryptocurrencies, CBDCs are centrally controlled and can incorporate policy tools like programmable money and direct monetary policy transmission.
+    difficulty: "advanced",
+    content: `Bitcoin's protocol upgrades occur through a consensus-driven process that requires widespread agreement among network participants. Unlike traditional software, Bitcoin upgrades must maintain backward compatibility and cannot force changes on unwilling participants.
 
-CBDCs could provide financial inclusion benefits by enabling direct government payments and reducing reliance on traditional banking infrastructure. However, they also raise concerns about privacy, surveillance, and the potential displacement of commercial banks.
+The Bitcoin Improvement Proposal (BIP) process allows anyone to propose changes to the protocol. Successful BIPs require implementation by multiple independent development teams and activation through miner signaling or user activation.
 
-The design choices for CBDCs - including privacy levels, offline capability, and programmability - have significant implications for monetary policy, financial stability, and civil liberties.
+Controversial upgrades like the 2017 SegWit2x attempt demonstrated the challenges of achieving consensus in a decentralized system. Hard forks can split the network, creating two separate cryptocurrencies with different rules.
 
-Over 100 countries are exploring CBDCs, with China's digital yuan leading in development and pilot programs, creating competitive pressure for other nations to develop their own digital currencies.`,
+As Guardian, you must navigate these governance challenges while preserving Bitcoin's core principles and ensuring the network evolves to meet growing demands.`,
     keyPoints: [
-      "Government-issued digital currency with central control",
-      "Potential for direct monetary policy transmission",
-      "Financial inclusion and efficiency benefits",
-      "Privacy and surveillance concerns",
-      "Global competitive dynamics driving adoption",
+      "Consensus-driven upgrade process requires widespread agreement",
+      "BIP process formalizes protocol improvement proposals",
+      "Backward compatibility crucial for smooth upgrades",
+      "Hard forks can split the network permanently",
+      "Governance balances innovation with network unity",
     ],
     realWorldExample:
-      "China's digital yuan has processed over $14 billion in transactions during pilot programs across multiple cities.",
+      "Taproot, activated in 2021, improved Bitcoin's privacy and smart contract capabilities through Schnorr signatures and MAST.",
+    relatedDecisions: ["bitcoin-protocol-upgrade"],
+    estimatedReadTime: 6,
+  },
+  {
+    id: "stacks-ecosystem",
+    title: "Stacks Smart Contracts",
+    category: "blockchain",
+    difficulty: "intermediate",
+    content: `Stacks is a Layer 1 blockchain that extends Bitcoin with smart contract functionality through the Clarity programming language. Unlike other smart contract platforms, Stacks settles all transactions and smart contract executions on Bitcoin, inheriting its superior security and decentralization.
+
+The Proof-of-Transfer (PoX) consensus mechanism burns Stacks tokens to mine Bitcoin, creating a symbiotic relationship between the two networks. This ensures Stacks contributes to Bitcoin's security while enabling programmable money on the most secure blockchain.
+
+Clarity's design emphasizes predictability and security, with features like post-conditions that prevent unintended token transfers and readable smart contracts that users can understand before interacting.
+
+Stacks enables DeFi, NFTs, and decentralized applications on Bitcoin, opening new use cases while maintaining the censorship resistance and sovereignty of the underlying network.`,
+    keyPoints: [
+      "Extends Bitcoin with smart contract capabilities",
+      "Proof-of-Transfer burns STX to mine BTC",
+      "Clarity language emphasizes security and predictability",
+      "Settles all activity on Bitcoin for maximum security",
+      "Enables DeFi and dApps on the most decentralized network",
+    ],
+    realWorldExample:
+      "Stacks has facilitated over $2 billion in DeFi activity, including lending protocols and decentralized exchanges built on Bitcoin.",
+    relatedDecisions: ["stacks-protocol-governance"],
+    estimatedReadTime: 5,
+  },
+  {
+    id: "bitcoin-etf-mechanics",
+    title: "Bitcoin ETF Regulation",
+    category: "regulation",
+    difficulty: "intermediate",
+    content: `Exchange-Traded Funds (ETFs) allow investors to gain exposure to Bitcoin without holding it directly, providing a regulated investment vehicle for traditional financial markets. Bitcoin ETFs track the price of Bitcoin through various mechanisms, including direct custody or futures contracts.
+
+Regulatory approval of Bitcoin ETFs represents a major milestone in cryptocurrency's institutional adoption. ETFs provide liquidity, price discovery, and risk management tools for traditional investors while potentially increasing Bitcoin's price stability through broader participation.
+
+However, ETFs also introduce concerns about institutional capture and market manipulation. Some purists worry that ETFs could centralize Bitcoin ownership and reduce its decentralization benefits.
+
+The approval process involves demonstrating robust custody arrangements, fair valuation mechanisms, and compliance with securities regulations.`,
+    keyPoints: [
+      "ETFs provide regulated Bitcoin exposure for traditional investors",
+      "Multiple structural approaches (spot, futures, etc.)",
+      "Institutional adoption milestone for cryptocurrency",
+      "Regulatory scrutiny ensures investor protection",
+      "Debates about impact on Bitcoin's decentralization",
+    ],
+    realWorldExample:
+      "The first Bitcoin ETF, launched in 2024, attracted over $10 billion in assets within its first year of operation.",
+    relatedDecisions: ["bitcoin-etf-regulatory"],
     estimatedReadTime: 4,
   },
 ]

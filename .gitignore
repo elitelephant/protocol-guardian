@@ -40,3 +40,6 @@ next-env.d.ts
 # OS
 Thumbs.db
 desktop.ini
+
+# Project Notes
+PROJECT_NOTES.md

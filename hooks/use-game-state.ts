@@ -30,23 +30,14 @@ export function useGameState() {
 
       consequences.forEach((consequence) => {
         switch (consequence.type) {
-          case "marketStability":
-            newState.marketStability = Math.max(0, Math.min(100, prev.marketStability + consequence.change))
+          case "networkHealth":
+            newState.networkHealth = Math.max(0, Math.min(100, prev.networkHealth + consequence.change))
             break
           case "publicConfidence":
             newState.publicConfidence = Math.max(0, Math.min(100, prev.publicConfidence + consequence.change))
             break
           case "techAdvancement":
             newState.techAdvancement = Math.max(0, Math.min(100, prev.techAdvancement + consequence.change))
-            break
-          case "blocRelationship":
-            if (consequence.target) {
-              const currentValue = prev.blocRelationships[consequence.target]
-              newState.blocRelationships[consequence.target] = Math.max(
-                -100,
-                Math.min(100, currentValue + consequence.change),
-              )
-            }
             break
         }
       })
@@ -89,10 +80,11 @@ export function useGameState() {
     setPendingDecisions((prev) => [...prev, ...crisis.decisions])
   }, [])
 
-  const resolveCrisis = useCallback(() => {
+  const resolveCrisis = useCallback((crisisId?: string) => {
     setGameState((prev) => ({
       ...prev,
       currentCrisis: undefined,
+      unresolvedCrises: prev.unresolvedCrises.filter(uc => uc.crisisId !== (crisisId || prev.currentCrisis?.id)),
     }))
     setCrisisTimeRemaining(undefined)
   }, [])
@@ -138,12 +130,60 @@ export function useGameState() {
 
         let gamePhase = prev.gamePhase
         const yearInTerm = newYear - 2035 + 1
-        if (yearInTerm <= 1) gamePhase = "year1"
-        else if (yearInTerm <= 2) gamePhase = "year2"
-        else if (yearInTerm <= 3) gamePhase = "year3"
-        else if (yearInTerm <= 4) gamePhase = "year4"
-        else if (yearInTerm <= 5) gamePhase = "year5"
+        if (yearInTerm <= 1) gamePhase = "era1"
+        else if (yearInTerm <= 2) gamePhase = "era2"
+        else if (yearInTerm <= 3) gamePhase = "era3"
+        else if (yearInTerm <= 4) gamePhase = "era4"
+        else if (yearInTerm <= 5) gamePhase = "era5"
         else gamePhase = "ending"
+
+        // Check for era transition and apply unresolved crisis penalties
+        const currentEra = parseInt(prev.gamePhase.replace('era', '')) || 0
+        const newEra = parseInt(gamePhase.replace('era', '')) || 0
+        let newUnresolvedCrises = [...prev.unresolvedCrises]
+        let penaltyConsequences: Consequence[] = []
+
+        if (newEra > currentEra && newEra <= 5) {
+          // Era transition - apply degradation for unresolved crises
+          newUnresolvedCrises = prev.unresolvedCrises.map(uc => {
+            const updatedEras = uc.erasUnresolved + 1
+            // Find the crisis to get penalty info
+            const crisis = crisisEvents.find(c => c.id === uc.crisisId)
+            if (crisis?.unresolvedPenalty) {
+              const penaltyChange = crisis.unresolvedPenalty.change * updatedEras // Compounding penalty
+              penaltyConsequences.push({
+                type: crisis.unresolvedPenalty.type,
+                change: penaltyChange,
+                description: `Unresolved crisis penalty after ${updatedEras} eras`
+              })
+            }
+            return { ...uc, erasUnresolved: updatedEras }
+          })
+        }
+
+        // Apply penalty consequences
+        let newNetworkHealth = prev.networkHealth
+        let newPublicConfidence = prev.publicConfidence
+        let newTechAdvancement = prev.techAdvancement
+
+        penaltyConsequences.forEach(consequence => {
+          switch (consequence.type) {
+            case "networkHealth":
+              newNetworkHealth = Math.max(0, Math.min(100, newNetworkHealth + consequence.change))
+              break
+            case "publicConfidence":
+              newPublicConfidence = Math.max(0, Math.min(100, newPublicConfidence + consequence.change))
+              break
+            case "techAdvancement":
+              newTechAdvancement = Math.max(0, Math.min(100, newTechAdvancement + consequence.change))
+              break
+          }
+        })
+
+        // Early termination checks
+        if (newNetworkHealth <= 20 || newPublicConfidence <= 15) {
+          gamePhase = "ending"
+        }
 
         return {
           ...prev,
@@ -151,6 +191,10 @@ export function useGameState() {
           currentMonth: finalMonth,
           termProgress,
           gamePhase,
+          networkHealth: newNetworkHealth,
+          publicConfidence: newPublicConfidence,
+          techAdvancement: newTechAdvancement,
+          unresolvedCrises: newUnresolvedCrises,
         }
       })
 
@@ -160,20 +204,24 @@ export function useGameState() {
         setCrisisTimeRemaining(newTimeRemaining)
 
         if (newTimeRemaining <= 0 && gameState.currentCrisis) {
-          // Crisis deadline passed - apply negative consequences
-          applyConsequences([
-            { type: "publicConfidence", change: -20, description: "Failed to respond to crisis in time" },
-            { type: "marketStability", change: -15, description: "Market loses confidence in leadership" },
-          ])
-          resolveCrisis()
+          // Crisis deadline passed - add to unresolved crises
+          setGameState(prev => ({
+            ...prev,
+            unresolvedCrises: [...prev.unresolvedCrises, { crisisId: prev.currentCrisis!.id, erasUnresolved: 0 }],
+            currentCrisis: undefined,
+          }))
+          setCrisisTimeRemaining(undefined)
         }
       }
 
-      // Check for year-based crises
-      const yearCrises = getCrisisByYear(gameState.currentYear + Math.floor((gameState.currentMonth + months - 1) / 12))
-      if (yearCrises.length > 0 && !gameState.currentCrisis && Math.random() < 0.3) {
-        const crisis = yearCrises[Math.floor(Math.random() * yearCrises.length)]
-        triggerCrisis(crisis)
+      // Check for era-based crises
+      const currentEra = parseInt(gameState.gamePhase.replace('era', '')) || 0
+      if (currentEra >= 1 && currentEra <= 5 && !gameState.currentCrisis) {
+        const eraCrises = crisisEvents.filter(crisis => crisis.era === currentEra)
+        if (eraCrises.length > 0 && Math.random() < 0.3) {
+          const crisis = eraCrises[Math.floor(Math.random() * eraCrises.length)]
+          triggerCrisis(crisis)
+        }
       }
 
       // Randomly trigger new decisions when advancing time
@@ -187,8 +235,7 @@ export function useGameState() {
       gameState.currentCrisis,
       gameState.currentYear,
       gameState.currentMonth,
-      applyConsequences,
-      resolveCrisis,
+      gameState.gamePhase,
       triggerCrisis,
       triggerSampleDecision,
     ],

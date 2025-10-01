@@ -13,16 +13,16 @@ export function GameHeader({ gameState }: GameHeaderProps) {
     switch (phase) {
       case "intro":
         return "Introduction"
-      case "year1":
-        return "Year 1"
-      case "year2":
-        return "Year 2"
-      case "year3":
-        return "Year 3"
-      case "year4":
-        return "Year 4"
-      case "year5":
-        return "Year 5"
+      case "era1":
+        return "Era 1"
+      case "era2":
+        return "Era 2"
+      case "era3":
+        return "Era 3"
+      case "era4":
+        return "Era 4"
+      case "era5":
+        return "Era 5"
       case "ending":
         return "Final Assessment"
       default:
@@ -39,8 +39,8 @@ export function GameHeader({ gameState }: GameHeaderProps) {
     <Card className="p-6 mb-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-primary mb-2">FiDeFi Regulatory Command</h1>
-          <p className="text-muted-foreground">Global Cryptocurrency Regulation Entity - Presidential Dashboard</p>
+          <h1 className="text-3xl font-bold text-primary mb-2">Bitcoin Stacks Command</h1>
+          <p className="text-muted-foreground">Guardian of the Bitcoin Protocol - Strategic Dashboard</p>
         </div>
 
         <div className="flex items-center gap-4">
