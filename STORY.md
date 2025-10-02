@@ -2,7 +2,7 @@
 
 ## Overview
 
-**Global Crypto Crisis Command** is an educational simulation game where you play as the President of the FiDeFi (Financial Digital Freedom International), the global regulatory body overseeing cryptocurrency and blockchain technology. Your 5-year term spans from 2035 to 2040, during which you must navigate complex regulatory challenges, technological breakthroughs, and geopolitical tensions in the rapidly evolving crypto ecosystem.
+**Global Crypto Crisis Command** is an educational simulation game where you play as the President of the FiDeFi (Financial Digital Freedom International), the global regulatory body overseeing cryptocurrency and blockchain technology. Your 5-year term spans from 2035 to 2040, during which you must navigate complex regulatory challenges, technological breakthroughs, and global tensions in the rapidly evolving crypto ecosystem.
 
 ## Game Structure
 
@@ -17,36 +17,26 @@ Your decisions affect three main indicators (0-100 scale):
 - **Public Confidence**: Trust in cryptocurrency systems
 - **Tech Advancement**: Innovation and technological progress
 
-### Geopolitical Relationships (-100 to 100 scale)
-- **Western Alliance**: US, EU, and allied nations
-- **Eastern Bloc**: China, Russia, and aligned countries
-- **Global South**: Developing nations and emerging markets
-
 ## Story Timeline
 
 ### Year 1: 2035 - Privacy and Regulation Foundations
 
 #### Privacy Coin Regulation Crisis (High Urgency, 7-day limit)
-**Scenario**: Several privacy-focused cryptocurrencies are being used for illicit activities. The Western Alliance demands immediate action, while privacy advocates argue for digital rights. Intelligence agencies report a 300% increase in ransomware payments using privacy coins.
+**Scenario**: Several privacy-focused cryptocurrencies are being used for illicit activities. Global regulators demand immediate action, while privacy advocates argue for digital rights. Intelligence agencies report a 300% increase in ransomware payments using privacy coins.
 
 **Decision Options**:
 1. **Ban all privacy coins globally with immediate effect**
    - Market Stability: -15 (Market reacts negatively to heavy regulation)
    - Public Confidence: +10 (Public supports anti-crime measures)
-   - Western Alliance: +20 (Strongly approves)
-   - Global South: -10 (Concerned about financial freedom)
 
 2. **Implement strict KYC requirements and optional transparency features**
    - Market Stability: -5 (Moderate market concern about compliance costs)
    - Tech Advancement: -10 (Innovation slightly hindered by requirements)
    - Public Confidence: +5 (Balanced approach appreciated)
-   - Western Alliance: +5 (Cautiously supportive)
 
 3. **Defend privacy coins as fundamental digital rights with enhanced education**
    - Tech Advancement: +15 (Privacy innovation flourishes globally)
    - Public Confidence: -15 (Public very concerned about criminal activity)
-   - Western Alliance: -25 (Strongly disapproves)
-   - Global South: +15 (Appreciates privacy protection)
 
 **Educational Content**: Privacy coins use advanced cryptographic techniques like zero-knowledge proofs, ring signatures, and stealth addresses to hide transaction details while maintaining blockchain integrity. The regulatory challenge is balancing legitimate privacy needs with law enforcement requirements.
 
@@ -64,7 +54,6 @@ Your decisions affect three main indicators (0-100 scale):
    - Market Stability: +20 (Immediate stabilization)
    - Tech Advancement: -30 (Innovation severely damaged)
    - Public Confidence: -10 (Questions DeFi viability)
-   - Eastern Bloc: +15 (Supports strong intervention)
 
 2. **Mandate circuit breakers and improved oracle systems**
    - Market Stability: +10 (Gradual recovery with safeguards)
@@ -75,7 +64,6 @@ Your decisions affect three main indicators (0-100 scale):
    - Market Stability: -25 (Continued volatility)
    - Tech Advancement: +10 (Market-driven solutions emerge)
    - Public Confidence: -20 (Loses faith in regulatory protection)
-   - Global South: +5 (Appreciates non-intervention)
 
 **Educational Content**: Flash loans allow borrowing large amounts without collateral within a single transaction. While enabling innovative arbitrage and liquidation mechanisms, they can also be used for market manipulation and oracle attacks that destabilize entire protocols.
 
@@ -86,26 +74,21 @@ Your decisions affect three main indicators (0-100 scale):
 ### Year 3: 2037 - CBDC Competition
 
 #### CBDC Competitive Crisis (Medium Urgency, 14-day limit)
-**Scenario**: China's digital yuan has gained 40% global market share in international trade settlements, threatening the dominance of traditional reserve currencies. The Western Alliance is demanding coordinated CBDC development to maintain monetary sovereignty.
+**Scenario**: China's digital yuan has gained 40% global market share in international trade settlements, threatening the dominance of traditional reserve currencies. Global powers are demanding coordinated CBDC development to maintain monetary sovereignty.
 
 **Decision Options**:
 1. **Promote a unified global CBDC standard with interoperability protocols**
    - Market Stability: +15 (Reduced currency competition volatility)
    - Tech Advancement: +20 (Accelerated CBDC innovation)
-   - Western Alliance: +10 (Supports coordination)
-   - Eastern Bloc: -15 (Resists losing competitive advantage)
 
 2. **Allow competitive CBDC development with minimal coordination**
    - Market Stability: -10 (Increased currency competition)
    - Tech Advancement: +25 (Rapid innovation through competition)
-   - Eastern Bloc: +10 (Appreciates competitive approach)
-   - Western Alliance: -5 (Concerned about coordination)
 
 3. **Implement temporary moratorium on new CBDC launches**
    - Market Stability: +5 (Reduced short-term uncertainty)
    - Tech Advancement: -15 (Innovation slowed by regulatory pause)
    - Public Confidence: -5 (Questions regulatory decisiveness)
-   - Global South: -10 (Frustrated by development delays)
 
 **Educational Content**: CBDCs represent government-issued digital currencies that could reshape international monetary systems. Unlike cryptocurrencies, CBDCs are centrally controlled and can incorporate policy tools like programmable money and direct monetary policy transmission.
 
@@ -154,7 +137,6 @@ Throughout the final year, you continue to face regulatory challenges and must b
 1. **Mandate 100% fiat currency reserves with monthly audits**
    - Market Stability: +15
    - Tech Advancement: -5
-   - Western Alliance: +10
 
 2. **Allow diversified reserves including government bonds and commercial paper**
    - Market Stability: +5
@@ -175,7 +157,6 @@ Throughout the final year, you continue to face regulatory challenges and must b
 1. **Require all DeFi protocols to obtain traditional financial licenses**
    - Public Confidence: +20
    - Tech Advancement: -20
-   - Eastern Bloc: +15
 
 2. **Implement risk-based regulation focusing on protocol governance and user protection**
    - Market Stability: +10
@@ -193,7 +174,7 @@ Throughout the final year, you continue to face regulatory challenges and must b
 
 Your final score and ending type depend on your accumulated metrics and relationships:
 
-- **Authoritarian**: High Western Alliance + Eastern Bloc relationships, low Tech Advancement
+- **Authoritarian**: High regulatory relationships, low Tech Advancement
 - **Libertarian**: High Tech Advancement, low regulatory relationships
 - **Balanced**: Moderate scores across all metrics
 - **Chaos**: Consistently low scores leading to market collapse
@@ -203,7 +184,7 @@ Your final score and ending type depend on your accumulated metrics and relation
 The game teaches players about:
 - Cryptocurrency regulation challenges
 - Blockchain technology fundamentals
-- Geopolitical dynamics in digital finance
+- Global dynamics in digital finance
 - Risk management in emerging technologies
 - Balancing innovation with consumer protection
 - International cooperation in global finance

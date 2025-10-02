@@ -19,7 +19,7 @@ export function SampleDataSeeder() {
 
     try {
       // Import and execute the seeding script
-      const { seedSampleEvents } = await import("../scripts/seed-sample-events.js")
+      const { seedSampleEvents } = await import("../scripts/seed-sample-events")
       const result = await seedSampleEvents()
       setSeedResult(result)
 
@@ -30,7 +30,7 @@ export function SampleDataSeeder() {
     } catch (error) {
       setSeedResult({
         success: false,
-        error: error.message,
+      error: error instanceof Error ? error.message : 'Unknown error occurred',
       })
     } finally {
       setIsSeeding(false)
@@ -38,23 +38,23 @@ export function SampleDataSeeder() {
   }
 
   const sampleEventCategories = [
-    "Market Crisis Events",
-    "Regulatory Changes",
+    "Network Security Events",
+    "Protocol Development",
     "Technology Breakthroughs",
-    "Geopolitical Events",
+    "Market Adoption Events",
     "Security Incidents",
     "Institutional Adoption",
   ]
 
   const sampleEventTypes = [
-    "Exchange hacks and security breaches",
-    "CBDC announcements and implementations",
-    "DeFi protocol exploits and innovations",
-    "Quantum computing developments",
-    "International regulatory treaties",
-    "Major institutional Bitcoin adoption",
-    "Blockchain scaling breakthroughs",
-    "Cross-border payment system launches",
+    "Mining pool centralization alerts",
+    "Protocol upgrade announcements",
+    "DeFi protocol deployments on Stacks",
+    "Layer 2 scaling breakthroughs",
+    "Institutional Bitcoin adoption",
+    "Smart contract security audits",
+    "Cross-chain interoperability developments",
+    "Community governance proposals",
   ]
 
   return (

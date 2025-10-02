@@ -124,7 +124,7 @@ export function DecisionModal({ decision, isOpen, onClose, onMakeDecision }: Dec
                           <span className="flex items-center gap-1">
                             {getConsequenceIcon(consequence.type)}
                             {consequence.change > 0 ? "+" : ""}
-                            {consequence.change} {consequence.target ? `${consequence.target}` : consequence.type}
+                            {consequence.change} {consequence.type}
                           </span>
                         </Badge>
                       ))}

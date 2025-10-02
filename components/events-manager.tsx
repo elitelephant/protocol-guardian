@@ -49,8 +49,8 @@ export function EventsManager({
     content: "",
     category: "",
     selectedTags: [] as string[],
-    priority: "medium" as const,
-    status: "draft" as const,
+    priority: "medium" as "low" | "medium" | "high" | "critical",
+    status: "draft" as "draft" | "published" | "archived",
     author: "Admin",
   })
 
@@ -168,8 +168,8 @@ export function EventsManager({
       {/* Header Actions */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold">Events Management</h2>
-          <p className="text-muted-foreground">Create and manage game events and scenarios</p>
+          <h2 className="text-2xl font-bold">Crisis Management</h2>
+          <p className="text-muted-foreground">Create and manage Bitcoin protocol crises and scenarios</p>
         </div>
 
         <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
@@ -243,7 +243,7 @@ export function EventsManager({
                   <Label htmlFor="priority">Priority</Label>
                   <Select
                     value={formData.priority}
-                    onValueChange={(value: any) => setFormData({ ...formData, priority: value })}
+                    onValueChange={(value: "low" | "medium" | "high" | "critical") => setFormData({ ...formData, priority: value })}
                   >
                     <SelectTrigger>
                       <SelectValue />
@@ -261,7 +261,7 @@ export function EventsManager({
                   <Label htmlFor="status">Status</Label>
                   <Select
                     value={formData.status}
-                    onValueChange={(value: any) => setFormData({ ...formData, status: value })}
+                    onValueChange={(value: "draft" | "published" | "archived") => setFormData({ ...formData, status: value })}
                   >
                     <SelectTrigger>
                       <SelectValue />
@@ -339,7 +339,7 @@ export function EventsManager({
             <div className="space-y-3">
               <Calendar className="h-12 w-12 text-muted-foreground mx-auto" />
               <div>
-                <h3 className="text-lg font-semibold">No events found</h3>
+                <h3 className="text-lg font-semibold">No crises found</h3>
                 <p className="text-muted-foreground">
                   {Object.keys(filter).some((key) => filter[key as keyof EventFilter])
                     ? "Try adjusting your filters or search terms"

@@ -81,12 +81,9 @@ export function useEventManagement() {
 
   // Save events to localStorage with error handling
   const saveEvents = useCallback(
-    async (newEvents: GameEvent[]) => {
+    (newEvents: GameEvent[]) => {
       try {
-        await withRetry(() => {
-          safeLocalStorageSet(STORAGE_KEYS.EVENTS, newEvents)
-          return Promise.resolve()
-        })
+        safeLocalStorageSet(STORAGE_KEYS.EVENTS, newEvents)
         setEvents(newEvents)
       } catch (error) {
         handleError(error, { operation: "saveEvents", eventCount: newEvents.length })
@@ -98,12 +95,9 @@ export function useEventManagement() {
 
   // Save categories to localStorage with error handling
   const saveCategories = useCallback(
-    async (newCategories: EventCategory[]) => {
+    (newCategories: EventCategory[]) => {
       try {
-        await withRetry(() => {
-          safeLocalStorageSet(STORAGE_KEYS.CATEGORIES, newCategories)
-          return Promise.resolve()
-        })
+        safeLocalStorageSet(STORAGE_KEYS.CATEGORIES, newCategories)
         setCategories(newCategories)
       } catch (error) {
         handleError(error, { operation: "saveCategories", categoryCount: newCategories.length })
@@ -115,12 +109,9 @@ export function useEventManagement() {
 
   // Save tags to localStorage with error handling
   const saveTags = useCallback(
-    async (newTags: EventTag[]) => {
+    (newTags: EventTag[]) => {
       try {
-        await withRetry(() => {
-          safeLocalStorageSet(STORAGE_KEYS.TAGS, newTags)
-          return Promise.resolve()
-        })
+        safeLocalStorageSet(STORAGE_KEYS.TAGS, newTags)
         setTags(newTags)
       } catch (error) {
         handleError(error, { operation: "saveTags", tagCount: newTags.length })
@@ -132,7 +123,7 @@ export function useEventManagement() {
 
   // Enhanced event CRUD operations with validation
   const createEvent = useCallback(
-    async (eventData: Omit<GameEvent, "id" | "createdAt" | "updatedAt">) => {
+    (eventData: Omit<GameEvent, "id" | "createdAt" | "updatedAt">) => {
       try {
         // Validation
         if (!eventData.title?.trim()) {
@@ -150,7 +141,7 @@ export function useEventManagement() {
         }
 
         const updatedEvents = [...events, newEvent]
-        await saveEvents(updatedEvents)
+        saveEvents(updatedEvents)
         return newEvent
       } catch (error) {
         handleError(error, { operation: "createEvent", eventData })
@@ -161,12 +152,12 @@ export function useEventManagement() {
   )
 
   const updateEvent = useCallback(
-    async (id: string, updates: Partial<GameEvent>) => {
+    (id: string, updates: Partial<GameEvent>) => {
       try {
         const updatedEvents = events.map((event) =>
           event.id === id ? { ...event, ...updates, updatedAt: new Date().toISOString() } : event,
         )
-        await saveEvents(updatedEvents)
+        saveEvents(updatedEvents)
       } catch (error) {
         handleError(error, { operation: "updateEvent", eventId: id, updates })
         throw error
@@ -176,10 +167,10 @@ export function useEventManagement() {
   )
 
   const deleteEvent = useCallback(
-    async (id: string) => {
+    (id: string) => {
       try {
         const updatedEvents = events.filter((event) => event.id !== id)
-        await saveEvents(updatedEvents)
+        saveEvents(updatedEvents)
       } catch (error) {
         handleError(error, { operation: "deleteEvent", eventId: id })
         throw error
@@ -189,7 +180,7 @@ export function useEventManagement() {
   )
 
   const publishEvent = useCallback(
-    async (id: string) => {
+    (id: string) => {
       try {
         const updatedEvents = events.map((event) =>
           event.id === id
@@ -201,7 +192,7 @@ export function useEventManagement() {
               }
             : event,
         )
-        await saveEvents(updatedEvents)
+        saveEvents(updatedEvents)
       } catch (error) {
         handleError(error, { operation: "publishEvent", eventId: id })
         throw error
@@ -211,7 +202,7 @@ export function useEventManagement() {
   )
 
   const archiveEvent = useCallback(
-    async (id: string) => {
+    (id: string) => {
       try {
         const updatedEvents = events.map((event) =>
           event.id === id
@@ -222,7 +213,7 @@ export function useEventManagement() {
               }
             : event,
         )
-        await saveEvents(updatedEvents)
+        saveEvents(updatedEvents)
       } catch (error) {
         handleError(error, { operation: "archiveEvent", eventId: id })
         throw error
@@ -233,7 +224,7 @@ export function useEventManagement() {
 
   // Category CRUD operations with error handling
   const createCategory = useCallback(
-    async (categoryData: Omit<EventCategory, "id">) => {
+    (categoryData: Omit<EventCategory, "id">) => {
       try {
         if (!categoryData.name?.trim()) {
           throw createError("REQUIRED_FIELD_MISSING", "Category name is required")
@@ -245,7 +236,7 @@ export function useEventManagement() {
         }
 
         const updatedCategories = [...categories, newCategory]
-        await saveCategories(updatedCategories)
+        saveCategories(updatedCategories)
         return newCategory
       } catch (error) {
         handleError(error, { operation: "createCategory", categoryData })
@@ -256,12 +247,12 @@ export function useEventManagement() {
   )
 
   const updateCategory = useCallback(
-    async (id: string, updates: Partial<EventCategory>) => {
+    (id: string, updates: Partial<EventCategory>) => {
       try {
         const updatedCategories = categories.map((category) =>
           category.id === id ? { ...category, ...updates } : category,
         )
-        await saveCategories(updatedCategories)
+        saveCategories(updatedCategories)
       } catch (error) {
         handleError(error, { operation: "updateCategory", categoryId: id, updates })
         throw error
@@ -271,10 +262,10 @@ export function useEventManagement() {
   )
 
   const deleteCategory = useCallback(
-    async (id: string) => {
+    (id: string) => {
       try {
         const updatedCategories = categories.filter((category) => category.id !== id)
-        await saveCategories(updatedCategories)
+        saveCategories(updatedCategories)
       } catch (error) {
         handleError(error, { operation: "deleteCategory", categoryId: id })
         throw error
@@ -285,7 +276,7 @@ export function useEventManagement() {
 
   // Tag CRUD operations with error handling
   const createTag = useCallback(
-    async (tagData: Omit<EventTag, "id">) => {
+    (tagData: Omit<EventTag, "id">) => {
       try {
         if (!tagData.name?.trim()) {
           throw createError("REQUIRED_FIELD_MISSING", "Tag name is required")
@@ -297,7 +288,7 @@ export function useEventManagement() {
         }
 
         const updatedTags = [...tags, newTag]
-        await saveTags(updatedTags)
+        saveTags(updatedTags)
         return newTag
       } catch (error) {
         handleError(error, { operation: "createTag", tagData })
@@ -308,10 +299,10 @@ export function useEventManagement() {
   )
 
   const updateTag = useCallback(
-    async (id: string, updates: Partial<EventTag>) => {
+    (id: string, updates: Partial<EventTag>) => {
       try {
         const updatedTags = tags.map((tag) => (tag.id === id ? { ...tag, ...updates } : tag))
-        await saveTags(updatedTags)
+        saveTags(updatedTags)
       } catch (error) {
         handleError(error, { operation: "updateTag", tagId: id, updates })
         throw error
@@ -321,10 +312,10 @@ export function useEventManagement() {
   )
 
   const deleteTag = useCallback(
-    async (id: string) => {
+    (id: string) => {
       try {
         const updatedTags = tags.filter((tag) => tag.id !== id)
-        await saveTags(updatedTags)
+        saveTags(updatedTags)
       } catch (error) {
         handleError(error, { operation: "deleteTag", tagId: id })
         throw error

@@ -195,8 +195,8 @@ function seedSampleEvents() {
 
     // Convert sample events to full event objects
     const fullEvents = sampleEvents.map((event, index) => {
-      const category = categories.find((c) => c.id === event.category)
-      const eventTags = tags.filter((t) => event.tags.includes(t.id))
+      const category = categories.find((c: any) => c.id === event.category)
+      const eventTags = tags.filter((t: any) => event.tags.includes(t.id))
 
       return {
         id: `sample-event-${Date.now()}-${index}`,
@@ -217,7 +217,7 @@ function seedSampleEvents() {
     })
 
     // Combine with existing events (avoid duplicates by title)
-    const existingTitles = existingEvents.map((e) => e.title)
+    const existingTitles = existingEvents.map((e: any) => e.title)
     const newEvents = fullEvents.filter((e) => !existingTitles.includes(e.title))
 
     const allEvents = [...existingEvents, ...newEvents]
@@ -236,7 +236,7 @@ function seedSampleEvents() {
     console.error("[v0] Error seeding sample events:", error)
     return {
       success: false,
-      error: error.message,
+      error: (error as Error).message,
     }
   }
 }
@@ -244,3 +244,5 @@ function seedSampleEvents() {
 // Execute the seeding
 const result = seedSampleEvents()
 console.log("[v0] Sample events seeding result:", result)
+
+export { seedSampleEvents }
