@@ -137,6 +137,23 @@ export function useGameState() {
         else if (yearInTerm <= 5) gamePhase = "era5"
         else gamePhase = "ending"
 
+        // Determine ending type when reaching the end
+        let endingType = prev.endingType
+        if (gamePhase === "ending" && !endingType) {
+          const { networkHealth, publicConfidence, techAdvancement } = prev
+          const avgScore = (networkHealth + publicConfidence + techAdvancement) / 3
+
+          if (networkHealth >= 75) {
+            endingType = "sovereign"
+          } else if (techAdvancement >= 75) {
+            endingType = "progressive"
+          } else if (avgScore >= 60) {
+            endingType = "pragmatic"
+          } else {
+            endingType = "disruptive"
+          }
+        }
+
         // Check for era transition and apply unresolved crisis penalties
         const currentEra = parseInt(prev.gamePhase.replace('era', '')) || 0
         const newEra = parseInt(gamePhase.replace('era', '')) || 0
@@ -195,6 +212,7 @@ export function useGameState() {
           publicConfidence: newPublicConfidence,
           techAdvancement: newTechAdvancement,
           unresolvedCrises: newUnresolvedCrises,
+          endingType,
         }
       })
 
@@ -221,6 +239,20 @@ export function useGameState() {
         if (eraCrises.length > 0 && Math.random() < 0.3) {
           const crisis = eraCrises[Math.floor(Math.random() * eraCrises.length)]
           triggerCrisis(crisis)
+        }
+      }
+
+      // Trigger era-specific sample decisions
+      if (currentEra >= 1 && currentEra <= 4) {
+        const eraDecisions = getEraDecisions(currentEra)
+        if (eraDecisions.length > 0 && Math.random() < 0.2) { // 20% chance per month
+          const availableEraDecisions = eraDecisions.filter(
+            (decision) => !pendingDecisions.some((pending) => pending.id === decision.id),
+          )
+          if (availableEraDecisions.length > 0) {
+            const randomDecision = availableEraDecisions[Math.floor(Math.random() * availableEraDecisions.length)]
+            addDecisionToQueue(randomDecision)
+          }
         }
       }
 

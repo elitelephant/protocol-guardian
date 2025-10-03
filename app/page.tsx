@@ -254,47 +254,34 @@ export default function GamePage() {
               <Card className="max-w-4xl w-full p-6">
                 <div className="space-y-6">
                   <div className="text-center">
-                    <h2 className="text-3xl font-bold mb-2">{selectedDecision.title}</h2>
-                    <p className="text-lg text-muted-foreground">{selectedDecision.description}</p>
+                    <h2 className="text-3xl font-bold mb-4">{selectedDecision.title}</h2>
+                  </div>
+                  <div className="max-w-3xl mx-auto text-left">
+                    <p className="text-xl text-muted-foreground leading-relaxed">{selectedDecision.description}</p>
                   </div>
 
                   {/* Decision Options */}
-                  <div className="space-y-4">
-                    <h3 className="text-xl font-semibold">Choose Your Response:</h3>
-                    {selectedDecision.options.map((option) => (
-                      <Card
-                        key={option.id}
-                        className="p-4 cursor-pointer transition-all hover:border-primary/50 hover:bg-primary/2"
-                        onClick={() => handleMakeDecision(selectedDecision, option)}
-                      >
-                        <div className="space-y-3">
-                          <p className="font-medium text-base">{option.text}</p>
-
-                          {/* Educational Note */}
-                          {option.educationalNote && (
-                            <div className="text-sm text-muted-foreground bg-muted p-2 rounded">
-                              <strong>Note:</strong> {option.educationalNote}
+                  <div className="space-y-6">
+                    <h3 className="text-lg font-semibold text-center">Choose Your Response:</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {selectedDecision.options.map((option) => (
+                        <Card
+                          key={option.id}
+                          className="p-6 cursor-pointer transition-all hover:border-primary/50 hover:bg-primary/2 hover:shadow-lg hover:scale-[1.02] border-2 h-full flex flex-col"
+                          onClick={() => handleMakeDecision(selectedDecision, option)}
+                        >
+                          <div className="flex-1 flex flex-col">
+                            <div className="flex-1 flex flex-col justify-center mb-6 text-left">
+                              <p className="font-semibold text-base leading-relaxed">{option.text}</p>
                             </div>
-                          )}
-
-                          {/* Consequences Preview */}
-                          <div className="space-y-2">
-                            <h4 className="text-sm font-medium text-muted-foreground">Potential Consequences:</h4>
-                            <div className="flex flex-wrap gap-2">
-                              {option.consequences.map((consequence, idx) => (
-                                <Badge
-                                  key={idx}
-                                  variant="outline"
-                                  className={`text-xs ${consequence.change > 0 ? 'text-green-600' : 'text-red-600'}`}
-                                >
-                                  {consequence.change > 0 ? "+" : ""}{consequence.change} {consequence.type}
-                                </Badge>
-                              ))}
+                            <div className="flex items-center justify-center gap-2 text-primary font-medium text-base">
+                              <span>Choose this path</span>
+                              <ChevronRight className="h-3 w-3" />
                             </div>
                           </div>
-                        </div>
-                      </Card>
-                    ))}
+                        </Card>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </Card>
@@ -339,10 +326,31 @@ export default function GamePage() {
                   </div>
                 </div>
                 <div>
-                  <h2 className="text-3xl font-bold mb-4">Protocol Status Update</h2>
+                  <h2 className="text-3xl font-bold mb-4">
+                    {gameState.gamePhase === "ending" ? "Final Protocol Assessment" : "Protocol Status Update"}
+                  </h2>
                   <p className="text-lg text-muted-foreground mb-6">
-                    Your recent decision has impacted the Bitcoin ecosystem. Here's the current state of key indicators:
+                    {gameState.gamePhase === "ending"
+                      ? "Your term as Guardian has concluded. Here's your final stewardship assessment:"
+                      : "Your recent decision has impacted the Bitcoin ecosystem. Here's the current state of key indicators:"
+                    }
                   </p>
+                  {gameState.endingType && (
+                    <div className="mb-6">
+                      <Badge variant="outline" className="text-lg px-4 py-2 bg-primary/5 border-primary/20">
+                        {gameState.endingType === "sovereign" && "🏛️ Sovereign - Bitcoin Maximalist"}
+                        {gameState.endingType === "progressive" && "🚀 Progressive - Layer 2 Catalyst"}
+                        {gameState.endingType === "pragmatic" && "⚖️ Pragmatic - Balanced Steward"}
+                        {gameState.endingType === "disruptive" && "⚠️ Disruptive - Network Fragmentation"}
+                      </Badge>
+                      <p className="text-sm text-muted-foreground mt-2">
+                        {gameState.endingType === "sovereign" && "You prioritized Bitcoin's base layer security and decentralization above all else."}
+                        {gameState.endingType === "progressive" && "You emphasized Stacks and Layer 2 innovation as the path to Bitcoin's global adoption."}
+                        {gameState.endingType === "pragmatic" && "You balanced Bitcoin's security with practical governance and community consensus."}
+                        {gameState.endingType === "disruptive" && "Your decisions led to network fragmentation and ecosystem challenges."}
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -386,8 +394,8 @@ export default function GamePage() {
                   </Card>
                 </div>
 
-                <Button onClick={handleContinueToNextDecision} size="lg" className="mt-6">
-                  Continue Your Mission
+                <Button onClick={gameState.gamePhase === "ending" ? resetGame : handleContinueToNextDecision} size="lg" className="mt-6">
+                  {gameState.gamePhase === "ending" ? "Start New Term" : "Continue Your Mission"}
                   <ChevronRight className="h-5 w-5 ml-2" />
                 </Button>
               </div>

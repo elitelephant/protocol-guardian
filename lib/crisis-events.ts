@@ -1,4 +1,6 @@
 import type { Crisis } from "./game-state"
+import type { Decision } from "./game-state"
+import { sampleDecisions } from "./sample-decisions"
 
 export const crisisEvents: Crisis[] = [
   {
@@ -217,4 +219,16 @@ export function getCrisisById(id: string): Crisis | undefined {
 
 export function getRandomCrisis(): Crisis {
   return crisisEvents[Math.floor(Math.random() * crisisEvents.length)]
+}
+
+function getEraDecisions(era: number): Decision[] {
+  const eraDecisionIds: { [key: number]: string[] } = {
+    1: ["major-mining-pool-consolidation"],
+    2: ["stacks-smart-contract-launch", "bitcoin-scalability-concerns"],
+    3: ["corporate-bitcoin-adoption"],
+    4: ["bitcoin-layer2-interoperability", "quantum-threat-bitcoin"],
+  }
+
+  const eraIds = eraDecisionIds[era] || []
+  return sampleDecisions.filter(decision => eraIds.includes(decision.id))
 }
