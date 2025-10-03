@@ -186,33 +186,33 @@ export default function GamePage() {
         <main className="flex-1 container mx-auto px-4 py-6 flex flex-col">
           {currentStep === 0 && (
             <div className="flex-1 flex items-center justify-center">
-              <Card className="max-w-2xl w-full p-8 text-center space-y-6">
+              <Card className="max-w-2xl w-full p-4 text-center space-y-4">
                 <div className="flex justify-center">
-                  <div className="p-4 bg-primary/10 rounded-full">
-                    <Shield className="h-12 w-12 text-primary" />
+                  <div className="p-2 bg-primary/10 rounded-full">
+                    <Shield className="h-8 w-8 text-primary" />
                   </div>
                 </div>
                 <div>
-                  <h2 className="text-3xl font-bold mb-4">Welcome, Guardian</h2>
-                  <p className="text-lg text-muted-foreground mb-6">
+                  <h2 className="text-2xl font-bold mb-2">Welcome, Guardian</h2>
+                  <p className="text-base text-muted-foreground mb-3">
                     You are the <strong>Bitcoin Protocol Guardian</strong>, a decentralized steward overseeing Bitcoin and its Layer 2 ecosystems, particularly Stacks.
                   </p>
-                  <p className="text-muted-foreground mb-6">
+                  <p className="text-muted-foreground mb-3">
                     Your mission spans five transformative eras of Bitcoin's evolution, where you'll navigate consensus challenges, protocol upgrades, and network evolution in the maturing Bitcoin ecosystem.
                   </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="flex flex-col items-center p-4 bg-muted/30 rounded-lg">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                  <div className="flex flex-col items-center p-3 bg-muted/30 rounded-lg">
                     <TrendingUp className="h-8 w-8 text-primary mb-2" />
                     <h3 className="font-semibold">Network Health</h3>
                     <p className="text-sm text-muted-foreground">Stability and security of the Bitcoin network</p>
                   </div>
-                  <div className="flex flex-col items-center p-4 bg-muted/30 rounded-lg">
+                  <div className="flex flex-col items-center p-3 bg-muted/30 rounded-lg">
                     <Users className="h-8 w-8 text-chart-2 mb-2" />
                     <h3 className="font-semibold">Public Confidence</h3>
                     <p className="text-sm text-muted-foreground">Trust in Bitcoin as a financial system</p>
                   </div>
-                  <div className="flex flex-col items-center p-4 bg-muted/30 rounded-lg">
+                  <div className="flex flex-col items-center p-3 bg-muted/30 rounded-lg">
                     <Zap className="h-8 w-8 text-chart-3 mb-2" />
                     <h3 className="font-semibold">Tech Advancement</h3>
                     <p className="text-sm text-muted-foreground">Innovation in Bitcoin Layer 2 solutions</p>
@@ -227,12 +227,8 @@ export default function GamePage() {
           )}
 
           {currentStep === 1 && (
-            <div className="flex-1 flex flex-col justify-center space-y-6">
-              <div className="text-center">
-                <h2 className="text-2xl font-bold mb-2">Choose Your Leadership Approach</h2>
-                <p className="text-muted-foreground">Your policy direction will shape the future of the Bitcoin ecosystem</p>
-              </div>
-              <div className="max-w-4xl mx-auto">
+            <div className="flex-1 flex flex-col justify-center">
+              <div className="max-w-2xl mx-auto">
                 <PolicyDirection onSelectPolicy={handleSelectPolicy} />
               </div>
             </div>
