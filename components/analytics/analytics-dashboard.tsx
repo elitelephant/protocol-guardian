@@ -209,7 +209,7 @@ export function AnalyticsDashboard() {
                     cx="50%"
                     cy="50%"
                     labelLine={false}
-                                        label={({ name, value }) => `${name}: ${(value as number).toFixed(1)}`}
+                    label={({ name, value }) => `${name}: ${value.toFixed(1)}`}
                     outerRadius={80}
                     fill="#8884d8"
                     dataKey="value"

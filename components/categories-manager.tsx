@@ -130,30 +130,30 @@ export function CategoriesManager({
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold">Categories Management</h2>
-          <p className="text-muted-foreground">Organize events by category type</p>
+          <h2 className="text-2xl font-bold">Eras Management</h2>
+          <p className="text-muted-foreground">Organize crises by evolutionary eras</p>
         </div>
 
         <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
           <DialogTrigger asChild>
             <Button onClick={resetForm} className="flex items-center gap-2">
               <Plus className="h-4 w-4" />
-              Create Category
+              Create Era
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>{editingCategory ? "Edit Category" : "Create New Category"}</DialogTitle>
+              <DialogTitle>{editingCategory ? "Edit Era" : "Create New Era"}</DialogTitle>
             </DialogHeader>
 
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Category Name *</Label>
+                <Label htmlFor="name">Era Name *</Label>
                 <Input
                   id="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="Enter category name"
+                  placeholder="Enter era name"
                 />
               </div>
 
@@ -163,7 +163,7 @@ export function CategoriesManager({
                   id="description"
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  placeholder="Describe this category"
+                  placeholder="Describe this era"
                   rows={3}
                 />
               </div>
@@ -213,7 +213,7 @@ export function CategoriesManager({
                   Cancel
                 </Button>
                 <Button onClick={editingCategory ? handleUpdateCategory : handleCreateCategory}>
-                  {editingCategory ? "Update Category" : "Create Category"}
+                  {editingCategory ? "Update Era" : "Create Era"}
                 </Button>
               </div>
             </div>
@@ -236,7 +236,7 @@ export function CategoriesManager({
                   <div>
                     <h3 className="font-semibold">{category.name}</h3>
                     <p className="text-sm text-muted-foreground">
-                      {eventCount} event{eventCount !== 1 ? "s" : ""}
+                      {eventCount} crise{eventCount !== 1 ? "s" : ""}
                     </p>
                   </div>
                 </div>
@@ -250,7 +250,7 @@ export function CategoriesManager({
                         </Button>
                       </TooltipTrigger>
                       <TooltipContent>
-                        <p>Edit category</p>
+                        <p>Edit era</p>
                       </TooltipContent>
                     </Tooltip>
 
@@ -268,8 +268,8 @@ export function CategoriesManager({
                       <TooltipContent>
                         <p>
                           {eventCount > 0
-                            ? `Cannot delete - ${eventCount} events using this category`
-                            : "Delete category"}
+                            ? `Cannot delete - ${eventCount} crises using this era`
+                            : "Delete era"}
                         </p>
                       </TooltipContent>
                     </Tooltip>
@@ -288,8 +288,8 @@ export function CategoriesManager({
           <div className="space-y-3">
             <FolderOpen className="h-12 w-12 text-muted-foreground mx-auto" />
             <div>
-              <h3 className="text-lg font-semibold">No categories found</h3>
-              <p className="text-muted-foreground">Create your first category to organize events</p>
+              <h3 className="text-lg font-semibold">No eras found</h3>
+              <p className="text-muted-foreground">Create your first era to organize crises</p>
             </div>
           </div>
         </Card>

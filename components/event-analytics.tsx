@@ -74,8 +74,8 @@ export function EventAnalytics({ events, categories, tags }: EventAnalyticsProps
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold">Event Analytics</h2>
-        <p className="text-muted-foreground">Insights and statistics about your event management</p>
+        <h2 className="text-2xl font-bold">Crisis Analytics</h2>
+        <p className="text-muted-foreground">Insights and statistics about your crisis management</p>
       </div>
 
       {/* Overview Stats */}
@@ -86,7 +86,7 @@ export function EventAnalytics({ events, categories, tags }: EventAnalyticsProps
               <Calendar className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">Total Events</p>
+              <p className="text-sm text-muted-foreground">Total Crises</p>
               <p className="text-2xl font-bold">{totalEvents}</p>
             </div>
           </div>
@@ -156,7 +156,7 @@ export function EventAnalytics({ events, categories, tags }: EventAnalyticsProps
         <Card className="p-6">
           <div className="flex items-center gap-2 mb-4">
             <BarChart3 className="h-5 w-5 text-primary" />
-            <h3 className="text-lg font-semibold">Category Distribution</h3>
+            <h3 className="text-lg font-semibold">Era Distribution</h3>
           </div>
 
           <div className="space-y-3">
@@ -176,14 +176,14 @@ export function EventAnalytics({ events, categories, tags }: EventAnalyticsProps
         <Card className="p-6">
           <div className="flex items-center gap-2 mb-4">
             <Tag className="h-5 w-5 text-primary" />
-            <h3 className="text-lg font-semibold">Most Used Tags</h3>
+            <h3 className="text-lg font-semibold">Most Used Impact Tags</h3>
           </div>
 
           <div className="space-y-3">
             {tagStats.slice(0, 8).map((tag) => (
               <div key={tag.id} className="flex items-center justify-between">
                 <Badge style={{ backgroundColor: tag.color, color: "white" }}>{tag.name}</Badge>
-                <span className="text-sm text-muted-foreground">{tag.count} events</span>
+                <span className="text-sm text-muted-foreground">{tag.count} crises</span>
               </div>
             ))}
           </div>

@@ -103,8 +103,8 @@ export function TagsManager({ tags, events, createTag, updateTag, deleteTag }: T
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold">Tags Management</h2>
-          <p className="text-muted-foreground">Create and manage event tags for better organization</p>
+          <h2 className="text-2xl font-bold">Impact Tags Management</h2>
+          <p className="text-muted-foreground">Create and manage crisis impact tags for better organization</p>
         </div>
 
         <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
@@ -234,7 +234,7 @@ export function TagsManager({ tags, events, createTag, updateTag, deleteTag }: T
           <div className="space-y-3">
             <Tag className="h-12 w-12 text-muted-foreground mx-auto" />
             <div>
-              <h3 className="text-lg font-semibold">No tags found</h3>
+              <h3 className="text-lg font-semibold">No impact tags found</h3>
               <p className="text-muted-foreground">Create your first tag to label and organize events</p>
             </div>
           </div>

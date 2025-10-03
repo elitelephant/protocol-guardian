@@ -4,7 +4,6 @@ import { useState } from "react"
 import { useGameState } from "@/hooks/use-game-state"
 import { GameHeader } from "@/components/game-header"
 import { IndicatorsPanel } from "@/components/indicators-panel"
-import { GeopoliticalPanel } from "@/components/geopolitical-panel"
 import { RecentDecisions } from "@/components/recent-decisions"
 import { CrisisAlert } from "@/components/crisis-alert"
 import { DecisionQueue } from "@/components/decision-queue"
@@ -41,6 +40,9 @@ import {
   ChevronRight,
   Calendar,
   Globe,
+  BookOpen,
+  Target,
+  Zap,
 } from "lucide-react"
 import type { Decision, Crisis } from "@/lib/game-state"
 import type { EducationalLesson } from "@/lib/educational-content"
@@ -65,6 +67,7 @@ export default function GamePage() {
   const [selectedLesson, setSelectedLesson] = useState<EducationalLesson | null>(null)
   const [isLessonModalOpen, setIsLessonModalOpen] = useState(false)
   const [isGameLoading, setIsGameLoading] = useState(false)
+  const [currentStep, setCurrentStep] = useState(0) // 0: context, 1: policy, 2: game
 
   const handleStartGame = () => {
     if (gameState.gamePhase === "intro") {
@@ -118,169 +121,18 @@ export default function GamePage() {
     console.log("[v0] Selected policy:", policyId)
     // This could trigger the first major decision or set initial game state
     advanceTime(0) // Move to main game phase
+    setCurrentStep(2) // Move to game step
   }
 
-  if (gameState.gamePhase === "intro") {
-    return (
-      <TooltipProvider>
-        <div className="min-h-screen bg-background text-foreground">
-          <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
-            <div className="container mx-auto px-4 py-4">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <Shield className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h1 className="text-xl font-bold text-balance">Bitcoin Stacks Command</h1>
-                    <p className="text-sm text-muted-foreground">Guardian of the Bitcoin Protocol</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <Badge variant="outline" className="flex items-center gap-2">
-                    <Calendar className="h-3 w-3" />
-                    Year 2035
-                  </Badge>
-                  <Badge variant="outline" className="flex items-center gap-2">
-                    <Globe className="h-3 w-3" />
-                    FiDeFi HQ
-                  </Badge>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button variant="outline" size="sm" onClick={resetGame}>
-                        <RotateCcw className="h-4 w-4" />
-                        <span className="sr-only">Restart Game</span>
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Restart the simulation</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </div>
-              </div>
-            </div>
-          </header>
-
-          <main className="container mx-auto px-4 py-6">
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-4">
-                <h2 className="text-2xl font-bold text-balance">Mission Briefing</h2>
-                <Badge variant="secondary" className="flex items-center gap-2">
-                  <Info className="h-3 w-3" />
-                  Setup Phase
-                </Badge>
-              </div>
-              <Progress value={25} className="h-2" />
-              <p className="text-xs text-muted-foreground mt-2">Step 1 of 4: Choose your leadership approach</p>
-            </div>
-
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
-              <div className="space-y-6">
-                <Card className="p-6 hover:shadow-md transition-shadow">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-semibold flex items-center gap-2">
-                      <TrendingUp className="h-5 w-5 text-primary" />
-                      Market Indicators
-                    </h3>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button variant="ghost" size="sm">
-                          <Info className="h-4 w-4" />
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Current global crypto market status</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="h-32 bg-muted/50 rounded-lg border-2 border-dashed border-muted-foreground/20 flex items-center justify-center">
-                      <div className="text-center space-y-2 text-muted-foreground">
-                        <TrendingUp className="h-8 w-8 mx-auto opacity-50" />
-                        <p className="text-sm">Market data loading...</p>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-3 gap-4">
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <div className="text-center p-3 bg-muted/30 rounded-lg cursor-help">
-                            <div className="flex items-center justify-center gap-2 mb-1">
-                              <div className="w-3 h-3 bg-primary rounded-full"></div>
-                              <span className="text-xs font-medium">Market</span>
-                            </div>
-                            <span className="text-lg font-bold">50%</span>
-                          </div>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Overall market stability index</p>
-                        </TooltipContent>
-                      </Tooltip>
-
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <div className="text-center p-3 bg-muted/30 rounded-lg cursor-help">
-                            <div className="flex items-center justify-center gap-2 mb-1">
-                              <div className="w-3 h-3 bg-chart-2 rounded-full"></div>
-                              <span className="text-xs font-medium">Trust</span>
-                            </div>
-                            <span className="text-lg font-bold">50%</span>
-                          </div>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Public confidence in crypto regulation</p>
-                        </TooltipContent>
-                      </Tooltip>
-
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <div className="text-center p-3 bg-muted/30 rounded-lg cursor-help">
-                            <div className="flex items-center justify-center gap-2 mb-1">
-                              <div className="w-3 h-3 bg-chart-3 rounded-full"></div>
-                              <span className="text-xs font-medium">Innovation</span>
-                            </div>
-                            <span className="text-lg font-bold">50%</span>
-                          </div>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Technology advancement rate</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    </div>
-                  </div>
-                </Card>
-              </div>
-
-              <LazyDynamicEventsFeedWithSuspense gameState={gameState} />
-              <LazyAdvisorsPanelWithSuspense gameState={gameState} />
-            </div>
-
-            <div className="bg-gradient-to-r from-primary/5 to-primary/10 rounded-xl p-6 border border-primary/20">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-primary/20 rounded-lg">
-                  <AlertTriangle className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold">Critical Decision Required</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Your leadership approach will shape the future of global crypto regulation
-                  </p>
-                </div>
-              </div>
-
-              <PolicyDirection onSelectPolicy={handleSelectPolicy} />
-            </div>
-          </main>
-        </div>
-      </TooltipProvider>
-    )
+  const handleNextStep = () => {
+    if (currentStep < 2) {
+      setCurrentStep(currentStep + 1)
+    }
   }
 
   return (
     <TooltipProvider>
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="min-h-screen bg-background text-foreground flex flex-col">
         <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
           <div className="container mx-auto px-4 py-4">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -289,20 +141,32 @@ export default function GamePage() {
                   <Shield className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold">Bitcoin Stacks Command</h1>
-                  <p className="text-sm text-muted-foreground">Active Protocol Operations</p>
+                  <h1 className="text-xl font-bold text-balance">Bitcoin Stacks Command</h1>
+                  <p className="text-sm text-muted-foreground">
+                    {currentStep === 0 ? "Guardian of the Bitcoin Protocol" : currentStep === 1 ? "Setup Phase" : "Active Protocol Operations"}
+                  </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
-                <Badge variant="outline" className="flex items-center gap-2">
-                  <Calendar className="h-3 w-3" />
-                  Year {2035 + Math.floor(gameState.currentMonth / 12)}
-                </Badge>
-                <Badge variant="outline" className="flex items-center gap-2">
-                  <Clock className="h-3 w-3" />
-                  Month {(gameState.currentMonth % 12) + 1}
-                </Badge>
+                {currentStep < 2 && (
+                  <Badge variant="outline" className="flex items-center gap-2">
+                    <Calendar className="h-3 w-3" />
+                    Year 2035
+                  </Badge>
+                )}
+                {currentStep === 2 && (
+                  <>
+                    <Badge variant="outline" className="flex items-center gap-2">
+                      <Calendar className="h-3 w-3" />
+                      Year {2035 + Math.floor(gameState.currentMonth / 12)}
+                    </Badge>
+                    <Badge variant="outline" className="flex items-center gap-2">
+                      <Clock className="h-3 w-3" />
+                      Month {(gameState.currentMonth % 12) + 1}
+                    </Badge>
+                  </>
+                )}
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button variant="outline" size="sm" onClick={resetGame}>
@@ -319,142 +183,191 @@ export default function GamePage() {
           </div>
         </header>
 
-        <main className="container mx-auto px-4 py-6 space-y-6">
-          <LoadingState isLoading={isGameLoading} skeleton={GameHeaderSkeleton}>
-            <GameHeader gameState={gameState} />
-          </LoadingState>
-
-          <LoadingState isLoading={isGameLoading} skeleton={CrisisAlertSkeleton}>
-            <CrisisAlert
-              gameState={gameState}
-              onRespondToCrisis={handleRespondToCrisis}
-              timeRemaining={crisisTimeRemaining}
-            />
-          </LoadingState>
-
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            <div className="lg:col-span-2 space-y-6">
-              <LoadingState isLoading={isGameLoading} skeleton={DecisionQueueSkeleton}>
-                <DecisionQueue decisions={pendingDecisions} onSelectDecision={handleSelectDecision} />
-              </LoadingState>
-
-              <GeopoliticalPanel gameState={gameState} />
-              <RecentDecisions gameState={gameState} />
-
-              <Card className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold flex items-center gap-2">
-                    <Users className="h-5 w-5 text-primary" />
-                    Simulation Controls
-                  </h3>
-                  <Badge variant="secondary">Development Mode</Badge>
+        <main className="flex-1 container mx-auto px-4 py-6 flex flex-col">
+          {currentStep === 0 && (
+            <div className="flex-1 flex items-center justify-center">
+              <Card className="max-w-2xl w-full p-8 text-center space-y-6">
+                <div className="flex justify-center">
+                  <div className="p-4 bg-primary/10 rounded-full">
+                    <Shield className="h-12 w-12 text-primary" />
+                  </div>
                 </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        onClick={() => advanceTime(1)}
-                        variant="outline"
-                        size="sm"
-                        className="flex items-center gap-2"
-                        disabled={isGameLoading}
-                      >
-                        <Play className="h-4 w-4" />
-                        <span className="hidden sm:inline">Advance</span>
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Advance simulation by 1 month</p>
-                    </TooltipContent>
-                  </Tooltip>
-
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        onClick={triggerSampleDecision}
-                        variant="outline"
-                        size="sm"
-                        className="flex items-center gap-2 bg-transparent"
-                        disabled={isGameLoading}
-                      >
-                        <ChevronRight className="h-4 w-4" />
-                        <span className="hidden sm:inline">Decision</span>
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Add a new policy decision</p>
-                    </TooltipContent>
-                  </Tooltip>
-
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        onClick={triggerRandomCrisis}
-                        variant="outline"
-                        size="sm"
-                        className="flex items-center gap-2 bg-transparent"
-                        disabled={isGameLoading}
-                      >
-                        <AlertTriangle className="h-4 w-4" />
-                        <span className="hidden sm:inline">Crisis</span>
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Trigger a random crisis event</p>
-                    </TooltipContent>
-                  </Tooltip>
-
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        onClick={resetGame}
-                        variant="outline"
-                        size="sm"
-                        className="flex items-center gap-2 bg-transparent"
-                        disabled={isGameLoading}
-                      >
-                        <RotateCcw className="h-4 w-4" />
-                        <span className="hidden sm:inline">Reset</span>
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Reset the entire simulation</p>
-                    </TooltipContent>
-                  </Tooltip>
+                <div>
+                  <h2 className="text-3xl font-bold mb-4">Welcome, Guardian</h2>
+                  <p className="text-lg text-muted-foreground mb-6">
+                    You are the <strong>Bitcoin Protocol Guardian</strong>, a decentralized steward overseeing Bitcoin and its Layer 2 ecosystems, particularly Stacks.
+                  </p>
+                  <p className="text-muted-foreground mb-6">
+                    Your mission spans five transformative eras of Bitcoin's evolution, where you'll navigate consensus challenges, protocol upgrades, and network evolution in the maturing Bitcoin ecosystem.
+                  </p>
                 </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="flex flex-col items-center p-4 bg-muted/30 rounded-lg">
+                    <TrendingUp className="h-8 w-8 text-primary mb-2" />
+                    <h3 className="font-semibold">Network Health</h3>
+                    <p className="text-sm text-muted-foreground">Stability and security of the Bitcoin network</p>
+                  </div>
+                  <div className="flex flex-col items-center p-4 bg-muted/30 rounded-lg">
+                    <Users className="h-8 w-8 text-chart-2 mb-2" />
+                    <h3 className="font-semibold">Public Confidence</h3>
+                    <p className="text-sm text-muted-foreground">Trust in Bitcoin as a financial system</p>
+                  </div>
+                  <div className="flex flex-col items-center p-4 bg-muted/30 rounded-lg">
+                    <Zap className="h-8 w-8 text-chart-3 mb-2" />
+                    <h3 className="font-semibold">Tech Advancement</h3>
+                    <p className="text-sm text-muted-foreground">Innovation in Bitcoin Layer 2 solutions</p>
+                  </div>
+                </div>
+                <Button onClick={handleNextStep} size="lg" className="w-full">
+                  Begin Your Mission
+                  <ChevronRight className="h-4 w-4 ml-2" />
+                </Button>
               </Card>
             </div>
+          )}
 
+          {currentStep === 1 && (
+            <div className="flex-1 flex flex-col justify-center space-y-6">
+              <div className="text-center">
+                <h2 className="text-2xl font-bold mb-2">Choose Your Leadership Approach</h2>
+                <p className="text-muted-foreground">Your policy direction will shape the future of the Bitcoin ecosystem</p>
+              </div>
+              <div className="max-w-4xl mx-auto">
+                <PolicyDirection onSelectPolicy={handleSelectPolicy} />
+              </div>
+            </div>
+          )}
+
+          {currentStep === 2 && (
             <div className="space-y-6">
-              <LoadingState isLoading={isGameLoading} skeleton={IndicatorsPanelSkeleton}>
-                <IndicatorsPanel gameState={gameState} />
+              <LoadingState isLoading={isGameLoading} skeleton={GameHeaderSkeleton}>
+                <GameHeader gameState={gameState} />
               </LoadingState>
-              <LazyDynamicEventsFeedWithSuspense gameState={gameState} />
-            </div>
 
-            <div>
-              <LazyEducationalSidebarWithSuspense
-                gameState={gameState}
-                onLessonComplete={handleCompleteLesson}
-                onSelectLesson={handleSelectLesson}
+              <LoadingState isLoading={isGameLoading} skeleton={CrisisAlertSkeleton}>
+                <CrisisAlert
+                  gameState={gameState}
+                  onRespondToCrisis={handleRespondToCrisis}
+                  timeRemaining={crisisTimeRemaining}
+                />
+              </LoadingState>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="space-y-6">
+                  <LoadingState isLoading={isGameLoading} skeleton={DecisionQueueSkeleton}>
+                    <DecisionQueue decisions={pendingDecisions} onSelectDecision={handleSelectDecision} />
+                  </LoadingState>
+
+                  <RecentDecisions gameState={gameState} />
+
+                  <Card className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-lg font-semibold flex items-center gap-2">
+                        <Users className="h-5 w-5 text-primary" />
+                        Simulation Controls
+                      </h3>
+                      <Badge variant="secondary">Development Mode</Badge>
+                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            onClick={() => advanceTime(1)}
+                            variant="outline"
+                            size="sm"
+                            className="flex items-center gap-2"
+                            disabled={isGameLoading}
+                          >
+                            <Play className="h-4 w-4" />
+                            <span className="hidden sm:inline">Advance</span>
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Advance simulation by 1 month</p>
+                        </TooltipContent>
+                      </Tooltip>
+
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            onClick={triggerSampleDecision}
+                            variant="outline"
+                            size="sm"
+                            className="flex items-center gap-2 bg-transparent"
+                            disabled={isGameLoading}
+                          >
+                            <ChevronRight className="h-4 w-4" />
+                            <span className="hidden sm:inline">Decision</span>
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Add a new policy decision</p>
+                        </TooltipContent>
+                      </Tooltip>
+
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            onClick={triggerRandomCrisis}
+                            variant="outline"
+                            size="sm"
+                            className="flex items-center gap-2 bg-transparent"
+                            disabled={isGameLoading}
+                          >
+                            <AlertTriangle className="h-4 w-4" />
+                            <span className="hidden sm:inline">Crisis</span>
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Trigger a random crisis event</p>
+                        </TooltipContent>
+                      </Tooltip>
+
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            onClick={resetGame}
+                            variant="outline"
+                            size="sm"
+                            className="flex items-center gap-2 bg-transparent"
+                            disabled={isGameLoading}
+                          >
+                            <RotateCcw className="h-4 w-4" />
+                            <span className="hidden sm:inline">Reset</span>
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Reset the entire simulation</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
+                  </Card>
+                </div>
+
+                {/* <div className="space-y-6">
+                  <LoadingState isLoading={isGameLoading} skeleton={IndicatorsPanelSkeleton}>
+                    <IndicatorsPanel gameState={gameState} />
+                  </LoadingState>
+                  <LazyDynamicEventsFeedWithSuspense gameState={gameState} />
+                </div> */}
+              </div>
+
+              <DecisionModal
+                decision={selectedDecision}
+                isOpen={isDecisionModalOpen}
+                onClose={() => setIsDecisionModalOpen(false)}
+                onMakeDecision={handleMakeDecision}
               />
+
+              {/* <LessonModal
+                lesson={selectedLesson}
+                isOpen={isLessonModalOpen}
+                isCompleted={gameState.completedLessons.includes(selectedLesson?.id || "")}
+                onClose={() => setIsLessonModalOpen(false)}
+                onComplete={handleCompleteLesson}
+              /> */}
             </div>
-          </div>
-
-          <DecisionModal
-            decision={selectedDecision}
-            isOpen={isDecisionModalOpen}
-            onClose={() => setIsDecisionModalOpen(false)}
-            onMakeDecision={handleMakeDecision}
-          />
-
-          <LessonModal
-            lesson={selectedLesson}
-            isOpen={isLessonModalOpen}
-            isCompleted={gameState.completedLessons.includes(selectedLesson?.id || "")}
-            onClose={() => setIsLessonModalOpen(false)}
-            onComplete={handleCompleteLesson}
-          />
+          )}
         </main>
       </div>
     </TooltipProvider>

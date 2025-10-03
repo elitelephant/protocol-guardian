@@ -20,27 +20,27 @@ interface AdminNavProps {
 const NAV_SECTIONS = [
   {
     id: "events",
-    name: "Events",
+    name: "Crises",
     icon: Calendar,
-    description: "Manage game events and scenarios",
+    description: "Manage Bitcoin protocol crises and scenarios",
   },
   {
     id: "categories",
-    name: "Categories",
+    name: "Eras",
     icon: FolderOpen,
-    description: "Organize events by category",
+    description: "Organize crises by evolutionary eras",
   },
   {
     id: "tags",
-    name: "Tags",
+    name: "Impacts",
     icon: Tags,
-    description: "Manage event tags and labels",
+    description: "Manage crisis impact tags and labels",
   },
   {
     id: "analytics",
     name: "Analytics",
     icon: BarChart3,
-    description: "View event performance metrics",
+    description: "View protocol metrics and performance",
   },
   {
     id: "settings",
@@ -64,8 +64,8 @@ export function AdminNav({ activeSection, onSectionChange, eventCounts }: AdminN
                   <Shield className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h2 className="font-semibold text-sm">Event Management</h2>
-                  <p className="text-xs text-muted-foreground">Admin Dashboard</p>
+                  <h2 className="font-semibold text-sm">Crisis Management</h2>
+                  <p className="text-xs text-muted-foreground">Guardian's Dashboard</p>
                 </div>
               </div>
             )}
@@ -139,7 +139,7 @@ export function AdminNav({ activeSection, onSectionChange, eventCounts }: AdminN
         {!isCollapsed && (
           <div className="p-4 border-t border-border mt-auto">
             <div className="space-y-3">
-              <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Event Statistics</div>
+              <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Crisis Statistics</div>
 
               <div className="grid grid-cols-2 gap-2">
                 <div className="text-center p-2 bg-muted/30 rounded-lg">
@@ -155,7 +155,7 @@ export function AdminNav({ activeSection, onSectionChange, eventCounts }: AdminN
 
               <div className="text-center p-2 bg-muted/30 rounded-lg">
                 <div className="text-lg font-bold">{eventCounts.total}</div>
-                <div className="text-xs text-muted-foreground">Total Events</div>
+                <div className="text-xs text-muted-foreground">Total Crises</div>
               </div>
             </div>
           </div>

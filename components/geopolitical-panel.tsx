@@ -10,56 +10,61 @@ interface GeopoliticalPanelProps {
 }
 
 export function GeopoliticalPanel({ gameState }: GeopoliticalPanelProps) {
-  const getAdoptionStatus = (value: number) => {
-    if (value >= 80) return { label: "Mass Adoption", color: "bg-green-500" }
-    if (value >= 60) return { label: "Growing", color: "bg-green-400" }
-    if (value >= 40) return { label: "Moderate", color: "bg-yellow-500" }
-    if (value >= 20) return { label: "Limited", color: "bg-orange-500" }
-    return { label: "Emerging", color: "bg-red-500" }
+  const getRelationshipStatus = (value: number) => {
+    if (value >= 50) return { label: "Allied", color: "bg-green-500" }
+    if (value >= 20) return { label: "Friendly", color: "bg-green-400" }
+    if (value >= -20) return { label: "Neutral", color: "bg-gray-400" }
+    if (value >= -50) return { label: "Tense", color: "bg-orange-500" }
+    return { label: "Hostile", color: "bg-red-500" }
   }
 
-  const regions = [
+  const blocs = [
     {
-      name: "North America",
-      value: Math.max(0, Math.min(100, gameState.networkHealth + Math.random() * 20 - 10)),
-      description: "US, Canada - Strong institutional adoption and regulatory clarity",
+      name: "Western Alliance",
+      key: "westernAlliance" as const,
+      value: gameState.blocRelationships.westernAlliance,
+      description: "US, EU, UK, Canada, Australia - Focus on consumer protection and AML compliance",
     },
     {
-      name: "Europe",
-      value: Math.max(0, Math.min(100, gameState.publicConfidence + Math.random() * 20 - 10)),
-      description: "EU, UK - Focus on ESG compliance and sustainable finance",
+      name: "Eastern Bloc",
+      key: "easternBloc" as const,
+      value: gameState.blocRelationships.easternBloc,
+      description: "China, Russia, North Korea - State-controlled digital currencies and surveillance",
     },
     {
-      name: "Asia Pacific",
-      value: Math.max(0, Math.min(100, gameState.techAdvancement + Math.random() * 20 - 10)),
-      description: "China, Japan, Singapore - Tech innovation and large-scale adoption",
+      name: "Global South",
+      key: "globalSouth" as const,
+      value: gameState.blocRelationships.globalSouth,
+      description: "India, Brazil, Nigeria, others - Financial inclusion and remittance focus",
     },
   ]
 
   return (
     <Card className="p-6">
-      <h2 className="text-xl font-semibold mb-4">Global Bitcoin Adoption</h2>
+      <h2 className="text-xl font-semibold mb-4">Geopolitical Relations</h2>
       <div className="space-y-6">
-        {regions.map((region) => {
-          const status = getAdoptionStatus(region.value)
+        {blocs.map((bloc) => {
+          const status = getRelationshipStatus(bloc.value)
+          const progressValue = ((bloc.value + 100) / 200) * 100 // Convert -100 to 100 range to 0-100%
 
           return (
-            <div key={region.name} className="space-y-2">
+            <div key={bloc.key} className="space-y-2">
               <div className="flex items-center justify-between">
-                <h3 className="font-medium">{region.name}</h3>
+                <h3 className="font-medium">{bloc.name}</h3>
                 <Badge className={status.color}>{status.label}</Badge>
               </div>
 
               <div className="flex items-center gap-3">
-                <span className="text-sm text-muted-foreground w-8">0%</span>
-                <Progress value={region.value} className="flex-1" />
-                <span className="text-sm text-muted-foreground w-8">100%</span>
+                <span className="text-sm text-muted-foreground w-8">-100</span>
+                <Progress value={progressValue} className="flex-1" />
+                <span className="text-sm text-muted-foreground w-8">+100</span>
                 <span className="text-lg font-bold w-12 text-right">
-                  {Math.round(region.value)}%
+                  {bloc.value > 0 ? "+" : ""}
+                  {bloc.value}
                 </span>
               </div>
 
-              <p className="text-sm text-muted-foreground">{region.description}</p>
+              <p className="text-sm text-muted-foreground">{bloc.description}</p>
             </div>
           )
         })}

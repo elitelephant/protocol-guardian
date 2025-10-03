@@ -50,8 +50,8 @@ export default function AdminPage() {
             <Shield className="h-8 w-8 text-primary animate-pulse" />
           </div>
           <div>
-            <h2 className="text-lg font-semibold">Loading Admin Dashboard</h2>
-            <p className="text-sm text-muted-foreground">Initializing event management system...</p>
+            <h2 className="text-lg font-semibold">Loading Guardian's Command Center</h2>
+            <p className="text-sm text-muted-foreground">Initializing crisis management system...</p>
           </div>
         </div>
       </div>
@@ -78,14 +78,17 @@ export default function AdminPage() {
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>Return to game interface</p>
+                      <p>Return to Bitcoin Protocol interface</p>
                     </TooltipContent>
                   </Tooltip>
 
                   <div>
-                    <h1 className="text-xl font-bold">Event Management Dashboard</h1>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h1 className="text-xl font-bold">Guardian's Command Center</h1>
+                      <Badge variant="outline" className="text-xs">Bitcoin Stacks Command</Badge>
+                    </div>
                     <p className="text-sm text-muted-foreground">
-                      Manage game events, categories, and system configuration
+                      Manage Bitcoin protocol crises, decision scenarios, and system oversight
                     </p>
                   </div>
                 </div>
@@ -95,7 +98,7 @@ export default function AdminPage() {
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                     System Active
                   </Badge>
-                  <Badge variant="secondary">{eventCounts.total} Events</Badge>
+                  <Badge variant="secondary">{eventCounts.total} Crises</Badge>
                   {eventCounts.total === 0 && (
                     <Badge variant="outline" className="text-yellow-600">
                       No Sample Data

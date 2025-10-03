@@ -19,7 +19,7 @@ export function SampleDataSeeder() {
 
     try {
       // Import and execute the seeding script
-      const { seedSampleEvents } = await import("../scripts/seed-sample-events")
+      const { seedSampleEvents } = await import("../scripts/seed-sample-events.js")
       const result = await seedSampleEvents()
       setSeedResult(result)
 
@@ -30,7 +30,7 @@ export function SampleDataSeeder() {
     } catch (error) {
       setSeedResult({
         success: false,
-      error: error instanceof Error ? error.message : 'Unknown error occurred',
+        error: error.message,
       })
     } finally {
       setIsSeeding(false)

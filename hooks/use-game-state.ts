@@ -247,61 +247,6 @@ export function useGameState() {
     setCrisisTimeRemaining(undefined)
   }, [])
 
-  const selectPolicy = useCallback((policyId: string) => {
-    setGameState((prev) => {
-      let initialConsequences: Consequence[] = []
-
-      // Apply initial policy effects
-      switch (policyId) {
-        case "sovereign":
-          initialConsequences = [
-            { type: "networkHealth", change: 10, description: "Initial focus on network sovereignty" },
-            { type: "publicConfidence", change: -5, description: "Conservative approach may concern some stakeholders" },
-          ]
-          break
-        case "progressive":
-          initialConsequences = [
-            { type: "techAdvancement", change: 10, description: "Initial investment in technological innovation" },
-            { type: "networkHealth", change: -5, description: "Innovation may introduce short-term risks" },
-          ]
-          break
-        case "pragmatic":
-          initialConsequences = [
-            { type: "publicConfidence", change: 10, description: "Balanced approach builds immediate trust" },
-            { type: "techAdvancement", change: -5, description: "Conservative tech stance for stability" },
-          ]
-          break
-      }
-
-      // Apply consequences
-      let newNetworkHealth = prev.networkHealth
-      let newPublicConfidence = prev.publicConfidence
-      let newTechAdvancement = prev.techAdvancement
-
-      initialConsequences.forEach(consequence => {
-        switch (consequence.type) {
-          case "networkHealth":
-            newNetworkHealth = Math.max(0, Math.min(100, newNetworkHealth + consequence.change))
-            break
-          case "publicConfidence":
-            newPublicConfidence = Math.max(0, Math.min(100, newPublicConfidence + consequence.change))
-            break
-          case "techAdvancement":
-            newTechAdvancement = Math.max(0, Math.min(100, newTechAdvancement + consequence.change))
-            break
-        }
-      })
-
-      return {
-        ...prev,
-        gamePhase: "era1",
-        networkHealth: newNetworkHealth,
-        publicConfidence: newPublicConfidence,
-        techAdvancement: newTechAdvancement,
-      }
-    })
-  }, [])
-
   return {
     gameState,
     pendingDecisions,
@@ -316,6 +261,5 @@ export function useGameState() {
     triggerCrisis,
     resolveCrisis,
     completeLesson,
-    selectPolicy,
   }
 }
