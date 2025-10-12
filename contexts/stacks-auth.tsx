@@ -72,7 +72,7 @@ export function StacksAuthProvider({ children, testnet = false }: StacksAuthProv
     
     authenticate({
       appDetails: {
-        name: 'Bitcoin Stacks Command',
+        name: 'Protocol Guardian',
         icon: window.location.origin + '/placeholder-logo.svg',
       },
       redirectTo: '/',

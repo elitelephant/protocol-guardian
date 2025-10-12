@@ -2,7 +2,9 @@
 
 ## Overview
 
-Bitcoin Stacks Command now features complete Stacks.js integration, allowing users to connect their Stacks wallets and access blockchain-powered features.
+# Stacks.js Integration Documentation
+
+Protocol Guardian now features complete Stacks.js integration, allowing users to connect their Stacks wallets and access blockchain-powered features.
 
 ## 🚀 Features Implemented
 

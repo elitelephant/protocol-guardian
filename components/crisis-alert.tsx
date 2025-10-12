@@ -50,7 +50,7 @@ export function CrisisAlert({ gameState, onRespondToCrisis, timeRemaining }: Cri
         <div className="flex-1 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <h2 className="text-xl font-semibold text-destructive">🚨 Crisis Alert</h2>
+              <h2 className="text-xl font-semibold text-destructive">Crisis Alert</h2>
               <Badge className={getUrgencyColor(crisis.urgency)}>{crisis.urgency.toUpperCase()} PRIORITY</Badge>
             </div>
             <div className="text-sm text-muted-foreground">Year {crisis.year}</div>

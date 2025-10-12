@@ -12,7 +12,7 @@ import { Suspense } from "react"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Bitcoin Stacks Command",
+  title: "Protocol Guardian",
   description: "Educational Bitcoin & Stacks Protocol Simulation Game",
   generator: "v0.app",
 }

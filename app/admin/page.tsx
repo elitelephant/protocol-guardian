@@ -85,7 +85,7 @@ export default function AdminPage() {
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <h1 className="text-xl font-bold">Guardian's Command Center</h1>
-                      <Badge variant="outline" className="text-xs">Bitcoin Stacks Command</Badge>
+                      <Badge variant="outline" className="text-xs">Protocol Guardian</Badge>
                     </div>
                     <p className="text-sm text-muted-foreground">
                       Manage Bitcoin protocol crises, decision scenarios, and system oversight

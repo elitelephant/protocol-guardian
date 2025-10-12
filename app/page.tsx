@@ -152,7 +152,7 @@ export default function GamePage() {
           <div className="container mx-auto px-4 py-4">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative">
               <div className="text-center">
-                <h1 className="text-xl font-bold text-balance">Bitcoin Stacks Command</h1>
+                <h1 className="text-xl font-bold text-balance">Protocol Guardian</h1>
               </div>
 
               <div className="flex items-center gap-4 absolute right-0 top-1/2 transform -translate-y-1/2 hidden sm:flex">

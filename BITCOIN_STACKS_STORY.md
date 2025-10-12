@@ -1,8 +1,8 @@
-# Bitcoin Stacks Command - Game Story (Tentative Adaptation)
+# Protocol Guardian - Game Story (Tentative Adaptation)
 
 ## Overview
 
-**Bitcoin Stacks Command** is an educational simulation game where you play as the **Guardian of the Bitcoin Protocol**, a decentralized steward overseeing Bitcoin and its Layer 2 ecosystems, particularly Stacks. Your role spans across five transformative eras of Bitcoin's evolution, during which you must navigate consensus challenges, protocol upgrades, and network evolution in the maturing Bitcoin ecosystem.
+**Protocol Guardian** is an educational simulation game where you play as the **Guardian of the Bitcoin Protocol**, a decentralized steward overseeing Bitcoin and its Layer 2 ecosystems, particularly Stacks. Your role spans across five transformative eras of Bitcoin's evolution, during which you must navigate consensus challenges, protocol upgrades, and network evolution in the maturing Bitcoin ecosystem.
 
 ## Game Structure
 

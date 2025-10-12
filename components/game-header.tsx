@@ -40,7 +40,7 @@ export function GameHeader({ gameState }: GameHeaderProps) {
     <Card className="p-6 mb-6">
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h1 className="text-3xl font-bold text-primary mb-2">Bitcoin Stacks Command</h1>
+          <h1 className="text-3xl font-bold text-primary mb-2">Protocol Guardian</h1>
           <p className="text-muted-foreground">Guardian of the Bitcoin Protocol - Strategic Dashboard</p>
         </div>
 
