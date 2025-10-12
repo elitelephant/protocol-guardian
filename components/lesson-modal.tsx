@@ -86,7 +86,6 @@ export function LessonModal({ lesson, isOpen, isCompleted, onClose, onComplete }
           {lesson.realWorldExample && (
             <Card className="p-4 bg-green-50 border-green-200">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-green-600">🌍</span>
                 <h3 className="font-semibold text-green-900">Real World Example</h3>
               </div>
               <p className="text-green-800 text-sm">{lesson.realWorldExample}</p>

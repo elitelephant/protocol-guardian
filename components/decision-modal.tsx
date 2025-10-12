@@ -18,6 +18,10 @@ interface DecisionModalProps {
 
 export function DecisionModal({ decision, isOpen, onClose, onMakeDecision }: DecisionModalProps) {
   const [selectedOption, setSelectedOption] = useState<DecisionOption | null>(null)
+
+  const getImpactIcon = (type: string) => {
+    return null
+  }
   const [showEducationalContent, setShowEducationalContent] = useState(false)
 
   if (!decision) return null

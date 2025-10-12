@@ -9,6 +9,8 @@ import { CrisisAlert } from "@/components/crisis-alert"
 import { DecisionQueue } from "@/components/decision-queue"
 import { LessonModal } from "@/components/lesson-modal"
 import { EraProgressBar } from "@/components/era-progress-bar"
+import { WalletConnectButton, StacksWelcomeCard } from "@/components/wallet-connect"
+import { BlockchainGameFeatures } from "@/components/blockchain-game-features"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -30,9 +32,6 @@ import {
 } from "@/components/performance/loading-states"
 import { usePerformanceMonitor } from "@/hooks/use-performance-monitor"
 import {
-  Shield,
-  TrendingUp,
-  Users,
   AlertTriangle,
   Clock,
   RotateCcw,
@@ -43,7 +42,7 @@ import {
   Globe,
   BookOpen,
   Target,
-  Zap,
+  Wallet,
 } from "lucide-react"
 import type { Decision, Crisis } from "@/lib/game-state"
 import type { EducationalLesson } from "@/lib/educational-content"
@@ -154,12 +153,10 @@ export default function GamePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative">
               <div className="text-center">
                 <h1 className="text-xl font-bold text-balance">Bitcoin Stacks Command</h1>
-                <p className="text-sm text-muted-foreground">
-                  {currentStep === 0 ? "Guardian of the Bitcoin Protocol" : currentStep === 1 ? "Setup Phase" : currentStep === 3 ? "Protocol Status Update" : "Active Protocol Operations"}
-                </p>
               </div>
 
               <div className="flex items-center gap-4 absolute right-0 top-1/2 transform -translate-y-1/2 hidden sm:flex">
+                <WalletConnectButton />
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button variant="outline" size="sm" onClick={resetGame}>
@@ -191,11 +188,6 @@ export default function GamePage() {
           {currentStep === 0 && (
             <div className="flex-1 flex items-center justify-center">
               <Card className="max-w-2xl w-full p-4 text-center space-y-4">
-                <div className="flex justify-center">
-                  <div className="p-2 bg-primary/10 rounded-full">
-                    <Shield className="h-8 w-8 text-primary" />
-                  </div>
-                </div>
                 <div>
                   <h2 className="text-2xl font-bold mb-2">Welcome, Guardian</h2>
                   <p className="text-base text-muted-foreground mb-3">
@@ -207,17 +199,14 @@ export default function GamePage() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   <div className="flex flex-col items-center p-3 bg-muted/30 rounded-lg">
-                    <TrendingUp className="h-8 w-8 text-primary mb-2" />
                     <h3 className="font-semibold">Network Health</h3>
                     <p className="text-sm text-muted-foreground">Stability and security of the Bitcoin network</p>
                   </div>
                   <div className="flex flex-col items-center p-3 bg-muted/30 rounded-lg">
-                    <Users className="h-8 w-8 text-chart-2 mb-2" />
                     <h3 className="font-semibold">Public Confidence</h3>
                     <p className="text-sm text-muted-foreground">Trust in Bitcoin as a financial system</p>
                   </div>
                   <div className="flex flex-col items-center p-3 bg-muted/30 rounded-lg">
-                    <Zap className="h-8 w-8 text-chart-3 mb-2" />
                     <h3 className="font-semibold">Tech Advancement</h3>
                     <p className="text-sm text-muted-foreground">Innovation in Bitcoin Layer 2 solutions</p>
                   </div>
@@ -226,6 +215,14 @@ export default function GamePage() {
                   Begin Your Mission
                   <ChevronRight className="h-4 w-4 ml-2" />
                 </Button>
+                
+                {/* Wallet Connection Suggestion */}
+                <div className="mt-4 p-3 bg-primary/5 border border-primary/20 rounded-lg">
+                  <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                    <Wallet className="h-4 w-4 text-primary" />
+                    <span>Connect your Stacks wallet to save progress across devices</span>
+                  </div>
+                </div>
               </Card>
             </div>
           )}
@@ -291,7 +288,7 @@ export default function GamePage() {
                 />
               </LoadingState>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="space-y-6">
                   <RecentDecisions gameState={gameState} />
                 </div>
@@ -302,6 +299,10 @@ export default function GamePage() {
                   </LoadingState>
                   <LazyDynamicEventsFeedWithSuspense gameState={gameState} />
                 </div>
+
+                <div className="space-y-6">
+                  <BlockchainGameFeatures gameState={gameState} />
+                </div>
               </div>
             </div>
           )}
@@ -309,11 +310,6 @@ export default function GamePage() {
           {currentStep === 3 && (
             <div className="flex-1 flex items-center justify-center">
               <div className="max-w-4xl w-full text-center space-y-6">
-                <div className="flex justify-center">
-                  <div className="p-4 bg-primary/10 rounded-full">
-                    <TrendingUp className="h-12 w-12 text-primary" />
-                  </div>
-                </div>
                 <div>
                   <h2 className="text-3xl font-bold mb-4">
                     {gameState.gamePhase === "ending" ? "Final Protocol Assessment" : "Protocol Status Update"}
@@ -327,10 +323,10 @@ export default function GamePage() {
                   {gameState.endingType && (
                     <div className="mb-6">
                       <Badge variant="outline" className="text-lg px-4 py-2 bg-primary/5 border-primary/20">
-                        {gameState.endingType === "sovereign" && "🏛️ Sovereign - Bitcoin Maximalist"}
-                        {gameState.endingType === "progressive" && "🚀 Progressive - Layer 2 Catalyst"}
-                        {gameState.endingType === "pragmatic" && "⚖️ Pragmatic - Balanced Steward"}
-                        {gameState.endingType === "disruptive" && "⚠️ Disruptive - Network Fragmentation"}
+                        {gameState.endingType === "sovereign" && "Sovereign - Bitcoin Maximalist"}
+                        {gameState.endingType === "progressive" && "Progressive - Layer 2 Catalyst"}
+                        {gameState.endingType === "pragmatic" && "Pragmatic - Balanced Steward"}
+                        {gameState.endingType === "disruptive" && "Disruptive - Network Fragmentation"}
                       </Badge>
                       <p className="text-sm text-muted-foreground mt-2">
                         {gameState.endingType === "sovereign" && "You prioritized Bitcoin's base layer security and decentralization above all else."}

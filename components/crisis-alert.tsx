@@ -36,14 +36,7 @@ export function CrisisAlert({ gameState, onRespondToCrisis, timeRemaining }: Cri
   }
 
   const getUrgencyIcon = (urgency: string) => {
-    switch (urgency) {
-      case "critical":
-        return <Zap className="h-5 w-5" />
-      case "high":
-        return <AlertTriangle className="h-5 w-5" />
-      default:
-        return <Clock className="h-5 w-5" />
-    }
+    return null
   }
 
   const timeProgress =

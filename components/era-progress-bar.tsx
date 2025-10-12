@@ -1,5 +1,8 @@
 "use client"
 
+import { useStacksAuth } from '@/contexts/stacks-auth'
+import { Badge } from '@/components/ui/badge'
+
 interface EraProgressBarProps {
   currentPhase: "intro" | "era1" | "era2" | "era3" | "era4" | "era5" | "ending"
   currentDecision?: number // Current decision within the era (0-based)
@@ -63,6 +66,7 @@ export function EraProgressBar({
   currentDecision = 0, 
   totalDecisions 
 }: EraProgressBarProps) {
+  const { isSignedIn } = useStacksAuth()
   const currentEraIndex = ERA_CONFIG.findIndex(era => era.id === currentPhase)
   
   const getEraStatus = (index: number) => {
@@ -154,13 +158,18 @@ export function EraProgressBar({
       </div>
       
       {/* Current Era Info - Only show decision count if relevant */}
-      {currentEraIndex !== -1 && totalDecisions && totalDecisions > 1 && (
-        <div className="mt-1 text-center">
+      <div className="mt-1 text-center flex items-center justify-center gap-2">
+        {currentEraIndex !== -1 && totalDecisions && totalDecisions > 1 && (
           <div className="text-xs text-muted-foreground">
             Decision {currentDecision + 1} of {totalDecisions}
           </div>
-        </div>
-      )}
+        )}
+        {isSignedIn && (
+          <Badge variant="outline" className="text-xs px-2 py-0.5 bg-primary/5 border-primary/20">
+            Progress Saved
+          </Badge>
+        )}
+      </div>
     </div>
   )
 }

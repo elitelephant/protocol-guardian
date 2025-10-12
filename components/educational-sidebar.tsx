@@ -20,11 +20,11 @@ export function EducationalSidebar({ gameState, onLessonComplete, onSelectLesson
   const [selectedCategory, setSelectedCategory] = useState<string>("blockchain")
 
   const categories = [
-    { id: "blockchain", label: "Bitcoin Tech", icon: "₿" },
-    { id: "regulation", label: "Protocol Governance", icon: "🏛️" },
-    { id: "economics", label: "Bitcoin Economics", icon: "📊" },
-    { id: "security", label: "Network Security", icon: "🔒" },
-    { id: "governance", label: "Layer 2 Solutions", icon: "📚" },
+    { id: "blockchain", label: "Bitcoin Tech", icon: "" },
+    { id: "regulation", label: "Protocol Governance", icon: "" },
+    { id: "economics", label: "Bitcoin Economics", icon: "" },
+    { id: "security", label: "Network Security", icon: "" },
+    { id: "governance", label: "Layer 2 Solutions", icon: "" },
   ]
 
   const getDifficultyColor = (difficulty: string) => {
