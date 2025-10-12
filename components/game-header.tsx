@@ -3,6 +3,7 @@
 import type { GameState } from "@/lib/game-state"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { EraProgressBar } from "@/components/era-progress-bar"
 
 interface GameHeaderProps {
   gameState: GameState
@@ -37,7 +38,7 @@ export function GameHeader({ gameState }: GameHeaderProps) {
 
   return (
     <Card className="p-6 mb-6">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between mb-4">
         <div>
           <h1 className="text-3xl font-bold text-primary mb-2">Bitcoin Stacks Command</h1>
           <p className="text-muted-foreground">Guardian of the Bitcoin Protocol - Strategic Dashboard</p>
@@ -64,6 +65,15 @@ export function GameHeader({ gameState }: GameHeaderProps) {
             </div>
           </div>
         </div>
+      </div>
+      
+      {/* Era Progress Bar */}
+      <div className="border-t pt-4">
+        <EraProgressBar 
+          currentPhase={gameState.gamePhase}
+          currentDecision={gameState.currentDecision}
+          totalDecisions={gameState.totalDecisionsInEra}
+        />
       </div>
     </Card>
   )

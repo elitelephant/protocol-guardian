@@ -21,6 +21,8 @@ export interface GameState {
 
   // Game progression
   gamePhase: "intro" | "era1" | "era2" | "era3" | "era4" | "era5" | "ending"
+  currentDecision: number // Current decision index within the era (0-based)
+  totalDecisionsInEra: number // Total decisions planned for current era
   endingType?: "sovereign" | "progressive" | "pragmatic" | "disruptive"
 }
 
@@ -73,6 +75,8 @@ export const initialGameState: GameState = {
   unresolvedCrises: [],
   completedLessons: [],
   gamePhase: "intro",
+  currentDecision: 0,
+  totalDecisionsInEra: 1, // Intro has 1 decision (policy direction)
 }
 
 // Sample crisis data - to be replaced with Bitcoin/Stacks crises

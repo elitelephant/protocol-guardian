@@ -8,6 +8,7 @@ import { RecentDecisions } from "@/components/recent-decisions"
 import { CrisisAlert } from "@/components/crisis-alert"
 import { DecisionQueue } from "@/components/decision-queue"
 import { LessonModal } from "@/components/lesson-modal"
+import { EraProgressBar } from "@/components/era-progress-bar"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -150,38 +151,15 @@ export default function GamePage() {
       <div className="min-h-screen bg-background text-foreground flex flex-col">
         <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
           <div className="container mx-auto px-4 py-4">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Shield className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h1 className="text-xl font-bold text-balance">Bitcoin Stacks Command</h1>
-                  <p className="text-sm text-muted-foreground">
-                    {currentStep === 0 ? "Guardian of the Bitcoin Protocol" : currentStep === 1 ? "Setup Phase" : currentStep === 3 ? "Protocol Status Update" : "Active Protocol Operations"}
-                  </p>
-                </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative">
+              <div className="text-center">
+                <h1 className="text-xl font-bold text-balance">Bitcoin Stacks Command</h1>
+                <p className="text-sm text-muted-foreground">
+                  {currentStep === 0 ? "Guardian of the Bitcoin Protocol" : currentStep === 1 ? "Setup Phase" : currentStep === 3 ? "Protocol Status Update" : "Active Protocol Operations"}
+                </p>
               </div>
 
-              <div className="flex items-center gap-4">
-                {currentStep < 2 && (
-                  <Badge variant="outline" className="flex items-center gap-2">
-                    <Calendar className="h-3 w-3" />
-                    Year 2035
-                  </Badge>
-                )}
-                {currentStep === 2 && (
-                  <>
-                    <Badge variant="outline" className="flex items-center gap-2">
-                      <Calendar className="h-3 w-3" />
-                      Year {2035 + Math.floor(gameState.currentMonth / 12)}
-                    </Badge>
-                    <Badge variant="outline" className="flex items-center gap-2">
-                      <Clock className="h-3 w-3" />
-                      Month {(gameState.currentMonth % 12) + 1}
-                    </Badge>
-                  </>
-                )}
+              <div className="flex items-center gap-4 absolute right-0 top-1/2 transform -translate-y-1/2 hidden sm:flex">
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button variant="outline" size="sm" onClick={resetGame}>
@@ -195,6 +173,17 @@ export default function GamePage() {
                 </Tooltip>
               </div>
             </div>
+            
+            {/* Era Progress Bar - Always visible */}
+            {currentStep >= 1 && (
+              <div className="border-t pt-4 mt-4">
+                <EraProgressBar 
+                  currentPhase={gameState.gamePhase}
+                  currentDecision={gameState.currentDecision}
+                  totalDecisions={gameState.totalDecisionsInEra}
+                />
+              </div>
+            )}
           </div>
         </header>
 
