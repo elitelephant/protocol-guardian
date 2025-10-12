@@ -2,8 +2,6 @@
 
 An interactive educational simulation game where you serve as the **Bitcoin Protocol Guardian**, making critical decisions that shape the future of Bitcoin and the Stacks ecosystem. Navigate through five transformative eras of Bitcoin's evolution while balancing network health, public confidence, and technological advancement.
 
-![Protocol Guardian](public/placeholder-logo.svg)
-
 ## 🎮 Game Overview
 
 **Protocol Guardian** is a strategic decision-making game built for the Stacks ecosystem that teaches players about Bitcoin protocol governance, Layer 2 solutions, and the complex challenges facing the Bitcoin network. Originally created for the Base Batches 001 hackathon and now adapted for the Stacks Vibe Coding hackathon.
