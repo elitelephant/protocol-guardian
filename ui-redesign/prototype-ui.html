@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol Guardian - UI Prototype</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Mobile Device Warning */
+        @media (max-width: 1024px) {
+            .mobile-warning {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                color: white;
+                text-align: center;
+                padding: 20px;
+            }
+            
+            .desktop-content {
+                display: none;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-warning {
+                display: none;
+            }
+        }
+
+        /* Removed background animation for simplicity */
+
+        /* Main Control Center Layout */
+        .control-center {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Status Bar */
+        .status-bar {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #FF8C00;
+        }
+
+        .status-bar h1 {
+            color: #FF8C00;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .network-status {
+            display: flex;
+            gap: 20px;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #FF8C00;
+        }
+
+        /* Main Game Area */
+        .desk-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+            padding: 40px;
+        }
+
+        .desk {
+            width: 800px;
+            height: 500px;
+            background: white;
+            border: 3px solid #FF8C00;
+            position: relative;
+        }
+
+        /* Decision Buttons */
+        .decision-buttons {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 40px;
+        }
+
+        .decision-button {
+            padding: 15px 40px;
+            border: 2px solid;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: white;
+        }
+
+        .decision-button.reject {
+            border-color: #666666;
+            color: #666666;
+        }
+
+        .decision-button.reject:hover {
+            background: #666666;
+            color: white;
+        }
+
+        .decision-button.approve {
+            border-color: #FF8C00;
+            color: #FF8C00;
+        }
+
+        .decision-button.approve:hover {
+            background: #FF8C00;
+            color: white;
+        }
+
+        /* Protocol Document */
+        .protocol-document {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -60%);
+            width: 400px;
+            background: white;
+            padding: 30px;
+            border: 2px solid #333;
+            z-index: 10;
+        }
+
+        .document-header {
+            border-bottom: 2px solid #FF8C00;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .document-title {
+            color: #333;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .document-type {
+            color: #FF8C00;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .document-content {
+            color: #333;
+            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .document-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .impact-preview {
+            display: flex;
+            gap: 10px;
+        }
+
+        .impact-badge {
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .impact-positive {
+            background: #FF8C00;
+            color: white;
+        }
+
+        .impact-negative {
+            background: #666666;
+            color: white;
+        }
+
+        /* Metrics Display */
+        .metrics-panel {
+            position: absolute;
+            top: 100px;
+            right: 30px;
+            background: white;
+            padding: 20px;
+            border: 2px solid #FF8C00;
+            min-width: 200px;
+        }
+
+        .metric {
+            margin-bottom: 15px;
+        }
+
+        .metric-label {
+            color: #333;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .metric-bar {
+            width: 100%;
+            height: 8px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+        }
+
+        .metric-fill {
+            height: 100%;
+        }
+
+        .metric-network { background: #FF8C00; }
+        .metric-confidence { background: #888888; }
+        .metric-tech { background: #AAAAAA; }
+
+        /* Instructions */
+        .instructions {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #666;
+            text-align: center;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Warning -->
+    <div class="mobile-warning">
+        <div>
+            <h2>🖥️ Desktop Required</h2>
+            <p>Protocol Guardian is optimized for desktop experience.<br>
+            Please access this game from a desktop or laptop computer.</p>
+        </div>
+    </div>
+
+    <!-- Desktop Content -->
+    <div class="desktop-content">
+        <!-- Removed background animation -->
+
+        <!-- Main Control Center -->
+        <div class="control-center">
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <h1>⚡ Protocol Guardian Control Center</h1>
+                <div class="network-status">
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span>Bitcoin Network: Active</span>
+                    </div>
+                    <div class="status-indicator">
+                        <div class="status-dot"></div>
+                        <span>Stacks Layer 2: Online</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Desk Area -->
+            <div class="desk-area">
+                <div class="desk">
+                    <!-- Decision Buttons -->
+                    <div class="decision-buttons">
+                        <button class="decision-button reject" onclick="handleDecision('reject')">
+                            ❌ Reject
+                        </button>
+                        <button class="decision-button approve" onclick="handleDecision('approve')">
+                            ✅ Approve
+                        </button>
+                    </div>
+
+                    <!-- Protocol Document -->
+                    <div class="protocol-document" id="protocolDoc">
+                        <div class="document-header">
+                            <div class="document-title">Stacks 3.0 Upgrade Proposal</div>
+                            <div class="document-type">Protocol Enhancement • SIP-025</div>
+                        </div>
+                        <div class="document-content">
+                            The Stacks community proposes implementing enhanced smart contract capabilities with improved scalability and reduced transaction costs. This upgrade would introduce new consensus mechanisms while maintaining Bitcoin security.
+                        </div>
+                        <div class="document-footer">
+                            <div>Proposal ID: BTC-STX-2025-001</div>
+                            <div class="impact-preview">
+                                <span class="impact-badge impact-positive">+Tech</span>
+                                <span class="impact-badge impact-negative">-Stability</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metrics Panel -->
+            <div class="metrics-panel">
+                <div class="metric">
+                    <div class="metric-label">Network Health: 75%</div>
+                    <div class="metric-bar">
+                        <div class="metric-fill metric-network" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Public Confidence: 60%</div>
+                    <div class="metric-bar">
+                        <div class="metric-fill metric-confidence" style="width: 60%"></div>
+                    </div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Tech Advancement: 45%</div>
+                    <div class="metric-bar">
+                        <div class="metric-fill metric-tech" style="width: 45%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="instructions">
+                <strong>Read the protocol proposal and click APPROVE or REJECT</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleDecision(decision) {
+            const protocolDoc = document.getElementById('protocolDoc');
+            
+            // Animate the decision
+            protocolDoc.style.transition = 'all 0.5s ease';
+            
+            if (decision === 'approve') {
+                protocolDoc.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                protocolDoc.style.opacity = '0.5';
+                alert('✅ Protocol Upgrade APPROVED!\n+15 Tech Advancement\n-5 Network Health');
+            } else {
+                protocolDoc.style.transform = 'translate(-50%, -50%) scale(0.8)';
+                protocolDoc.style.opacity = '0.5';
+                alert('❌ Protocol Upgrade REJECTED!\n+10 Network Health\n-10 Tech Advancement');
+            }
+
+            // Reset for next decision (in real game, load next document)
+            setTimeout(() => {
+                protocolDoc.style.transition = '';
+                protocolDoc.style.transform = 'translate(-50%, -50%)';
+                protocolDoc.style.opacity = '1';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
