@@ -18,25 +18,21 @@ This project follows modern web development best practices:
 ### File Structure
 ```
 binary-game/
-├── public/
-│   └── index.html          # Main HTML with proper meta tags
-├── src/
-│   ├── js/
-│   │   ├── main.js         # Entry point and initialization
-│   │   ├── game-state.js   # Game state management
-│   │   ├── decisions.js    # Game data and decisions
-│   │   └── ui-controller.js # UI rendering and interaction
-│   └── styles/
-│       ├── base.css        # Base styles and reset
-│       └── game.css        # Game-specific components
-├── package.json            # Dependencies and scripts
-├── vercel.json            # Deployment configuration
-└── README.md              # This file
+├── app/
+│   ├── page.tsx           # Main game component with React hooks
+│   ├── layout.tsx         # Root layout with metadata
+│   └── globals.css        # Global styles and game CSS
+├── package.json           # Dependencies and scripts
+├── next.config.js         # Next.js configuration for static export
+├── tsconfig.json          # TypeScript configuration
+├── vercel.json           # Deployment configuration
+└── README.md             # This file
 ```
 
 ### Code Organization
-- **Modular JavaScript**: ES6 modules with clear separation of concerns
-- **External Stylesheets**: No inline CSS, organized by function
+- **Next.js 14 App Router**: Modern React framework with TypeScript
+- **React Hooks**: useState and useEffect for game state management
+- **Static Export**: Configured for deployment to any static host
 - **Semantic HTML**: Proper accessibility attributes and structure
 - **SEO Optimized**: Meta tags, Open Graph, and proper heading hierarchy
 
@@ -64,15 +60,18 @@ npm install
 # Start development server
 npm run dev
 
-# Or use any static file server
-npx http-server public -p 3000 -o
+# Build for production
+npm run build
+
+# Preview production build locally
+npm start
 ```
 
 ### Manual Deployment
-The project consists of static files and can be deployed to any web server:
-- Upload the entire project folder
-- Ensure the server can serve static files
-- Point to `public/index.html` as the entry point
+The project exports to static files and can be deployed to any web server:
+- Run `npm run build` to generate the `out/` directory
+- Upload the contents of the `out/` folder to your web server
+- The `index.html` file in `out/` is the entry point
 
 ## 📋 Deployment Checklist
 

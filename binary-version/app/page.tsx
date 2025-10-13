@@ -79,6 +79,7 @@ const endings = {
 
 interface GameState {
   currentDecision: number;
+  gameStarted: boolean;
   metrics: {
     security: number;
     decentralization: number;
@@ -94,6 +95,7 @@ interface GameState {
 export default function ProtocolGuardianGame() {
   const [gameState, setGameState] = useState<GameState>({
     currentDecision: 0,
+    gameStarted: false,
     metrics: {
       security: 50,
       decentralization: 50,
@@ -104,6 +106,11 @@ export default function ProtocolGuardianGame() {
 
   const makeDecision = (choice: 'start' | 'approve' | 'reject') => {
     if (choice === 'start') {
+      // Start the game by setting gameStarted to true
+      setGameState(prev => ({
+        ...prev,
+        gameStarted: true
+      }));
       return;
     }
 
@@ -152,6 +159,7 @@ export default function ProtocolGuardianGame() {
   const restart = () => {
     setGameState({
       currentDecision: 0,
+      gameStarted: false,
       metrics: {
         security: 50,
         decentralization: 50, 
@@ -165,7 +173,7 @@ export default function ProtocolGuardianGame() {
   const progress = Math.round((gameState.decisions.length / 8) * 100);
 
   // Welcome Screen
-  if (gameState.decisions.length === 0) {
+  if (!gameState.gameStarted) {
     return (
       <>
         {/* Skip navigation for screen readers */}

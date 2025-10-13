@@ -136,23 +136,23 @@ original-version/build/
 original-version/.env*.local
 original-version/tsconfig.tsbuildinfo
 
-binary-nextjs-version/binary-game/node_modules/
-binary-nextjs-version/binary-game/.next/
-binary-nextjs-version/binary-game/out/
-binary-nextjs-version/binary-game/build/
-binary-nextjs-version/binary-game/.env*.local
-binary-nextjs-version/binary-game/tsconfig.tsbuildinfo
+binary-version/node_modules/
+binary-version/.next/
+binary-version/out/
+binary-version/build/
+binary-version/.env*.local
+binary-version/tsconfig.tsbuildinfo
 
 # Binary prototypes are static files - no build artifacts needed
 
-# Personal documentation files - EXCLUDED from repo
-PROJECT_NOTES.md
-BITCOIN_STACKS_STORY.md  
-STORY.md
-INTERNAL_README.md
-STACKS_INTEGRATION.md
+# Personal development files - you may want to include these in repo
+# PROJECT_NOTES.md
+# BITCOIN_STACKS_STORY.md  
+# STORY.md
+# INTERNAL_README.md
+# STACKS_INTEGRATION.md
 
-# Keep only technical project documentation
+# Keep technical project documentation
 # README.md - main project documentation (INCLUDED)
 
 # Development artifacts that should be ignored in all versions
