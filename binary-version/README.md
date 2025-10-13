@@ -1,15 +1,22 @@
-# Protocol Guardian - Next.js Version
+# Protocol Guardian: Stacks Edition 🚀
 
-Modern implementation of the Protocol Guardian blockchain governance simulation game built with Next.js 14, React, and TypeScript.
+Modern blockchain governance simulation game with **Stacks wallet integration** and **NFT certification**. Built with Next.js 14, React, TypeScript, and Stacks.js.
 
 ## 🎮 Game Overview
 
-As a Protocol Guardian, you'll face 8 critical decisions that affect three key metrics:
-- **Security**: Protocol safety and vulnerability management
-- **Decentralization**: Network distribution and community governance 
-- **Adoption**: User growth and ecosystem expansion
+Shape the future of Bitcoin's smart contract layer through **10 Stacks ecosystem governance decisions**:
 
-Each decision leads to different endings based on your leadership style.
+### Core Metrics
+- 🛡️ **Security**: Protocol safety, smart contract audits, and Bitcoin alignment
+- 👥 **Decentralization**: Network distribution, community governance, and accessibility
+- 🚀 **Adoption**: User growth, developer activity, and ecosystem expansion
+
+### New Blockchain Features ⭐
+- 🔗 **Wallet Connection**: Connect Leather, Xverse, or any Stacks wallet
+- ☁️ **Cloud Saves**: Automatic blockchain-based progress saving
+- 🏆 **Achievements**: Unlock blockchain-verified milestones  
+- 💎 **NFT Certificates**: Mint unique governance style certificates
+- 🌐 **Cross-Device Sync**: Resume your game from anywhere
 
 ## 🏗️ Architecture & Best Practices
 
@@ -54,10 +61,10 @@ This project is optimized for Vercel deployment:
 
 ### Local Development
 ```bash
-# Install dependencies
+# Install dependencies (includes Stacks.js packages)
 npm install
 
-# Start development server
+# Start development server (uses Stacks testnet)
 npm run dev
 
 # Build for production
@@ -66,6 +73,16 @@ npm run build
 # Preview production build locally
 npm start
 ```
+
+### Wallet Setup for Development
+1. Install **Leather Wallet** browser extension
+2. Create or import a Stacks testnet wallet
+3. Visit `http://localhost:3000` and click "Connect Wallet"
+4. Approve connection to start using blockchain features
+
+### Environment Configuration
+- **Development**: Automatically uses Stacks Testnet for safe testing
+- **Production**: Uses Stacks Mainnet for real transactions
 
 ### Manual Deployment
 The project exports to static files and can be deployed to any web server:

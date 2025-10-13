@@ -145,14 +145,14 @@ binary-version/tsconfig.tsbuildinfo
 
 # Binary prototypes are static files - no build artifacts needed
 
-# Personal development files - you may want to include these in repo
-# PROJECT_NOTES.md
-# BITCOIN_STACKS_STORY.md  
-# STORY.md
-# INTERNAL_README.md
-# STACKS_INTEGRATION.md
+# Personal documentation files - EXCLUDED from repo
+PROJECT_NOTES.md
+BITCOIN_STACKS_STORY.md  
+STORY.md
+INTERNAL_README.md
+STACKS_INTEGRATION.md
 
-# Keep technical project documentation
+# Keep only technical project documentation
 # README.md - main project documentation (INCLUDED)
 
 # Development artifacts that should be ignored in all versions

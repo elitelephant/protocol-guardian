@@ -1,6 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import { WalletConnectButton, StacksWelcomeCard } from '../components/wallet-connect'
+import { useBlockchainGameState, useBlockchainAchievements } from '../hooks/use-blockchain-game'
+import { useNFTCertification, CertificatePreview, getCertificateInfo, type GameCertificate, type CertificateType } from '../hooks/use-nft-certification'
 
 // Bitcoin/Stacks Protocol Decision Scenarios
 const decisions = [
@@ -116,6 +119,99 @@ export default function ProtocolGuardianGame() {
     decisions: []
   });
 
+  // Blockchain hooks
+  const { 
+    saveGameState, 
+    loadGameState, 
+    hasSavedData, 
+    isSaving, 
+    isLoading: isLoadingGame,
+    isSignedIn 
+  } = useBlockchainGameState()
+  
+  const { unlockAchievement } = useBlockchainAchievements()
+  
+  const { 
+    mintCertificate, 
+    isMinting, 
+    mintStatus,
+    isSignedIn: isWalletConnected 
+  } = useNFTCertification()
+
+  const [showNFTMint, setShowNFTMint] = useState(false)
+
+  // Auto-save game state when connected
+  useEffect(() => {
+    if (isSignedIn && gameState.gameStarted && gameState.decisions.length > 0) {
+      saveGameState(gameState)
+    }
+  }, [gameState.decisions.length, isSignedIn])
+
+  // Unlock achievements based on progress
+  useEffect(() => {
+    if (!isSignedIn) return
+
+    if (gameState.decisions.length === 1) {
+      unlockAchievement('first_decision', 'Protocol Pioneer - Made your first governance decision')
+    }
+    if (gameState.decisions.length === 5) {
+      unlockAchievement('halfway_point', 'Halfway Hero - Completed half the protocol decisions')
+    }
+    if (gameState.decisions.length === 10) {
+      unlockAchievement('governance_master', 'Governance Master - Completed all protocol decisions')
+    }
+    
+    // Metric-based achievements
+    const { security, decentralization, adoption } = gameState.metrics
+    if (security >= 80) {
+      unlockAchievement('security_guardian', 'Security Guardian - Achieved 80+ Security Score')
+    }
+    if (decentralization >= 80) {
+      unlockAchievement('decentralization_champion', 'Decentralization Champion - Achieved 80+ Decentralization Score')
+    }
+    if (adoption >= 80) {
+      unlockAchievement('adoption_catalyst', 'Adoption Catalyst - Achieved 80+ Adoption Score')
+    }
+  }, [gameState.metrics, gameState.decisions.length, isSignedIn])
+
+  // Load saved game on wallet connection
+  const handleLoadSavedGame = async () => {
+    const savedState = await loadGameState()
+    if (savedState) {
+      setGameState(prevState => ({
+        ...prevState,
+        ...savedState,
+        decisions: savedState.decisions || []
+      }))
+    }
+  }
+
+  // Handle NFT certificate minting
+  const handleMintCertificate = async () => {
+    if (!isWalletConnected) return
+
+    const endingType = calculateEnding() as CertificateType
+    const certificate: GameCertificate = {
+      type: endingType,
+      title: endings[endingType].title,
+      description: endings[endingType].description,
+      metrics: gameState.metrics,
+      decisions: gameState.decisions.map(d => ({
+        title: d.title,
+        choice: d.choice
+      })),
+      timestamp: Date.now()
+    }
+
+    try {
+      await mintCertificate(certificate)
+      setShowNFTMint(false)
+      unlockAchievement('nft_certified', 'NFT Certified - Minted Protocol Guardian Certificate')
+    } catch (error) {
+      console.error('Failed to mint certificate:', error)
+    }
+  }
+
   const makeDecision = (choice: 'start' | 'approve' | 'reject') => {
     if (choice === 'start') {
       // Start the game by setting gameStarted to true
@@ -187,7 +283,7 @@ export default function ProtocolGuardianGame() {
   // Welcome Screen
   if (!gameState.gameStarted) {
     return (
-      <>
+      <div className="game-wrapper">
         {/* Skip navigation for screen readers */}
         <a href="#main-content" className="sr-only">Skip to main content</a>
         
@@ -199,10 +295,39 @@ export default function ProtocolGuardianGame() {
           </div>
         </div>
 
+        {/* Wallet Header Section */}
+        <header className="wallet-header">
+          <WalletConnectButton />
+        </header>
+
         <main id="main-content" className="game-container" role="main">
+
           <div className="welcome-screen">
-            <h1>Protocol Guardian: Stacks Edition</h1>
-            <p>Shape the future of Bitcoin's smart contract layer as a Protocol Guardian. Navigate the evolving Stacks ecosystem, balancing innovation with security while building the foundation for Bitcoin DeFi and Web3 applications.</p>
+            <div className="welcome-content">
+              <h1>Protocol Guardian: Stacks Edition</h1>
+              <p>Shape the future of Bitcoin's smart contract layer as a Protocol Guardian. Navigate the evolving Stacks ecosystem, balancing innovation with security while building the foundation for Bitcoin DeFi and Web3 applications.</p>
+              
+              <StacksWelcomeCard />
+
+            {/* Show load option if user has saved data */}
+            {hasSavedData && isSignedIn && (
+              <div className="blockchain-features-panel">
+                <div className="blockchain-features-header">
+                  <span className="blockchain-features-title">🔗 Blockchain Save Found</span>
+                  <button 
+                    className="blockchain-btn"
+                    onClick={handleLoadSavedGame}
+                    disabled={isLoadingGame}
+                  >
+                    {isLoadingGame ? 'Loading...' : 'Continue Game'}
+                  </button>
+                </div>
+                <div className="blockchain-status-item">
+                  <span>Saved progress found on Stacks blockchain</span>
+                  <span>Click to resume your governance journey</span>
+                </div>
+              </div>
+            )}
             
             <div className="metrics-intro">
               <div className="metric-intro">
@@ -219,12 +344,13 @@ export default function ProtocolGuardianGame() {
               </div>
             </div>
             
-            <button className="start-button" onClick={() => makeDecision('start')}>
-              Begin Your Mission
-            </button>
+              <button className="start-button" onClick={() => makeDecision('start')}>
+                Begin Your Mission
+              </button>
+            </div>
           </div>
         </main>
-      </>
+      </div>
     );
   }
 
@@ -233,7 +359,14 @@ export default function ProtocolGuardianGame() {
     const currentDecisionData = decisions[gameState.currentDecision];
     
     return (
-      <main className="game-container" role="main">
+      <div className="game-wrapper">
+        {/* Wallet Header Section */}
+        <header className="wallet-header">
+          <WalletConnectButton />
+        </header>
+
+        <main className="game-container" role="main">
+
         <div className="decision-screen">
           <div className="progress-bar">
             <span>Protocol Decision {gameState.decisions.length + 1} of 10</span>
@@ -329,6 +462,7 @@ export default function ProtocolGuardianGame() {
           </div>
         </div>
       </main>
+      </div>
     );
   }
 
@@ -337,7 +471,14 @@ export default function ProtocolGuardianGame() {
   const ending = endings[endingType as keyof typeof endings];
   
   return (
-    <main className="game-container" role="main">
+    <div className="game-wrapper">
+      {/* Wallet Header Section */}
+      <header className="wallet-header">
+        <WalletConnectButton />
+      </header>
+
+      <main className="game-container" role="main">
+
       <div className="final-summary">
         <h1>Your Stacks Legacy</h1>
         
@@ -362,6 +503,91 @@ export default function ProtocolGuardianGame() {
           </div>
         </div>
         
+        {/* NFT Certificate Minting Section */}
+        {isWalletConnected && (
+          <div className="nft-mint-section">
+            <h3>🏆 Mint Your Protocol Guardian Certificate</h3>
+            <p>
+              Immortalize your governance journey on the Stacks blockchain! 
+              Mint a unique NFT certificate that proves your leadership as <strong>{ending.title}</strong>.
+            </p>
+            
+            {!showNFTMint && (
+              <button 
+                className="nft-mint-btn"
+                onClick={() => setShowNFTMint(true)}
+              >
+                Preview Certificate
+              </button>
+            )}
+
+            {showNFTMint && (
+              <div>
+                <CertificatePreview certificate={{
+                  type: endingType as CertificateType,
+                  title: ending.title,
+                  description: ending.description,
+                  metrics: gameState.metrics,
+                  decisions: gameState.decisions.map(d => ({
+                    title: d.title,
+                    choice: d.choice
+                  })),
+                  timestamp: Date.now()
+                }} />
+                
+                <div className="blockchain-status">
+                  {mintStatus === 'pending' && '⏳ Minting certificate on Stacks testnet...'}
+                  {mintStatus === 'success' && '✅ Certificate minted successfully!'}
+                  {mintStatus === 'error' && '❌ Failed to mint certificate. Please try again.'}
+                  {mintStatus === 'idle' && 'Ready to mint your unique Protocol Guardian certificate'}
+                </div>
+
+                <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
+                  <button 
+                    className="nft-mint-btn"
+                    onClick={handleMintCertificate}
+                    disabled={isMinting || mintStatus === 'success'}
+                  >
+                    {isMinting ? 'Minting...' : mintStatus === 'success' ? 'Minted!' : 'Mint NFT Certificate'}
+                  </button>
+                  
+                  <button 
+                    className="blockchain-btn"
+                    onClick={() => setShowNFTMint(false)}
+                    disabled={isMinting}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Blockchain save status */}
+        {isSignedIn && (
+          <div className="blockchain-features-panel">
+            <div className="blockchain-features-header">
+              <span className="blockchain-features-title">🔗 Blockchain Status</span>
+              <button 
+                className="blockchain-btn"
+                onClick={() => saveGameState(gameState)}
+                disabled={isSaving}
+              >
+                {isSaving ? 'Saving...' : 'Save Progress'}
+              </button>
+            </div>
+            <div className="blockchain-status-item">
+              <span>Game progress</span>
+              <span>{hasSavedData ? '✅ Saved' : '❌ Not saved'}</span>
+            </div>
+            <div className="blockchain-status-item">
+              <span>Wallet status</span>
+              <span>✅ Connected</span>
+            </div>
+          </div>
+        )}
+
         <div className="decisions-history">
           <h3>Your Protocol Governance Journey</h3>
           {gameState.decisions.map((decision, index) => (
@@ -379,5 +605,6 @@ export default function ProtocolGuardianGame() {
         </button>
       </div>
     </main>
+    </div>
   );
 }
