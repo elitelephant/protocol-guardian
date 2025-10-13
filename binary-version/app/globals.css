@@ -13,6 +13,24 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Stacks-inspired background circles */
+body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    right: -20%;
+    width: 100%;
+    height: 150%;
+    background: 
+        radial-gradient(circle at 80% 20%, rgba(255, 140, 0, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(255, 140, 0, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 60% 60%, rgba(255, 140, 0, 0.04) 0%, transparent 50%);
+    z-index: -1;
+    pointer-events: none;
 }
 
 /* Main game container */
@@ -21,8 +39,12 @@ body {
     width: 100%;
     background: white;
     border: 3px solid #FF8C00;
+    border-radius: 12px;
     padding: 40px;
     min-height: 600px;
+    box-shadow: 0 8px 32px rgba(255, 140, 0, 0.1);
+    position: relative;
+    backdrop-filter: blur(10px);
 }
 
 /* Accessibility utilities */
@@ -91,18 +113,30 @@ button:focus {
 
 .metric-intro {
     text-align: center;
-    padding: 20px;
+    padding: 25px 20px;
     border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.metric-intro:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border-color: #FF8C00;
 }
 
 .metric-intro h3 {
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-weight: 600;
 }
 
 .metric-intro p {
     color: #666;
     font-size: 0.9rem;
+    line-height: 1.5;
 }
 
 .start-button, .restart-btn {
@@ -141,29 +175,65 @@ button:focus {
     margin-bottom: 10px;
 }
 
+/* Main Protocol Progress Bar */
+.main-progress-container {
+    width: 100%;
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
 .progress-fill {
-    height: 4px;
-    background: #FF8C00;
-    transition: width 0.3s ease;
+    height: 100%;
+    background: linear-gradient(90deg, #FF8C00, #ff7700);
+    transition: width 0.5s ease-in-out;
+    border-radius: 3px;
+    position: relative;
+}
+
+.main-progress-segments {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    pointer-events: none;
+}
+
+.main-progress-segment {
+    flex: 1;
+    border-right: 2px solid #f5f5f5;
+    height: 100%;
+}
+
+.main-progress-segment:last-child {
+    border-right: none;
 }
 
 .metrics-display {
     display: flex;
     justify-content: space-around;
     margin-bottom: 30px;
-    padding: 20px;
+    padding: 30px 20px;
     background: #f8f8f8;
+    border-radius: 8px;
 }
 
 .metric {
     text-align: center;
+    flex: 1;
+    max-width: 200px;
 }
 
 .metric-label {
     display: block;
     color: #666;
     font-size: 0.9rem;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-weight: 500;
 }
 
 .metric-value {
@@ -171,16 +241,69 @@ button:focus {
     color: #333;
     font-size: 1.4rem;
     font-weight: bold;
+    margin-bottom: 12px;
+}
+
+/* Enhanced Progress Bar with More Granular Segments */
+.metric-progress {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 8px;
+}
+
+.metric-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FF8C00, #ff7700);
+    border-radius: 4px;
+    transition: width 0.6s ease-in-out;
+    position: relative;
+}
+
+.metric-progress-segments {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    pointer-events: none;
+}
+
+.metric-progress-segment {
+    flex: 1;
+    border-right: 1px solid #f8f8f8;
+    height: 100%;
+}
+
+.metric-progress-segment:last-child {
+    border-right: none;
+}
+
+/* Every 5th segment gets a thicker divider for major milestones */
+.metric-progress-segment:nth-child(5n) {
+    border-right: 2px solid #f8f8f8;
 }
 
 .decision-document {
     flex: 1;
     padding: 40px;
     border: 2px solid #333;
+    border-radius: 8px;
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.decision-document:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 .decision-document h2 {
@@ -211,7 +334,15 @@ button:focus {
     cursor: pointer;
     text-transform: uppercase;
     background: white;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.decision-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .reject-btn {
@@ -222,6 +353,7 @@ button:focus {
 .reject-btn:hover {
     background: #666;
     color: white;
+    border-color: #555;
 }
 
 .approve-btn {
@@ -232,6 +364,18 @@ button:focus {
 .approve-btn:hover {
     background: #FF8C00;
     color: white;
+    border-color: #e67c00;
+}
+
+.start-button, .restart-btn {
+    border-radius: 6px;
+    box-shadow: 0 3px 8px rgba(255, 140, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.start-button:hover, .restart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 140, 0, 0.4);
 }
 
 /* Final Summary Components */
@@ -280,8 +424,18 @@ button:focus {
 
 .metric-card {
     text-align: center;
-    padding: 20px;
+    padding: 25px 20px;
     border: 2px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    border-color: #FF8C00;
 }
 
 .metric-card .metric-value {
@@ -295,6 +449,7 @@ button:focus {
 .metric-card .metric-label {
     color: #333;
     font-size: 1.1rem;
+    font-weight: 500;
 }
 
 .decisions-history {

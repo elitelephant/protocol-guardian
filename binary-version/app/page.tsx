@@ -2,78 +2,90 @@
 
 import { useState, useEffect } from 'react'
 
-// Game decisions data
+// Bitcoin/Stacks Protocol Decision Scenarios
 const decisions = [
   {
-    title: "Network Scaling Proposal",
-    description: "A community proposal suggests implementing a new scaling solution that could improve transaction throughput by 300%. However, it requires a significant protocol upgrade and some compatibility concerns have been raised.",
+    title: "Lightning Network Integration Proposal",
+    description: "A community proposal suggests integrating Stacks smart contracts with Bitcoin's Lightning Network to enable instant micropayments and DeFi transactions. This could improve transaction throughput by 300%, but requires significant protocol changes and raises compatibility concerns with existing Stacks applications.",
     approve: { security: -3, decentralization: 4, adoption: 7 },
     reject: { security: 2, decentralization: -2, adoption: -4 }
   },
   {
-    title: "Developer Funding Initiative", 
-    description: "The development fund has received a request for 500,000 STX to support ecosystem tooling. The proposal has strong community backing but would reduce the treasury by 15%.",
+    title: "Stacks Developer Fund Initiative", 
+    description: "The Stacks Foundation has received a request for 500,000 STX to fund Bitcoin DeFi tooling and educational resources. The proposal has strong community backing and could accelerate ecosystem growth, but would reduce the treasury by 15% and require careful allocation oversight.",
     approve: { security: 3, decentralization: 2, adoption: 6 },
     reject: { security: -2, decentralization: 1, adoption: -8 }
   },
   {
-    title: "Mining Pool Diversification",
-    description: "Three major mining pools control 65% of the network. A proposal suggests implementing incentives to encourage smaller pools, but may temporarily reduce overall network security.",
+    title: "Bitcoin Mining Pool Diversification",
+    description: "Three major Bitcoin mining pools control 65% of the network hashrate, raising concerns about centralization. A proposal suggests implementing PoX incentives to encourage smaller pools to participate in Stacks consensus, potentially improving decentralization but temporarily reducing overall network security.",
     approve: { security: -4, decentralization: 8, adoption: 1 },
     reject: { security: 3, decentralization: -6, adoption: -1 }
   },
   {
-    title: "Smart Contract Security Audit",
-    description: "A critical smart contract vulnerability has been discovered. The proposed fix requires an emergency upgrade that could disrupt transactions for 24 hours but would prevent potential exploits.",
+    title: "Clarity Smart Contract Security Audit",
+    description: "A critical vulnerability has been discovered in a popular Stacks DeFi protocol built with Clarity. The proposed fix leverages Clarity's safety features but requires an emergency upgrade that could disrupt transactions for 24 hours while preventing potential exploits.",
     approve: { security: 8, decentralization: -1, adoption: -3 },
     reject: { security: -8, decentralization: 2, adoption: 4 }
   },
   {
-    title: "Cross-Chain Integration",
-    description: "A proposal to integrate with three major blockchain networks could increase interoperability and attract new users, but introduces additional complexity and potential attack vectors.",
+    title: "Bitcoin-Stacks Bridge Enhancement",
+    description: "A proposal to enhance the BTC-STX bridge could increase interoperability between Bitcoin and Stacks, attracting new users and enabling novel DeFi applications. However, it introduces additional complexity and potential attack vectors to the Layer 2 ecosystem.",
     approve: { security: -2, decentralization: -1, adoption: 8 },
     reject: { security: 4, decentralization: 3, adoption: -5 }
   },
   {
-    title: "Governance Token Distribution",
-    description: "The community proposes distributing governance tokens to all active users. This would increase participation but may dilute existing stakeholder influence and complicate decision-making.",
+    title: "STX Stacking Rewards Distribution",
+    description: "The community proposes distributing additional STX stacking rewards to all active participants in Proof-of-Transfer consensus. This would increase participation in Bitcoin mining rewards but may dilute existing stacker influence and complicate the economic model.",
     approve: { security: 1, decentralization: 6, adoption: 4 },
     reject: { security: -1, decentralization: -4, adoption: -2 }
   },
   {
-    title: "Privacy Enhancement Protocol",
-    description: "A new privacy feature could make transactions more confidential, attracting privacy-focused users. However, regulators have expressed concerns about compliance implications.",
+    title: "Bitcoin Privacy Enhancement Integration",
+    description: "A new privacy feature could make Stacks transactions more confidential while maintaining Bitcoin's transparent base layer. This would attract privacy-focused users to the ecosystem, but regulators have expressed concerns about compliance implications for Bitcoin Layer 2 solutions.",
     approve: { security: 2, decentralization: 3, adoption: -6 },
     reject: { security: -1, decentralization: -2, adoption: 5 }
   },
   {
-    title: "Emergency Response Framework",
-    description: "A proposal to establish rapid response procedures for critical issues. This would improve security response times but requires giving special powers to a small emergency committee.",
-    approve: { security: 7, decentralization: -5, adoption: 2 },
-    reject: { security: -3, decentralization: 4, adoption: -1 }
+    title: "Bitcoin DeFi Security Standards (2024)",
+    description: "Despite Clarity's safety features, several Stacks DeFi protocols have experienced exploits costing users millions. The community debates mandatory security audits and formal verification requirements versus maintaining the permissionless innovation environment that enabled rapid ecosystem growth.",
+    approve: { security: 8, decentralization: -3, adoption: 4 },
+    reject: { security: -4, decentralization: 7, adoption: -2 }
+  },
+  {
+    title: "Stacks Proof-of-Transfer Evolution",
+    description: "The Stacks network proposes enhancing its Proof-of-Transfer (PoX) consensus mechanism to increase Bitcoin miner participation and STX stacking rewards. This could strengthen Bitcoin-Stacks alignment and reward long-term holders, but requires changes to the economic model that some fear could centralize STX distribution.",
+    approve: { security: 6, decentralization: -2, adoption: 7 },
+    reject: { security: 2, decentralization: 4, adoption: -3 }
+  },
+  {
+    title: "Bitcoin NFT Infrastructure Proposal",
+    description: "A major proposal suggests building comprehensive NFT infrastructure on Stacks, including marketplace protocols, creator royalty systems, and cross-chain Bitcoin Ordinals integration. This could establish Stacks as the premier Bitcoin NFT platform, but critics worry about network congestion and deviation from Bitcoin's monetary focus.",
+    approve: { security: -1, decentralization: 3, adoption: 8 },
+    reject: { security: 5, decentralization: 6, adoption: -4 }
   }
 ];
 
 const endings = {
   secure_conservative: {
-    title: "The Secure Guardian",
-    subtitle: "Stability Above All",
-    description: "You prioritized security and stability over rapid growth. The protocol remains robust and trusted, though some opportunities for expansion were missed. The community appreciates your careful stewardship."
+    title: "The Security Guardian",
+    subtitle: "Safety First Approach",
+    description: "You prioritized security and stability in every decision. The Stacks ecosystem remains robust and trusted, with strong Bitcoin alignment. While growth was measured, users have confidence in the platform's reliability and your careful stewardship."
   },
   balanced_leader: {
-    title: "The Balanced Leader", 
-    subtitle: "Harmony in Governance",
-    description: "You achieved a remarkable balance across all areas. The protocol grew sustainably while maintaining security and decentralization. Your measured approach earned widespread community respect."
+    title: "The Balanced Builder", 
+    subtitle: "Harmony in Innovation",
+    description: "You achieved remarkable balance across all priorities, building a sustainable Stacks ecosystem. Your measured approach earned widespread respect, successfully growing adoption while maintaining security and decentralization principles."
   },
   growth_advocate: {
-    title: "The Growth Advocate",
-    subtitle: "Expansion and Innovation", 
-    description: "You championed adoption and growth, sometimes at the cost of other concerns. The protocol expanded rapidly and attracted many new users, though some worry about long-term sustainability."
+    title: "The Ecosystem Catalyst",
+    subtitle: "Innovation and Expansion", 
+    description: "You championed rapid growth and adoption, making bold moves to expand the Stacks ecosystem. Your vision attracted millions of new users to Bitcoin DeFi and Web3, though some worry about the pace of change and potential risks."
   },
   decentralization_champion: {
-    title: "The Decentralization Champion",
+    title: "The Community Champion",
     subtitle: "Power to the People",
-    description: "You consistently chose to distribute power and maintain decentralization. The protocol remains truly community-governed, though growth was sometimes slower than alternatives."
+    description: "You consistently chose to empower the community and maintain decentralized governance. The Stacks network remains truly community-driven and accessible to all, though growth was sometimes slower than competing platforms."
   }
 };
 
@@ -169,8 +181,8 @@ export default function ProtocolGuardianGame() {
     });
   };
 
-  const isGameComplete = gameState.decisions.length >= 8;
-  const progress = Math.round((gameState.decisions.length / 8) * 100);
+  const isGameComplete = gameState.decisions.length >= 10;
+  const progress = Math.round((gameState.decisions.length / 10) * 100);
 
   // Welcome Screen
   if (!gameState.gameStarted) {
@@ -189,21 +201,21 @@ export default function ProtocolGuardianGame() {
 
         <main id="main-content" className="game-container" role="main">
           <div className="welcome-screen">
-            <h1>Protocol Guardian</h1>
-            <p>As a Protocol Guardian, you'll face critical decisions that shape the future of the blockchain ecosystem. Each choice affects three key metrics that determine the protocol's success.</p>
+            <h1>Protocol Guardian: Stacks Edition</h1>
+            <p>Shape the future of Bitcoin's smart contract layer as a Protocol Guardian. Navigate the evolving Stacks ecosystem, balancing innovation with security while building the foundation for Bitcoin DeFi and Web3 applications.</p>
             
             <div className="metrics-intro">
               <div className="metric-intro">
                 <h3>Security</h3>
-                <p>Protocol safety, audit processes, and vulnerability management</p>
+                <p>Protocol safety, smart contract audits, and Bitcoin alignment</p>
               </div>
               <div className="metric-intro">
                 <h3>Decentralization</h3>
-                <p>Network distribution, community governance, and power balance</p>
+                <p>Network distribution, community governance, and accessibility</p>
               </div>
               <div className="metric-intro">
                 <h3>Adoption</h3>
-                <p>User growth, ecosystem expansion, and mainstream acceptance</p>
+                <p>User growth, developer activity, and ecosystem expansion</p>
               </div>
             </div>
             
@@ -224,9 +236,21 @@ export default function ProtocolGuardianGame() {
       <main className="game-container" role="main">
         <div className="decision-screen">
           <div className="progress-bar">
-            <span>Decision {gameState.decisions.length + 1} of 8</span>
-            <div style={{ width: '100%', height: '4px', background: '#ddd' }}>
+            <span>Protocol Decision {gameState.decisions.length + 1} of 10</span>
+            <div className="main-progress-container">
               <div className="progress-fill" style={{ width: `${progress}%` }}></div>
+              <div className="main-progress-segments">
+                <div className="main-progress-segment"></div>
+                <div className="main-progress-segment"></div>
+                <div className="main-progress-segment"></div>
+                <div className="main-progress-segment"></div>
+                <div className="main-progress-segment"></div>
+                <div className="main-progress-segment"></div>
+                <div className="main-progress-segment"></div>
+                <div className="main-progress-segment"></div>
+                <div className="main-progress-segment"></div>
+                <div className="main-progress-segment"></div>
+              </div>
             </div>
           </div>
           
@@ -234,14 +258,59 @@ export default function ProtocolGuardianGame() {
             <div className="metric">
               <span className="metric-label">Security</span>
               <span className="metric-value">{gameState.metrics.security}</span>
+              <div className="metric-progress">
+                <div className="metric-progress-fill" style={{ width: `${gameState.metrics.security}%` }}></div>
+                <div className="metric-progress-segments">
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                </div>
+              </div>
             </div>
             <div className="metric">
               <span className="metric-label">Decentralization</span>
               <span className="metric-value">{gameState.metrics.decentralization}</span>
+              <div className="metric-progress">
+                <div className="metric-progress-fill" style={{ width: `${gameState.metrics.decentralization}%` }}></div>
+                <div className="metric-progress-segments">
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                </div>
+              </div>
             </div>
             <div className="metric">
               <span className="metric-label">Adoption</span>
               <span className="metric-value">{gameState.metrics.adoption}</span>
+              <div className="metric-progress">
+                <div className="metric-progress-fill" style={{ width: `${gameState.metrics.adoption}%` }}></div>
+                <div className="metric-progress-segments">
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                  <div className="metric-progress-segment"></div>
+                </div>
+              </div>
             </div>
           </div>
           
@@ -270,7 +339,7 @@ export default function ProtocolGuardianGame() {
   return (
     <main className="game-container" role="main">
       <div className="final-summary">
-        <h1>Mission Complete</h1>
+        <h1>Your Stacks Legacy</h1>
         
         <div className="ending-section">
           <h2>{ending.title}</h2>
@@ -294,7 +363,7 @@ export default function ProtocolGuardianGame() {
         </div>
         
         <div className="decisions-history">
-          <h3>Your Leadership Journey</h3>
+          <h3>Your Protocol Governance Journey</h3>
           {gameState.decisions.map((decision, index) => (
             <div key={index} className="decision-item">
               <span className={`decision-status ${decision.choice === 'approve' ? 'approve-btn' : 'reject-btn'}`}>
@@ -311,5 +380,4 @@ export default function ProtocolGuardianGame() {
       </div>
     </main>
   );
-}/ /   T e s t   d e p l o y m e n t  
- 
+}
