@@ -171,28 +171,28 @@ export function getCertificateInfo(certificateType: CertificateType) {
       subtitle: "Safety First Approach",
       description: "Certified Protocol Guardian specializing in security and stability. Prioritized robust infrastructure and careful stewardship of the Stacks ecosystem.",
       color: "#2E86AB",
-      icon: "🛡️"
+      icon: "SHIELD"
     },
     balanced_leader: {
       title: "The Balanced Builder", 
       subtitle: "Harmony in Innovation",
       description: "Certified Protocol Guardian with exceptional balance across all priorities. Demonstrated sustainable ecosystem growth with measured decision-making.",
       color: "#A23B72",
-      icon: "⚖️"
+      icon: "BALANCE"
     },
     growth_advocate: {
       title: "The Ecosystem Catalyst",
       subtitle: "Innovation and Expansion", 
       description: "Certified Protocol Guardian focused on rapid growth and adoption. Successfully expanded the Stacks ecosystem through bold innovation.",
       color: "#F18F01",
-      icon: "🚀"
+      icon: "ROCKET"
     },
     decentralization_champion: {
       title: "The Community Champion",
       subtitle: "Power to the People",
       description: "Certified Protocol Guardian championing decentralized governance. Maintained community-driven development and accessibility principles.",
       color: "#C73E1D",
-      icon: "👥"
+      icon: "COMMUNITY"
     }
   }
 

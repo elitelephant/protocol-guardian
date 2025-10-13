@@ -426,6 +426,84 @@ button:focus {
     overflow-y: auto;
 }
 
+.ending-section-integrated {
+    background-color: #F18F01;
+    color: white;
+    padding: 40px;
+    border-radius: 15px;
+    margin: 20px 0 30px 0;
+    text-align: center;
+}
+
+.ending-section-integrated h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.ending-section-integrated h3 {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.ending-section-integrated > p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    opacity: 0.95;
+}
+
+.nft-integrated-section {
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    padding-top: 25px;
+    margin-top: 25px;
+}
+
+.nft-integrated-section h4 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.nft-integrated-section > p {
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.nft-mint-btn-integrated {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.nft-mint-btn-integrated:hover {
+    background-color: white;
+    color: #F18F01;
+    transform: translateY(-2px);
+}
+
+.nft-prompt-integrated {
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    padding-top: 25px;
+    margin-top: 25px;
+}
+
+.nft-prompt-integrated h4 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.nft-prompt-integrated p {
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
 .final-summary h1 {
     color: #FF8C00;
     font-size: 2rem;
@@ -463,6 +541,39 @@ button:focus {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 15px;
     margin-bottom: 20px;
+}
+
+.nft-info-section {
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.nft-info-section h3 {
+    color: #F18F01;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.wallet-connect-prompt {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgba(241, 143, 1, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(241, 143, 1, 0.3);
+}
+
+.wallet-connect-prompt ul {
+    text-align: left;
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.wallet-connect-prompt li {
+    margin: 8px 0;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .metric-card {
@@ -905,10 +1016,45 @@ button:focus {
 .wallet-header {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    padding: 0;
+    padding: 20px;
     margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.blockchain-save-notification {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 20px;
+    background-color: rgba(241, 143, 1, 0.1);
+    border: 1px solid rgba(241, 143, 1, 0.3);
+    border-radius: 10px;
+    color: #F18F01;
+    font-size: 14px;
+}
+
+.load-game-btn {
+    padding: 8px 16px;
+    border: 1px solid #F18F01;
+    background-color: transparent;
+    color: #F18F01;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.load-game-btn:hover:not(:disabled) {
+    background-color: rgba(241, 143, 1, 0.1);
+    transform: translateY(-1px);
+}
+
+.load-game-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .wallet-header .wallet-btn,
@@ -1173,4 +1319,51 @@ button:focus {
 
 .blockchain-status-item:last-child {
     border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+    .wallet-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .blockchain-save-notification {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .ending-section-integrated {
+        padding: 30px 25px;
+    }
+    
+    .ending-section-integrated h2 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-container {
+        padding: 20px;
+        margin: 20px;
+    }
+    
+    .final-metrics {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .ending-section-integrated {
+        padding: 25px 20px;
+    }
+    
+    .ending-section-integrated h2 {
+        font-size: 1.8em;
+    }
+    
+    .nft-mint-btn-integrated {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
 }

@@ -1,24 +1,24 @@
-# Protocol Guardian: Stacks Edition 🚀
+# Protocol Guardian: Stacks Edition
 
 Modern blockchain governance simulation game with **Stacks wallet integration** and **NFT certification**. Built with Next.js 14, React, TypeScript, and Stacks.js.
 
-## 🎮 Game Overview
+## Game Overview
 
 Shape the future of Bitcoin's smart contract layer through **10 Stacks ecosystem governance decisions**:
 
 ### Core Metrics
-- 🛡️ **Security**: Protocol safety, smart contract audits, and Bitcoin alignment
-- 👥 **Decentralization**: Network distribution, community governance, and accessibility
-- 🚀 **Adoption**: User growth, developer activity, and ecosystem expansion
+- **Security**: Protocol safety, smart contract audits, and Bitcoin alignment
+- **Decentralization**: Network distribution, community governance, and accessibility
+- **Adoption**: User growth, developer activity, and ecosystem expansion
 
-### New Blockchain Features ⭐
-- 🔗 **Wallet Connection**: Connect Leather, Xverse, or any Stacks wallet
-- ☁️ **Cloud Saves**: Automatic blockchain-based progress saving
-- 🏆 **Achievements**: Unlock blockchain-verified milestones  
-- 💎 **NFT Certificates**: Mint unique governance style certificates
-- 🌐 **Cross-Device Sync**: Resume your game from anywhere
+### New Blockchain Features
+- **Wallet Connection**: Connect Leather, Xverse, or any Stacks wallet
+- **Cloud Saves**: Automatic blockchain-based progress saving
+- **Achievements**: Unlock blockchain-verified milestones  
+- **NFT Certificates**: Mint unique governance style certificates
+- **Cross-Device Sync**: Resume your game from anywhere
 
-## 🏗️ Architecture & Best Practices
+## Architecture & Best Practices
 
 This project follows modern web development best practices:
 
@@ -50,7 +50,7 @@ binary-game/
 - Semantic HTML structure
 - High contrast design
 
-## 🚀 Deployment
+## Deployment
 
 ### Vercel Deployment (Recommended)
 This project is optimized for Vercel deployment:
@@ -90,19 +90,19 @@ The project exports to static files and can be deployed to any web server:
 - Upload the contents of the `out/` folder to your web server
 - The `index.html` file in `out/` is the entry point
 
-## 📋 Deployment Checklist
+## Deployment Checklist
 
-- ✅ **Separated CSS**: All styles in external files
-- ✅ **Modular JavaScript**: ES6 modules with proper imports
-- ✅ **Proper File Structure**: Organized src/ and public/ directories
-- ✅ **SEO Meta Tags**: Title, description, Open Graph tags
-- ✅ **Accessibility**: ARIA labels, semantic HTML, keyboard navigation
-- ✅ **Vercel Configuration**: Proper routing and headers
-- ✅ **Security Headers**: XSS protection, content type options
-- ✅ **Mobile Responsive**: Warning for mobile devices
-- ✅ **Loading States**: Graceful loading experience
+- **Separated CSS**: All styles in external files
+- **Modular JavaScript**: ES6 modules with proper imports
+- **Proper File Structure**: Organized src/ and public/ directories
+- **SEO Meta Tags**: Title, description, Open Graph tags
+- **Accessibility**: ARIA labels, semantic HTML, keyboard navigation
+- **Vercel Configuration**: Proper routing and headers
+- **Security Headers**: XSS protection, content type options
+- **Mobile Responsive**: Warning for mobile devices
+- **Loading States**: Graceful loading experience
 
-## 🔧 Technical Details
+## Technical Details
 
 ### Browser Support
 - Modern browsers with ES6 module support
@@ -120,7 +120,7 @@ The project exports to static files and can be deployed to any web server:
 - No inline scripts or styles
 - Secure meta tags
 
-## 🎯 Next Steps for Production
+## Next Steps for Production
 
 1. **Add Analytics**: Google Analytics or similar tracking
 2. **Error Monitoring**: Sentry or similar error tracking

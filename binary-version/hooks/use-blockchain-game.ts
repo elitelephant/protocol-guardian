@@ -255,7 +255,7 @@ function showAchievementNotification(title: string) {
   notification.className = 'achievement-notification'
   notification.innerHTML = `
     <div class="achievement-content">
-      <span class="achievement-icon">🏆</span>
+      <span class="achievement-icon">★</span>
       <div>
         <div class="achievement-title">Achievement Unlocked!</div>
         <div class="achievement-description">${title}</div>

@@ -1,10 +1,10 @@
 # Protocol Guardian: Stacks Edition - Wallet & NFT Integration
 
-## 🚀 New Features
+## New Features
 
 This version of Protocol Guardian now includes **Stacks blockchain integration** with wallet connection and NFT certification features!
 
-## 🔗 Wallet Connection
+## Wallet Connection
 
 ### Supported Wallets
 - **Leather Wallet** (Recommended)
@@ -21,7 +21,7 @@ This version of Protocol Guardian now includes **Stacks blockchain integration**
 - **Development**: Automatically uses **Stacks Testnet** for safe testing
 - **Production**: Uses **Stacks Mainnet** for real transactions
 
-## 🎮 Enhanced Game Features
+## Enhanced Game Features
 
 ### Cloud Saves
 - **Automatic Save**: Game progress is automatically saved to the blockchain when your wallet is connected
@@ -31,35 +31,35 @@ This version of Protocol Guardian now includes **Stacks blockchain integration**
 ### Achievement System
 Unlock blockchain-verified achievements as you play:
 
-- 🏁 **Protocol Pioneer**: Make your first governance decision
-- 🎯 **Halfway Hero**: Complete 5 protocol decisions
-- 🏆 **Governance Master**: Complete all 10 protocol decisions
-- 🛡️ **Security Guardian**: Achieve 80+ Security Score
-- 👥 **Decentralization Champion**: Achieve 80+ Decentralization Score
-- 🚀 **Adoption Catalyst**: Achieve 80+ Adoption Score
-- 💎 **NFT Certified**: Mint your Protocol Guardian Certificate
+- **Protocol Pioneer**: Make your first governance decision
+- **Halfway Hero**: Complete 5 protocol decisions
+- **Governance Master**: Complete all 10 protocol decisions
+- **Security Guardian**: Achieve 80+ Security Score
+- **Decentralization Champion**: Achieve 80+ Decentralization Score
+- **Adoption Catalyst**: Achieve 80+ Adoption Score
+- **NFT Certified**: Mint your Protocol Guardian Certificate
 
-## 🏆 NFT Certification System
+## NFT Certification System
 
 ### Unique Certificates
 Upon game completion, mint a unique NFT certificate representing your governance style:
 
-#### 🛡️ The Security Guardian
+#### The Security Guardian
 - **Focus**: Protocol safety and Bitcoin alignment
 - **Color Theme**: Blue (#2E86AB)
 - **Achievement**: Prioritized security and stability
 
-#### ⚖️ The Balanced Builder
+#### The Balanced Builder
 - **Focus**: Harmony across all metrics
 - **Color Theme**: Purple (#A23B72)
 - **Achievement**: Exceptional balance in decision-making
 
-#### 🚀 The Ecosystem Catalyst
+#### The Ecosystem Catalyst
 - **Focus**: Growth and innovation
 - **Color Theme**: Orange (#F18F01)
 - **Achievement**: Championed rapid ecosystem expansion
 
-#### 👥 The Community Champion
+#### The Community Champion
 - **Focus**: Decentralization and accessibility  
 - **Color Theme**: Red (#C73E1D)
 - **Achievement**: Maintained community-driven governance
@@ -70,7 +70,7 @@ Upon game completion, mint a unique NFT certificate representing your governance
 - **Blockchain Verified**: Immutable proof of your governance journey
 - **Shareable**: Show off your Protocol Guardian credentials
 
-## 🛠️ Technical Implementation
+## Technical Implementation
 
 ### Smart Contract Integration
 ```typescript
@@ -96,7 +96,7 @@ import { StacksAuthProvider } from './contexts/stacks-auth'
 </StacksAuthProvider>
 ```
 
-## 🎯 Getting Started
+## Getting Started
 
 1. **Install Dependencies**
    ```bash
@@ -121,32 +121,32 @@ import { StacksAuthProvider } from './contexts/stacks-auth'
    - Mint your unique NFT certificate
    - Share your achievement!
 
-## 📱 User Experience
+## User Experience
 
 ### Without Wallet
-- ✅ Full game functionality
-- ✅ Complete all 10 scenarios
-- ✅ Receive governance style results
-- ❌ No cloud saves
-- ❌ No achievements
-- ❌ No NFT certificates
+- Full game functionality
+- Complete all 10 scenarios
+- Receive governance style results
+- No cloud saves
+- No achievements
+- No NFT certificates
 
 ### With Wallet Connected
-- ✅ All base game features
-- ✅ **Automatic cloud saves**
-- ✅ **Achievement notifications**
-- ✅ **Cross-device progress sync**
-- ✅ **NFT certificate minting**
-- ✅ **Blockchain verification**
+- All base game features
+- **Automatic cloud saves**
+- **Achievement notifications**
+- **Cross-device progress sync**
+- **NFT certificate minting**
+- **Blockchain verification**
 
-## 🔒 Security & Privacy
+## Security & Privacy
 
 - **No Private Keys**: Your wallet manages all sensitive operations
 - **Optional Connection**: Game works without wallet
 - **Testnet Safe**: Development uses testnet for safe testing
 - **User Control**: You control all blockchain interactions
 
-## 🌟 Future Enhancements
+## Future Enhancements
 
 ### Phase 1 (Next Update)
 - **Smart Contract Deployment**: Deploy actual Clarity contracts to Stacks
@@ -167,7 +167,7 @@ import { StacksAuthProvider } from './contexts/stacks-auth'
 - **NFTs**: Clarity smart contracts (future deployment)
 - **Styling**: Custom CSS with Stacks-inspired design
 
-## 🎮 Demo Flow
+## Demo Flow
 
 1. **Welcome Screen** → Optional wallet connection
 2. **Governance Scenarios** → 10 Bitcoin/Stacks decisions
@@ -179,13 +179,13 @@ import { StacksAuthProvider } from './contexts/stacks-auth'
 
 ---
 
-## 🏆 Ready for Hackathon Judging
+## Ready for Hackathon Judging
 
 This implementation demonstrates:
-- ✅ **Educational Value**: Teaching Stacks ecosystem through gameplay
-- ✅ **Technical Innovation**: Clean blockchain integration
-- ✅ **User Experience**: Optional, non-intrusive wallet features  
-- ✅ **Ecosystem Growth**: Driving interest in Stacks and Bitcoin Layer 2
-- ✅ **Future Potential**: Framework for expanded blockchain education
+- **Educational Value**: Teaching Stacks ecosystem through gameplay
+- **Technical Innovation**: Clean blockchain integration
+- **User Experience**: Optional, non-intrusive wallet features  
+- **Ecosystem Growth**: Driving interest in Stacks and Bitcoin Layer 2
+- **Future Potential**: Framework for expanded blockchain education
 
-**Start playing now and mint your Protocol Guardian certificate!** 🚀
+**Start playing now and mint your Protocol Guardian certificate!**

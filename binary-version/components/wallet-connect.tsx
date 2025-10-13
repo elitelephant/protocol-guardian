@@ -93,7 +93,7 @@ export function WalletProfile() {
             <div className="wallet-address">{formatStacksAddress(stxAddress, 4)}</div>
           </div>
           <div className="wallet-network-badge">
-            {isMainnet ? '🟢 Mainnet' : '🟡 Testnet'}
+            {isMainnet ? 'Mainnet' : 'Testnet'}
           </div>
         </div>
         
