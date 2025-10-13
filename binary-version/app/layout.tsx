@@ -1,7 +1,6 @@
-import type { Metadata } from 'next'
 import './globals.css'
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Protocol Guardian - Blockchain Governance Simulation',
   description: 'A blockchain governance simulation game where your decisions shape the future of decentralized networks.',
   keywords: ['blockchain', 'governance', 'simulation', 'game', 'protocol', 'decentralization'],
