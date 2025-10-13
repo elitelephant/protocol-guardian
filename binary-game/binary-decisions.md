@@ -9,64 +9,64 @@ Converting multi-choice decisions to simple **Approve/Reject** format for the ne
 ### 1. Bitcoin Mining Environmental Standards
 **Proposal**: Implement mandatory environmental impact assessments and carbon offsets for mining operations above 10 MW capacity.
 
-**✅ APPROVE**: Public Confidence +15, Tech Advancement +10, Network Health -5
-**❌ REJECT**: Tech Advancement +15, Network Health +5, Public Confidence -10
+**✅ APPROVE**: Public Confidence +8, Tech Advancement +5, Network Health -3
+**❌ REJECT**: Tech Advancement +8, Network Health +5, Public Confidence -3
 
 ---
 
 ### 2. Stacks Protocol Regulatory Framework  
 **Proposal**: Create formal oversight for Stacks governance including treasury transparency and voting audits.
 
-**✅ APPROVE**: Public Confidence +20, Network Health +5, Tech Advancement -10
-**❌ REJECT**: Tech Advancement +20, Network Health +10, Public Confidence -5
+**✅ APPROVE**: Public Confidence +8, Network Health +3, Tech Advancement -5
+**❌ REJECT**: Tech Advancement +8, Network Health +5, Public Confidence -3
 
 ---
 
 ### 3. Mining Pool Size Limits
 **Proposal**: Implement voluntary 15% hashrate limit per mining pool to prevent centralization.
 
-**✅ APPROVE**: Network Health +15, Public Confidence +10, Tech Advancement -5  
-**❌ REJECT**: Tech Advancement +10, Network Health -10, Public Confidence -10
+**✅ APPROVE**: Network Health +8, Public Confidence +5, Tech Advancement -3  
+**❌ REJECT**: Tech Advancement +6, Network Health -5, Public Confidence -5
 
 ---
 
 ### 4. Stacks DeFi Ecosystem Expansion
 **Proposal**: Launch $100M developer fund for DeFi protocols built on Stacks.
 
-**✅ APPROVE**: Tech Advancement +20, Public Confidence +10, Network Health -5
-**❌ REJECT**: Network Health +10, Tech Advancement -15, Public Confidence -5
+**✅ APPROVE**: Tech Advancement +8, Public Confidence +5, Network Health -3
+**❌ REJECT**: Network Health +8, Tech Advancement -5, Public Confidence -3
 
 ---
 
 ### 5. Layer 2 Scaling Priority
 **Proposal**: Focus development resources on Layer 2 solutions rather than base layer changes.
 
-**✅ APPROVE**: Tech Advancement +20, Public Confidence +5, Network Health -5
-**❌ REJECT**: Network Health +15, Tech Advancement -10, Public Confidence -5
+**✅ APPROVE**: Tech Advancement +8, Public Confidence +3, Network Health -3
+**❌ REJECT**: Network Health +8, Tech Advancement -5, Public Confidence -3
 
 ---
 
 ### 6. Corporate Bitcoin Treasury Guidelines
 **Proposal**: Establish regulatory guidelines and tax frameworks for corporate Bitcoin adoption.
 
-**✅ APPROVE**: Public Confidence +20, Network Health +5, Tech Advancement -5
-**❌ REJECT**: Tech Advancement +15, Network Health -5, Public Confidence -10
+**✅ APPROVE**: Public Confidence +8, Network Health +3, Tech Advancement -3
+**❌ REJECT**: Tech Advancement +8, Network Health -3, Public Confidence -5
 
 ---
 
 ### 7. Cross-Layer 2 Interoperability Standards
 **Proposal**: Create unified standards for asset transfers between Lightning, Stacks, and other Layer 2s.
 
-**✅ APPROVE**: Tech Advancement +15, Network Health +5, Public Confidence +10
-**❌ REJECT**: Tech Advancement +10, Network Health -5, Public Confidence -5
+**✅ APPROVE**: Tech Advancement +6, Network Health +3, Public Confidence +5
+**❌ REJECT**: Tech Advancement +5, Network Health -3, Public Confidence -3
 
 ---
 
 ### 8. Quantum-Resistant Cryptography Upgrade
 **Proposal**: Begin transition to quantum-resistant signature schemes for Bitcoin.
 
-**✅ APPROVE**: Tech Advancement +20, Network Health +15, Public Confidence +5
-**❌ REJECT**: Network Health -15, Tech Advancement -10, Public Confidence -10
+**✅ APPROVE**: Tech Advancement +8, Network Health +8, Public Confidence +3
+**❌ REJECT**: Network Health -8, Tech Advancement -5, Public Confidence -5
 
 ---
 

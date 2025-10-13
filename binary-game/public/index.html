@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Protocol Guardian - A blockchain governance simulation game where your decisions shape the future of decentralized networks.">
+    <meta name="keywords" content="blockchain, governance, simulation, game, protocol, decentralization">
+    <meta name="author" content="Protocol Guardian Team">
+    
+    <!-- Open Graph meta tags for social sharing -->
+    <meta property="og:title" content="Protocol Guardian - Blockchain Governance Game">
+    <meta property="og:description" content="Make critical decisions that shape the future of blockchain protocols. Balance security, decentralization, and adoption.">
+    <meta property="og:type" content="website">
+    
+    <title>Protocol Guardian - Blockchain Governance Simulation</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="src/styles/base.css">
+    <link rel="stylesheet" href="src/styles/game.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="src/js/main.js" as="script">
+</head>
+<body>
+    <!-- Skip navigation for screen readers -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+    
+    <!-- Mobile Warning -->
+    <div class="mobile-warning" role="dialog" aria-labelledby="mobile-title" aria-describedby="mobile-desc">
+        <div>
+            <h2 id="mobile-title">Desktop Required</h2>
+            <p id="mobile-desc">This game is optimized for desktop screens. Please access from a computer for the best experience.</p>
+        </div>
+    </div>
+
+    <!-- Main game content -->
+    <main id="main-content" class="game-container" role="main">
+        <!-- Content will be dynamically loaded by JavaScript -->
+        <div class="loading-state">
+            <p>Loading Protocol Guardian...</p>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script type="module" src="src/js/main.js"></script>
+    
+    <!-- Accessibility: Announce screen changes to screen readers -->
+    <div id="screen-reader-announcer" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{
+  "name": "protocol-guardian-binary-game",
+  "version": "1.0.0",
+  "description": "A blockchain governance simulation game where your decisions shape the future of decentralized networks.",
+  "main": "app/page.tsx",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next export"
+  },
+  "keywords": [
+    "blockchain",
+    "governance",
+    "simulation", 
+    "game",
+    "protocol",
+    "decentralization",
+    "web-game"
+  ],
+  "author": "Protocol Guardian Team",
+  "license": "MIT",
+  "dependencies": {
+    "next": "14.2.33",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elitelephant/cre-game.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elitelephant/cre-game/issues"
+  },
+  "homepage": "https://github.com/elitelephant/cre-game#readme"
+}

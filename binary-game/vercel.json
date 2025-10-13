@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "public": true,
+  "github": {
+    "silent": true
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/public/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options", 
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/src/js/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/javascript; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/src/styles/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type", 
+          "value": "text/css; charset=utf-8"
+        }
+      ]
+    }
+  ]
+}

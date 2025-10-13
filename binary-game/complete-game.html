@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol Guardian - Complete Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .game-container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border: 3px solid #FF8C00;
+            padding: 40px;
+            min-height: 600px;
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            text-align: center;
+        }
+
+        .welcome-screen h1 {
+            color: #FF8C00;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .welcome-screen p {
+            color: #333;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .metrics-intro {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .metric-intro {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .metric-intro h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .metric-intro p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .start-button {
+            background: #FF8C00;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .start-button:hover {
+            background: #e67c00;
+        }
+
+        /* Decision Screen */
+        .decision-screen {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 500px;
+        }
+
+        .progress-bar {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .progress-bar span {
+            color: #666;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 4px;
+            background: #FF8C00;
+            transition: width 0.3s ease;
+        }
+
+        .metrics-display {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f8f8;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-label {
+            display: block;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .metric-value {
+            display: block;
+            color: #333;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .decision-document {
+            flex: 1;
+            padding: 40px;
+            border: 2px solid #333;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .decision-document h2 {
+            color: #333;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #FF8C00;
+            padding-bottom: 10px;
+        }
+
+        .decision-document p {
+            color: #333;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .decision-buttons {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .decision-buttons button {
+            padding: 15px 40px;
+            border: 2px solid;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            background: white;
+            transition: all 0.2s ease;
+        }
+
+        .reject-btn {
+            border-color: #666;
+            color: #666;
+        }
+
+        .reject-btn:hover {
+            background: #666;
+            color: white;
+        }
+
+        .approve-btn {
+            border-color: #FF8C00;
+            color: #FF8C00;
+        }
+
+        .approve-btn:hover {
+            background: #FF8C00;
+            color: white;
+        }
+
+        /* Final Summary */
+        .final-summary {
+            text-align: center;
+        }
+
+        .final-summary h1 {
+            color: #FF8C00;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .ending-section {
+            background: #FF8C00;
+            color: white;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .ending-section h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .ending-section h3 {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .ending-section p {
+            font-size: 1rem;
+            line-height: 1.5;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .final-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #ddd;
+        }
+
+        .metric-card .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FF8C00;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .metric-card .metric-label {
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .decisions-history {
+            margin-bottom: 30px;
+        }
+
+        .decisions-history h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .decision-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .decision-status {
+            font-weight: 600;
+            min-width: 80px;
+            font-size: 0.8rem;
+        }
+
+        .decision-title {
+            flex: 1;
+            text-align: left;
+        }
+
+        .restart-btn {
+            background: #FF8C00;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .restart-btn:hover {
+            background: #e67c00;
+        }
+
+        /* Mobile Warning */
+        @media (max-width: 1024px) {
+            .mobile-warning {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                color: white;
+                text-align: center;
+                padding: 20px;
+            }
+            
+            .game-container {
+                display: none;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .mobile-warning {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Warning -->
+    <div class="mobile-warning">
+        <div>
+            <h2>Desktop Required</h2>
+            <p>Protocol Guardian is optimized for desktop experience.<br>
+            Please access this game from a desktop or laptop computer.</p>
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="game-container" class="game-container">
+        <!-- Game content will be dynamically rendered here -->
+    </div>
+
+    <script src="game-engine.js"></script>
+</body>
+</html>
