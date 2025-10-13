@@ -1,6 +1,6 @@
-# Protocol Guardian - Binary Decision Game
+# Protocol Guardian - Next.js Version
 
-A blockchain governance simulation game where your decisions shape the future of decentralized networks. Built with vanilla JavaScript and modern web standards.
+Modern implementation of the Protocol Guardian blockchain governance simulation game built with Next.js 14, React, and TypeScript.
 
 ## 🎮 Game Overview
 

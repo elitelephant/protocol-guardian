@@ -124,42 +124,8 @@ private-keys/
 # game-saves/
 # user-data/
 
-# ===========================================
-# PROJECT STRUCTURE SPECIFIC
-# ===========================================
-
-# Each version has its own dependencies
-original-version/node_modules/
-original-version/.next/
-original-version/out/
-original-version/build/
-original-version/.env*.local
-original-version/tsconfig.tsbuildinfo
-
-binary-nextjs-version/binary-game/node_modules/
-binary-nextjs-version/binary-game/.next/
-binary-nextjs-version/binary-game/out/
-binary-nextjs-version/binary-game/build/
-binary-nextjs-version/binary-game/.env*.local
-binary-nextjs-version/binary-game/tsconfig.tsbuildinfo
-
-# Binary prototypes are static files - no build artifacts needed
-
-# Personal documentation files - EXCLUDED from repo
+# Private development notes
 PROJECT_NOTES.md
-BITCOIN_STACKS_STORY.md  
+BITCOIN_STACKS_STORY.md
 STORY.md
 INTERNAL_README.md
-STACKS_INTEGRATION.md
-
-# Keep only technical project documentation
-# README.md - main project documentation (INCLUDED)
-
-# Development artifacts that should be ignored in all versions
-*/coverage/
-*/.vercel/
-*/npm-debug.log*
-*/yarn-debug.log*
-*/yarn-error.log*
-*/pnpm-debug.log*
-*/.pnpm-debug.log*

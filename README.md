@@ -56,6 +56,31 @@ pnpm dev
 
 The application will be available at `http://localhost:3000`
 
+## 🎯 Available Versions
+
+This project contains **three different implementations** of the Protocol Guardian game:
+
+### `original-version/` - Complete Blockchain Experience
+- **Framework**: Next.js 14 + React + TypeScript + Stacks.js
+- **Decision Format**: Multi-choice scenarios (3-5 options per decision)
+- **Features**: Full blockchain integration, wallet connectivity, educational content
+- **Target**: Blockchain professionals and enthusiasts
+- **Usage**: `cd original-version && npm install && npm run dev`
+
+### `binary-nextjs-version/binary-game/` - Hackathon Ready
+- **Framework**: Next.js 14 + React + TypeScript  
+- **Decision Format**: Binary approve/reject decisions
+- **Features**: Streamlined gameplay, 8 key decisions, multiple endings
+- **Target**: General audience, quick demos, hackathons
+- **Usage**: `cd binary-nextjs-version/binary-game && npm install && npm run dev`
+
+### `binary-prototypes/` - Development Prototypes
+- **Framework**: Vanilla HTML/CSS/JavaScript
+- **Decision Format**: Binary decisions with detailed scenarios
+- **Features**: Standalone files, rapid iteration, no dependencies
+- **Target**: Development, testing, concept validation
+- **Usage**: Open `complete-game.html` in browser
+
 ### Environment Configuration
 
 Create a `.env.local` file for custom configuration:
