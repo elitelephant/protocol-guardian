@@ -791,8 +791,8 @@ button:focus {
     line-height: 1.4;
 }
 
-/* Mobile responsive warnings */
-@media (max-width: 1024px) {
+/* Mobile responsive warnings - Only for very small screens */
+@media (max-width: 768px) {
     .mobile-warning {
         position: fixed;
         top: 0;
@@ -814,7 +814,7 @@ button:focus {
     }
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 769px) {
     .mobile-warning {
         display: none;
     }
