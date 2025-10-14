@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from 'react'
 import { useStacksAuth, formatStacksAddress, getStacksAddress } from '../contexts/stacks-auth'
 import { Wallet, User, Copy, ExternalLink, LogOut } from 'lucide-react'
 
@@ -35,6 +36,7 @@ export function WalletConnectButton() {
 
 export function WalletProfile() {
   const { userData, disconnectWallet, isMainnet } = useStacksAuth()
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   
   if (!userData) return null
 
@@ -65,7 +67,10 @@ export function WalletProfile() {
 
   return (
     <div className="wallet-profile">
-      <div className="wallet-profile-trigger">
+      <div 
+        className="wallet-profile-trigger"
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+      >
         <div className="wallet-avatar">
           {avatarUrl ? (
             <img src={avatarUrl} alt={displayName} />
@@ -79,7 +84,8 @@ export function WalletProfile() {
         </span>
       </div>
       
-      <div className="wallet-dropdown">
+      {isDropdownOpen && (
+        <div className="wallet-dropdown">
         <div className="wallet-dropdown-header">
           <div className="wallet-avatar-large">
             {avatarUrl ? (
@@ -113,7 +119,8 @@ export function WalletProfile() {
             Disconnect
           </button>
         </div>
-      </div>
+        </div>
+      )}
     </div>
   )
 }

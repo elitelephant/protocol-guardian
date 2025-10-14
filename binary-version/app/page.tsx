@@ -139,6 +139,7 @@ export default function ProtocolGuardianGame() {
   } = useNFTCertification()
 
   const [showNFTMint, setShowNFTMint] = useState(false)
+  const [showDecisions, setShowDecisions] = useState(false)
 
   // Auto-save game state when connected
   useEffect(() => {
@@ -583,15 +584,31 @@ export default function ProtocolGuardianGame() {
         )}
 
         <div className="decisions-history">
-          <h3>Your Protocol Governance Journey</h3>
-          {gameState.decisions.map((decision, index) => (
-            <div key={index} className="decision-item">
-              <span className={`decision-status ${decision.choice === 'approve' ? 'approve-btn' : 'reject-btn'}`}>
-                {decision.choice.toUpperCase()}
+          <div 
+            className="decisions-header"
+            onClick={() => setShowDecisions(!showDecisions)}
+          >
+            <h3>Your Protocol Governance Journey</h3>
+            <div className="decisions-summary">
+              <span>{gameState.decisions.length} decisions made</span>
+              <span className={`expand-icon ${showDecisions ? 'expanded' : ''}`}>
+                {showDecisions ? '−' : '+'}
               </span>
-              <span className="decision-title">{decision.title}</span>
             </div>
-          ))}
+          </div>
+          
+          {showDecisions && (
+            <div className="decisions-list">
+              {gameState.decisions.map((decision, index) => (
+                <div key={index} className="decision-item">
+                  <span className={`decision-status ${decision.choice === 'approve' ? 'approve-btn' : 'reject-btn'}`}>
+                    {decision.choice.toUpperCase()}
+                  </span>
+                  <span className="decision-title">{decision.title}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         
         <button className="restart-btn" onClick={restart}>
