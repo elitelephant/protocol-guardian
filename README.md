@@ -62,6 +62,8 @@ The game will be available at `http://localhost:3000`
 
 **Live Demo**: [https://protocol-guardian-latest.vercel.app/](https://protocol-guardian-latest.vercel.app/)
 
+**🎥 Game Walkthrough**: [Watch how to play](https://www.loom.com/share/e652fec7ffd44ab987801f50f69ad79c?sid=c9c8e556-c0d3-47c3-851b-f975fff6db2f)
+
 > **Note**: The game is optimized for desktop screens. It may not display properly on smaller devices and does not work on mobile phones.
 
 ## 📁 Project Structure
