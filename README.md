@@ -1,5 +1,7 @@
 # Protocol Guardian: Stacks Edition 🛡️
 
+> **🚨 JUDGES: The main game submission is in the `binary-version/` directory**
+
 An interactive governance simulation game where you become a **Protocol Guardian** making critical decisions that shape the future of Bitcoin and the Stacks ecosystem.
 
 ## 🎮 Game Overview
