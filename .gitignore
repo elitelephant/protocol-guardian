@@ -147,10 +147,14 @@ binary-version/tsconfig.tsbuildinfo
 
 # Personal documentation files - EXCLUDED from repo
 PROJECT_NOTES.md
-BITCOIN_STACKS_STORY.md  
+BITCOIN_STACKS_STORY.md
 STORY.md
 INTERNAL_README.md
 STACKS_INTEGRATION.md
+HACKATHON_PITCH.md
+HACKATHON_PITCH_REFINED.md
+PRESENTATION_COLOR_PALETTE.md
+PRESENTATION_SLIDES_OUTLINE.md
 
 # Keep only technical project documentation
 # README.md - main project documentation (INCLUDED)
